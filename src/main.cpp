@@ -31,16 +31,19 @@ int main(int argc, char ** argv)
 
 	QTranslator translator;
 	//printf("%s\n", QLocale::languageToString(QLocale::system().language()).toAscii().data());
-	if(! translator.load(QCoreApplication::applicationDirPath() + "/res/" + QLocale::languageToString(QLocale::system().language())))
-		if(! translator.load(QCoreApplication::applicationDirPath() + "/res/en.qm"))
+	//if(! translator.load(QCoreApplication::applicationDirPath() + "/res/" + QLocale::languageToString(QLocale::system().language())))
+	if(! translator.load(":/" + QLocale::languageToString(QLocale::system().language())))
+		//if(! translator.load(QCoreApplication::applicationDirPath() + "/res/en.qm"))
+		if(! translator.load(":/en.qm"))
 		{
-			QMessageBox::critical(NULL, "Error", "Error while loading language.\nCheck whether ./res/[(en)(de)].qm is available!");
+			//QMessageBox::critical(NULL, "Error", "Error while loading language.\nCheck whether ./res/[(en)(de)].qm is available!");
+			QMessageBox::critical(NULL, "Error", "Something went wrong while loading language. See project-site if there are any updates.");
 			return 1;
 		}
 
 	app.installTranslator(&translator);
 
-//	app.setWindowIcon(QIcon(QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + "/res/isk1.png")));
+	app.setWindowIcon(QIcon(":/appicon"));
 
 	MainWindow win;
 	win.show(); 
