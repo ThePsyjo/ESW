@@ -34,6 +34,15 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(about, SIGNAL(triggered(QAction*)), this, SLOT(handleAboutAction(QAction*)));
 
 	adjustSize();
+
+	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
+	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
+	trayIcon->show();
+
+	trayIconMenu = new QMenu;
+	trayIconMenu->addAction(tr("exit"));
+	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
+	trayIcon->setContextMenu(trayIconMenu);
 }
 
 void MainWindow::handleAboutAction(QAction* a)
@@ -46,6 +55,30 @@ void MainWindow::handleFileAction(QAction* a)
 {
 	if (a->text() == tr("exit")) close();
 }
+
+void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
+{
+	switch(reason)
+	{
+		case QSystemTrayIcon::Trigger:
+			isVisible() ? hide() : show();
+			break;
+
+		case QSystemTrayIcon::Context:
+			break;
+		case QSystemTrayIcon::DoubleClick:
+			break;
+		case QSystemTrayIcon::MiddleClick:
+			break;
+		case QSystemTrayIcon::Unknown:
+			break;
+	}
+
+}
+
+
+
+
 
 MainWindow::~MainWindow()
 {}

@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QSystemTrayIcon>
 
 class MainWindow : public QMainWindow
 {
@@ -32,9 +33,12 @@ public:
 	virtual ~MainWindow();
 private:
 	QMenu *about, *mFile;
+	QSystemTrayIcon *trayIcon;
+	QMenu *trayIconMenu;
 private slots:
 	void handleAboutAction(QAction* a);
 	void handleFileAction(QAction* a);
+	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 };
 
 
