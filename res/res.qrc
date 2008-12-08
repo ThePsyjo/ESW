@@ -1,7 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 	<qresource>
 		<file alias="appicon">esw_ico.png</file>
-		<file>German.qm</file>
-		<file>en.qm</file>
+		<file alias="German.qm">../src/German.qm</file>
+		<file alias="en.qm">../src/en.qm</file>
 	</qresource>
 </RCC>

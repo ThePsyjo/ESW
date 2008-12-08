@@ -12,9 +12,11 @@ MOC_DIR += moc
 RCC_DIR += moc
 
 # Input
-HEADERS += src/window.h
+HEADERS += src/window.h \
+	   src/configuration.h
 SOURCES += src/main.cpp \
-           src/window.cpp
+           src/window.cpp \
+	   src/configuration.cpp
 
-TRANSLATIONS += src/de.ts src/en.ts
+TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

@@ -1,6 +1,6 @@
 
 /************************************************************************
- * window.h								*
+ * configuration.h							*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,31 +17,41 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef CONFIGURATION_H
+#define CONFIGURATION_H
 
-#include <QMainWindow>
-#include <QMenuBar>
+#include <QtXml>
+#include <QFile>
+#include <QString>
 #include <QMessageBox>
-#include <QSystemTrayIcon>
+#include <QTimer>
 
-#include "configuration.h"
+class apiInfo
+{
+public:
+	int userID;
+	QString apiKey;
+	int characterID;
+};
 
-class MainWindow : public QMainWindow
+class ConfigHandler : public QObject
 {
 Q_OBJECT
-public:
-	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
-	virtual ~MainWindow();
 private:
-	QMenu *about, *mFile;
-	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
-	ConfigHandler *config;
-private slots:
-	void handleAboutAction(QAction* a);
-	void handleFileAction(QAction* a);
-	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
+	QDomDocument *doc;
+	QFile *f;
+	QDomElement genTag(QDomElement, QString);
+	bool tagCreated, doSave, change;
+	QTimer *timer;
+public:
+	ConfigHandler(QString, QString);
+	virtual ~ConfigHandler();
+
+	QString loadStyleSheet();
+	apiInfo loadApiInfo();
+public slots:
+	void saveApiInfo(apiInfo);
+	void saveFile();
 };
 
 #endif

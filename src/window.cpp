@@ -22,7 +22,10 @@
 MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
         : QMainWindow(parent, f)
 {
-//	setWindowTitle(tr("appName"));
+	setWindowTitle(tr("appName"));
+
+	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
+	setStyleSheet(config->loadStyleSheet());
 	
 	mFile = menuBar()->addMenu(tr("&file"));
 	mFile->addAction(tr("exit"));
@@ -33,8 +36,6 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	about->addAction("Qt");
 	connect(about, SIGNAL(triggered(QAction*)), this, SLOT(handleAboutAction(QAction*)));
 
-	adjustSize();
-
 	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
 	trayIcon->show();
@@ -43,6 +44,10 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIconMenu->addAction(tr("exit"));
 	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 	trayIcon->setContextMenu(trayIconMenu);
+
+
+	//adjustSize();
+	setGeometry(0,0, 200, 200);
 }
 
 void MainWindow::handleAboutAction(QAction* a)
@@ -76,10 +81,6 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 
 }
 
-
-
-
-
 MainWindow::~MainWindow()
-{}
+{delete config;}
 
