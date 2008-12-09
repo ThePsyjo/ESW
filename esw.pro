@@ -13,10 +13,12 @@ RCC_DIR += moc
 
 # Input
 HEADERS += src/window.h \
-	   src/configuration.h
+	   src/configuration.h \
+	   src/apiInput.h
 SOURCES += src/main.cpp \
            src/window.cpp \
-	   src/configuration.cpp
+	   src/configuration.cpp \
+	   src/apiInput.cpp
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

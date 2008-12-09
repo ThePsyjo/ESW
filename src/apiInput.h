@@ -1,6 +1,6 @@
 
 /************************************************************************
- * window.h								*
+ * apiInput.h								*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,34 +17,49 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef API_INPUT_H
+#define API_INPUT_H
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
+#include <QPushButton>
+#include <QMenu>
+#include <QLineEdit>
+#include <QLabel>
+#include <QString>
+#include <QDialog>
+#include <QBuffer>
+#include <QtNetwork/QHttp>
+#include <QGridLayout>
 
 #include "configuration.h"
-#include "apiInput.h"
 
-class MainWindow : public QMainWindow
+class ApiInput : public QDialog
 {
 Q_OBJECT
 public:
-	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
-	virtual ~MainWindow();
+	ApiInput(QString, ConfigHandler*, QWidget* = 0);
+	virtual ~ApiInput();
 private:
-	QMenu *about, *mFile;
-	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
-	ConfigHandler *config;
-	void onApiInput();
+	ConfigHandler *conf;
+	QPushButton *okButton, *cancelButton, *connectButton, *characterButton;
+	QMenu *characterMenu;
+	QLabel *lUserID, *lApiKey, *lCharacterID, *lText;
+	QLineEdit *eUserID, *eApiKey;
+	QGridLayout *layout;
+	QHttp *http;
+	QUrl *url;
+	QBuffer *buf;
+	bool gotData;
+	QDomDocument *doc;
+	void redel(QWidget*);
+	void defel(QWidget*);
+	bool validID(bool);
 private slots:
-	void handleAboutAction(QAction* a);
-	void handleFileAction(QAction* a);
-	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
+	void onOkClick();
+	void onConnectClick();
+	void onCharacterMenuAction(QAction*);
+	void httpGetDone(bool);
 };
+
 
 #endif
 

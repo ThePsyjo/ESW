@@ -28,6 +28,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	setStyleSheet(config->loadStyleSheet());
 	
 	mFile = menuBar()->addMenu(tr("&file"));
+	mFile->addAction(tr("input API"));
 	mFile->addAction(tr("exit"));
 	connect(mFile, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 
@@ -59,6 +60,7 @@ void MainWindow::handleAboutAction(QAction* a)
 void MainWindow::handleFileAction(QAction* a)
 {
 	if (a->text() == tr("exit")) close();
+	if (a->text() == tr("input API")) onApiInput();
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
@@ -79,6 +81,15 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 			break;
 	}
 
+}
+
+void MainWindow::onApiInput()
+{
+	ApiInput input(tr("API"), config, this);
+	input.show();
+	if(input.exec())
+	{	puts("get char info");
+	}
 }
 
 MainWindow::~MainWindow()
