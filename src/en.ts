@@ -4,32 +4,32 @@
 <context>
     <name>ApiInput</name>
     <message>
-        <location filename="apiInput.cpp" line="39"/>
+        <location filename="apiInput.cpp" line="34"/>
         <source>&amp;Save</source>
         <translation>&amp;Save</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="40"/>
+        <location filename="apiInput.cpp" line="35"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="41"/>
+        <location filename="apiInput.cpp" line="36"/>
         <source>c&amp;onnect</source>
         <translation>c&amp;onnect</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="51"/>
+        <location filename="apiInput.cpp" line="46"/>
         <source>UserID</source>
         <translation>UserID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="52"/>
+        <location filename="apiInput.cpp" line="47"/>
         <source>ApiKey</source>
         <translation>ApiKey</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="53"/>
+        <location filename="apiInput.cpp" line="48"/>
         <source>CharacterID</source>
         <translation>CharacterID</translation>
     </message>
@@ -44,29 +44,29 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
     <message>
         <location filename="apiInput.cpp" line="164"/>
         <source>download error</source>
-        <translation>download error</translation>
+        <translation type="obsolete">download error</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="165"/>
         <source>error while downloading character list.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
-        <translation>error while downloading character list.page: &quot;%1&quot;&quot;%2&quot;</translation>
+        <translation type="obsolete">error while downloading character list.page: &quot;%1&quot;&quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="179"/>
         <source>parse error</source>
-        <translation>parser error</translation>
+        <translation type="obsolete">parser error</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="181"/>
         <source>Parse error in character list
 at line %1, column %2:
 &quot;%3&quot;</source>
-        <translation>Parse error in character listat line %1, column %2:&quot;%3&quot;</translation>
+        <translation type="obsolete">Parse error in character listat line %1, column %2:&quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="54"/>
+        <location filename="apiInput.cpp" line="49"/>
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
@@ -136,6 +136,37 @@ config will not be written</translation>
         <location filename="window.cpp" line="88"/>
         <source>API</source>
         <translation>API</translation>
+    </message>
+</context>
+<context>
+    <name>WebDoc</name>
+    <message>
+        <location filename="webDoc.cpp" line="25"/>
+        <source>download error</source>
+        <translation>download error</translation>
+    </message>
+    <message>
+        <location filename="webDoc.cpp" line="26"/>
+        <source>error while downloading %3.
+page: &quot;%1&quot;
+&quot;%2&quot;</source>
+        <translation>error while downloading %3.
+page: &quot;%1&quot;
+&quot;%2&quot;</translation>
+    </message>
+    <message>
+        <location filename="webDoc.cpp" line="41"/>
+        <source>parse error</source>
+        <translation>parse error</translation>
+    </message>
+    <message>
+        <location filename="webDoc.cpp" line="43"/>
+        <source>Parse error in %4
+at line %1, column %2:
+&quot;%3&quot;</source>
+        <translation>Parse error in document from %4
+at line %1, column %2:
+&quot;%3&quot;</translation>
     </message>
 </context>
 </TS>

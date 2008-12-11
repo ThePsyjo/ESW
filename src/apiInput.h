@@ -25,12 +25,10 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QString>
-#include <QDialog>
-#include <QBuffer>
-#include <QtNetwork/QHttp>
 #include <QGridLayout>
 
 #include "configuration.h"
+#include "webDoc.h"
 
 class ApiInput : public QDialog
 {
@@ -40,16 +38,14 @@ public:
 	virtual ~ApiInput();
 private:
 	ConfigHandler *conf;
+	WebDoc *characters;
+	QDomDocument *doc;
 	QPushButton *okButton, *cancelButton, *connectButton, *characterButton;
 	QMenu *characterMenu;
 	QLabel *lUserID, *lApiKey, *lCharacterID, *lText;
 	QLineEdit *eUserID, *eApiKey;
 	QGridLayout *layout;
-	QHttp *http;
-	QUrl *url;
-	QBuffer *buf;
 	bool gotData;
-	QDomDocument *doc;
 	void redel(QWidget*);
 	void defel(QWidget*);
 	bool validID(bool);
@@ -57,7 +53,7 @@ private slots:
 	void onOkClick();
 	void onConnectClick();
 	void onCharacterMenuAction(QAction*);
-	void httpGetDone(bool);
+	void onCharactersDocDone();
 };
 
 

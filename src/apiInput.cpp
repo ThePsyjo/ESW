@@ -27,14 +27,9 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	setModal(1);
 	conf = c;
 
+	characters = new WebDoc("http://api.eve-online.com/account/Characters.xml.aspx");
+	connect(characters, SIGNAL(done()), this, SLOT(onCharactersDocDone()));
 	gotData=false;
-
-	buf  = new QBuffer(this);
-	http = new QHttp(this);
-	url = new QUrl("http://api.eve-online.com/account/Characters.xml.aspx");
-	connect(http, SIGNAL(done(bool)), this, SLOT(httpGetDone(bool)));
-
-	doc = new QDomDocument;
 
         okButton	= new QPushButton (tr("&Save"), this);
         cancelButton	= new QPushButton (tr("&Cancel"), this);
@@ -131,7 +126,7 @@ void ApiInput::onOkClick()
 	v.userID = eUserID->text().toInt();
 	v.apiKey = eApiKey->text();
 
-	QDomNodeList l = doc->documentElement().elementsByTagName("row");
+	QDomNodeList l = characters->document()->documentElement().elementsByTagName("row");
 	for (int i = 0; i < l.size(); i++)
 	{
 		if(l.item(i).toElement().attribute("name") == characterButton->text())
@@ -150,41 +145,14 @@ void ApiInput::onConnectClick()
 {
 	if( ! validID(0)) return;
 	setCursor(Qt::WaitCursor);
-	buf->reset();
-	http->setHost(url->host());
-	http->get(url->path() + "?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text(), buf);
+	characters->get("?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text());
 }
 
-void ApiInput::httpGetDone(bool error)
+void ApiInput::onCharactersDocDone()
 {
-	if(error)
-	{
-		QMessageBox::warning(this, tr("download error"),tr("error while downloading character list.\npage: \"%1\"\n\"%2\"")
-								.arg(url->host() + url->path())
-								.arg(http->errorString()));
-		return;
-	}
-
-//puts("----------");
-//qDebug() << buf->data();
-//puts("----------");
-
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-        if (!doc->setContent(buf->data(), true, &errorStr, &errorLine, &errorColumn))
-	{
-		QMessageBox::warning(this, tr("parse error"),
-		tr("Parse error in character list\nat line %1, column %2:\n\"%3\"")
-		.arg(errorLine)
-		.arg(errorColumn)
-		.arg(errorStr));
-		return;
-	}
-
 	characterMenu->clear();
 
-	QDomNodeList l = doc->documentElement().elementsByTagName("row");
+	QDomNodeList l = characters->document()->documentElement().elementsByTagName("row");
 	for (int i = 0; i < l.size(); i++)
 		characterMenu->addAction(l.item(i).toElement().attribute("name"));
 
