@@ -66,6 +66,20 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
 Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.
 Du kannst deine API-Informationen hier finden: http://myeve.eve-online.com/api/default.asp .</translation>
     </message>
+    <message>
+        <location filename="apiInput.cpp" line="159"/>
+        <source>API error</source>
+        <translation>API Fehler</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="161"/>
+        <source>errorcode %1
+
+%2</source>
+        <translation>Fehlercode %1
+
+&quot;%2&quot;</translation>
+    </message>
 </context>
 <context>
     <name>ConfigHandler</name>
@@ -130,12 +144,12 @@ config will not be written</source>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="25"/>
+        <location filename="webDoc.cpp" line="28"/>
         <source>download error</source>
         <translation>Download Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="26"/>
+        <location filename="webDoc.cpp" line="29"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -144,12 +158,12 @@ Seite: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="41"/>
+        <location filename="webDoc.cpp" line="44"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="43"/>
+        <location filename="webDoc.cpp" line="46"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
