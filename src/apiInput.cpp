@@ -28,7 +28,7 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	conf = c;
 
 	characters = new WebDoc("http://api.eve-online.com/account/Characters.xml.aspx");
-	connect(characters, SIGNAL(done()), this, SLOT(onCharactersDocDone()));
+	connect(characters, SIGNAL(done(bool)), this, SLOT(onCharactersDocDone(bool)));
 	gotData=false;
 
         okButton	= new QPushButton (tr("&Save"), this);
@@ -148,9 +148,22 @@ void ApiInput::onConnectClick()
 	characters->get("?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text());
 }
 
-void ApiInput::onCharactersDocDone()
+void ApiInput::onCharactersDocDone(bool ok)
 {
+	if(!ok) {setCursor(Qt::ArrowCursor);return;}
 	characterMenu->clear();
+
+	QDomElement e = characters->document()->documentElement().firstChildElement("error");
+	if(e.hasAttribute("code"))
+	{
+		QMessageBox::warning(this, tr("API error"),
+			tr("errorcode %1\n\n%2")
+			.arg(e.attribute("code"))
+			.arg(e.text())			
+			);
+		setCursor(Qt::ArrowCursor);
+		return;
+	}
 
 	QDomNodeList l = characters->document()->documentElement().elementsByTagName("row");
 	for (int i = 0; i < l.size(); i++)

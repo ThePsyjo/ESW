@@ -53,7 +53,7 @@ private slots:
 	void onOkClick();
 	void onConnectClick();
 	void onCharacterMenuAction(QAction*);
-	void onCharactersDocDone();
+	void onCharactersDocDone(bool);
 };
 
 
