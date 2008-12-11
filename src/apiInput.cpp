@@ -125,22 +125,20 @@ bool ApiInput::validID(bool b)
 void ApiInput::onOkClick()
 {
 	if( ! validID(1)) return;
-
 	if( ! gotData) return;
 	
 	apiInfo v;
 	v.userID = eUserID->text().toInt();
 	v.apiKey = eApiKey->text();
 
-	QDomElement el = doc->documentElement().firstChildElement("result").firstChildElement("rowset").firstChildElement("row");
-	for(int i = 0; i < 3; i++)
+	QDomNodeList l = doc->documentElement().elementsByTagName("row");
+	for (int i = 0; i < l.size(); i++)
 	{
-		if(el.attribute("name") == characterButton->text())
+		if(l.item(i).toElement().attribute("name") == characterButton->text())
 		{
-			v.characterID = el.attribute("characterID").toInt();
+			v.characterID = l.item(i).toElement().attribute("characterID").toInt();
 			break;
 		}
-		el = el.nextSiblingElement("row");
 	}
 
 	conf->saveApiInfo(v);
@@ -184,17 +182,15 @@ void ApiInput::httpGetDone(bool error)
 		return;
 	}
 
-	gotData=true;
-	
 	characterMenu->clear();
 
-	QDomElement el = doc->documentElement().firstChildElement("result").firstChildElement("rowset").firstChildElement("row");
-	for(int i = 0; i < 3; i++)
-	{
-		characterMenu->addAction(el.attribute("name"));
-		el = el.nextSiblingElement("row");
-	}
-	characterButton->setText(doc->documentElement().firstChildElement("result").firstChildElement("rowset").firstChildElement("row").attribute("name"));
+	QDomNodeList l = doc->documentElement().elementsByTagName("row");
+	for (int i = 0; i < l.size(); i++)
+		characterMenu->addAction(l.item(i).toElement().attribute("name"));
+
+	characterButton->setText(l.item(0).toElement().attribute("name"));
+
+	gotData=true;
 
 	setCursor(Qt::ArrowCursor);
 }
