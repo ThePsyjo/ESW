@@ -25,6 +25,13 @@ SkillTraining::SkillTraining(ConfigHandler* c, QWidget* parent)
 
 	conf = c;
 
+	skillSP    = new QVector<int>(5);
+	skillSP->insert(1, 250);
+	skillSP->insert(2, 1415);
+	skillSP->insert(3, 8000);
+	skillSP->insert(4, 45255);
+	skillSP->insert(5, 256000);
+
 	skillTreeAvailable = false;
 
 	skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
@@ -86,12 +93,10 @@ void SkillTraining::reload()
 QString SkillTraining::skillName(int id)
 {
 	QDomNodeList l = skillTree->document()->documentElement().elementsByTagName("row");
-	qDebug() << QString("Number of rows: %1").arg(l.size());
 	for(int i = 0; i < l.size(); i++)
 	{
 		if(l.item(i).toElement().attribute("typeID").toInt() == id)
 		{
-			qDebug() << QString("found @ %1").arg(i);
 			if(l.item(i).toElement().hasAttribute("typeName"))
 				return l.item(i).toElement().attribute("typeName", "<this schould not happend>");
 		}
@@ -99,14 +104,35 @@ QString SkillTraining::skillName(int id)
 	return "Unknown";
 }
 
+int SkillTraining::skillRank(int id)
+{
+	QDomNodeList l = skillTree->document()->documentElement().elementsByTagName("row");
+	for(int i = 0; i < l.size(); i++)
+	{
+		if(l.item(i).toElement().attribute("typeID").toInt() == id)
+		{
+			if(l.item(i).toElement().hasAttribute("typeName"))
+				return l.item(i).firstChildElement("rank").text().toInt();
+		}
+	}
+	return 1;
+}
+
+double SkillTraining::currentSP()
+{
+	return el->firstChildElement("trainingStartSP").text().toDouble()
+		+ trainFactor * QDateTime::fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss").secsTo(QDateTime::currentDateTime());
+}
+
 void SkillTraining::onSTimer()
 {
 	*syncTime = syncTime->addSecs(-1);
 	syncLabel->setText(syncTime->toString("mm:ss"));
-	spLabel->setText(QString("%1/%2 (%3%%)")
-				.arg(el->firstChildElement("trainingDestinationSP").text().toInt() - (el->firstChildElement("trainingDestinationSP").text().toInt() - el->firstChildElement("trainingStartSP").text().toInt()))
-				.arg(el->firstChildElement("trainingDestinationSP").text().toInt())
-				.arg(el->firstChildElement("trainingStartSP").text().toDouble() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100)
+	spLabel->setText(QString("%1  / %2 (%3%)")
+				.arg(currentSP(), 0, 'f', 1)
+				.arg(el->firstChildElement("trainingDestinationSP").text())
+				.arg((currentSP() - currentSkillRank * skillSP->at(currentSkillRank -1) )
+					/ el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 	);
 }
 
@@ -133,6 +159,11 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 						.arg(el->firstChildElement("trainingToLevel").text().toInt() - 1)
 						.arg(el->firstChildElement("trainingToLevel").text().toInt())
 						);
+		currentSkillRank = skillRank(el->firstChildElement("trainingTypeID").text().toInt());
+		// (destSP - startSP) / (secs from startTime to EndTime) == SP/sec
+		trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
+				/ (QDateTime::fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss")
+					.secsTo(QDateTime::fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss")));
 		sTimer->start();
 		syncTime->setHMS(1,0,0);
 		hTimer->stop();

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -122,7 +121,7 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="62"/>
+        <location filename="window.cpp" line="65"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -132,7 +131,7 @@ config will not be written</translation>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="57"/>
+        <location filename="window.cpp" line="60"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -142,12 +141,12 @@ config will not be written</translation>
         <translation>EveSkillWatcher 0.0.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="63"/>
+        <location filename="window.cpp" line="66"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="88"/>
+        <location filename="window.cpp" line="91"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -155,12 +154,12 @@ config will not be written</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="28"/>
+        <location filename="webDoc.cpp" line="52"/>
         <source>download error</source>
         <translation>download error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="29"/>
+        <location filename="webDoc.cpp" line="53"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -169,12 +168,12 @@ page: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="44"/>
+        <location filename="webDoc.cpp" line="68"/>
         <source>parse error</source>
         <translation>parse error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="46"/>
+        <location filename="webDoc.cpp" line="70"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>

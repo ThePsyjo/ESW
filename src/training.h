@@ -41,8 +41,13 @@ private:
 	QGridLayout *layout;
 	bool skillTreeAvailable;
 	QString skillName(int);
+	int skillRank(int);
 	QDomElement *el;
 	QString iToRoman(int);
+	QVector<int> *skillSP;
+	int currentSkillRank;
+	double trainFactor;
+	double currentSP();
 private slots:
 	void onSTimer();
 	void onSkillTreeDone(bool);
