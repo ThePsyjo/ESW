@@ -15,12 +15,14 @@ RCC_DIR += moc
 HEADERS += src/window.h \
 	   src/configuration.h \
 	   src/apiInput.h \
-	   src/webDoc.h
+	   src/webDoc.h \
+	   src/training.h
 SOURCES += src/main.cpp \
            src/window.cpp \
 	   src/configuration.cpp \
 	   src/apiInput.cpp \
-	   src/webDoc.cpp
+	   src/webDoc.cpp \
+	   src/training.cpp
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

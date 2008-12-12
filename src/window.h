@@ -27,6 +27,7 @@
 
 #include "configuration.h"
 #include "apiInput.h"
+#include "training.h"
 
 class MainWindow : public QMainWindow
 {
@@ -39,6 +40,7 @@ private:
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
+	SkillTraining *trainingWidget;
 	void onApiInput();
 private slots:
 	void handleAboutAction(QAction* a);

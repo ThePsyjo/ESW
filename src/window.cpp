@@ -46,9 +46,12 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 	trayIcon->setContextMenu(trayIconMenu);
 
+	trainingWidget = new SkillTraining(config, this);
 
-	//adjustSize();
-	setGeometry(0,0, 200, 200);
+	setCentralWidget(trainingWidget);
+
+	adjustSize();
+//	setGeometry(100,100, 200, 200);
 }
 
 void MainWindow::handleAboutAction(QAction* a)

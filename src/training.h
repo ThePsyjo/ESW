@@ -1,6 +1,6 @@
 
 /************************************************************************
- * webDoc.h								*
+ * training.h								*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,35 +17,36 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef WEBDOC_H
-#define WEBDOC_H
+#include <QDockWidget>
+#include <QGroupBox>
+#include <QGridLayout>
+#include <QLabel>
 
-#include <QtXml>
-#include <QMessageBox>
-#include <QBuffer>
-#include <QtNetwork/QHttp>
-#include <QWidget>
+#include "webDoc.h"
+#include "configuration.h"
 
-class WebDoc : public QObject
+class SkillTraining : public QGroupBox
 {
 Q_OBJECT
 public:
-	WebDoc(QString);
-	virtual ~WebDoc();
-	void get(QString);
-	void get();
-	QDomDocument* document();
+	SkillTraining(ConfigHandler*, QWidget*);
+	virtual ~SkillTraining();
 private:
-	QHttp *http;
-	QUrl *url;
-	QBuffer *buf;
-	QDomDocument *doc;
-	void _get(QString);
+	ConfigHandler *conf;
+	WebDoc *skillTree, *characterTraining;
+	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *syncLabel, *rateLabel;
+	QTimer *hTimer, *sTimer;
+	QDateTime *beginTime, *endTime;
+	QTime *syncTime;
+	QGridLayout *layout;
+	bool skillTreeAvailable;
+	QString skillName(int);
+	QDomElement *el;
+	QString iToRoman(int);
 private slots:
-	void httpGetDone(bool);
-signals:
-	void done(bool);
+	void onSTimer();
+	void onSkillTreeDone(bool);
+	void onCharacterTrainingDone(bool);
+public slots:
+	void reload();
 };
-
-#endif
-
