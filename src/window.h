@@ -36,7 +36,7 @@ public:
 	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
 	virtual ~MainWindow();
 private:
-	QMenu *about, *mFile;
+	QMenu *about, *mFile, *mAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -45,6 +45,7 @@ private:
 private slots:
 	void handleAboutAction(QAction* a);
 	void handleFileAction(QAction* a);
+	void handleActionAction(QAction* a);
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 };
 

@@ -28,9 +28,13 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	setStyleSheet(config->loadStyleSheet());
 	
 	mFile = menuBar()->addMenu(tr("&file"));
-	mFile->addAction(tr("input API"));
 	mFile->addAction(tr("exit"));
 	connect(mFile, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
+
+	mAction = menuBar()->addMenu(tr("A&ction"));
+	mAction->addAction(tr("input API"));
+	mAction->addAction(tr("update"));
+	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleActionAction(QAction*)));
 
 	about = menuBar()->addMenu(tr("&about"));
 	about->addAction("ESW");
@@ -46,7 +50,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 	trayIcon->setContextMenu(trayIconMenu);
 
-	trainingWidget = new SkillTraining(config, this);
+	trainingWidget = new SkillTraining(config, trayIcon, this);
 
 	setCentralWidget(trainingWidget);
 
@@ -63,7 +67,12 @@ void MainWindow::handleAboutAction(QAction* a)
 void MainWindow::handleFileAction(QAction* a)
 {
 	if (a->text() == tr("exit")) close();
+}
+
+void MainWindow::handleActionAction(QAction* a)
+{
 	if (a->text() == tr("input API")) onApiInput();
+	if (a->text() == tr("update")) trainingWidget->reload();
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
@@ -91,8 +100,7 @@ void MainWindow::onApiInput()
 	ApiInput input(tr("API"), config, this);
 	input.show();
 	if(input.exec())
-	{	puts("get char info");
-	}
+		trainingWidget->update();
 }
 
 MainWindow::~MainWindow()

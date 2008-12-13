@@ -17,10 +17,14 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
+#ifndef TRAINING_H
+#define TRAINING_H
+
 #include <QDockWidget>
 #include <QGroupBox>
 #include <QGridLayout>
 #include <QLabel>
+#include <QSystemTrayIcon>
 
 #include "webDoc.h"
 #include "configuration.h"
@@ -29,15 +33,14 @@ class SkillTraining : public QGroupBox
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QWidget*);
+	SkillTraining(ConfigHandler*, QSystemTrayIcon*, QWidget*);
 	virtual ~SkillTraining();
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
 	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *syncLabel, *rateLabel;
 	QTimer *hTimer, *sTimer;
-	QDateTime *beginTime, *endTime;
-	QTime *syncTime;
+	QDateTime *beginTime, *endTime, *syncTime;
 	QGridLayout *layout;
 	bool skillTreeAvailable;
 	QString skillName(int);
@@ -48,6 +51,10 @@ private:
 	int currentSkillRank;
 	double trainFactor;
 	double currentSP();
+	QSystemTrayIcon *tray;
+	QString currentSkillLevel, currentSkillName;
+	QStringList *todoTimeStringList;
+	int d, h, m, s;
 private slots:
 	void onSTimer();
 	void onSkillTreeDone(bool);
@@ -55,3 +62,6 @@ private slots:
 public slots:
 	void reload();
 };
+
+#endif
+
