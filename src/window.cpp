@@ -34,7 +34,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	mAction = menuBar()->addMenu(tr("A&ction"));
 	mAction->addAction(tr("input API"));
 	mAction->addAction(tr("update"));
-	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleActionAction(QAction*)));
+	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 
 	about = menuBar()->addMenu(tr("&about"));
 	about->addAction("ESW");
@@ -46,6 +46,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIcon->show();
 
 	trayIconMenu = new QMenu;
+	trayIconMenu->addAction(tr("update"));
 	trayIconMenu->addAction(tr("exit"));
 	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 	trayIcon->setContextMenu(trayIconMenu);
@@ -55,7 +56,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	setCentralWidget(trainingWidget);
 
 	adjustSize();
-//	setGeometry(100,100, 200, 200);
+	setVisible(config->loadIsVisible());
 }
 
 void MainWindow::handleAboutAction(QAction* a)
@@ -67,10 +68,6 @@ void MainWindow::handleAboutAction(QAction* a)
 void MainWindow::handleFileAction(QAction* a)
 {
 	if (a->text() == tr("exit")) close();
-}
-
-void MainWindow::handleActionAction(QAction* a)
-{
 	if (a->text() == tr("input API")) onApiInput();
 	if (a->text() == tr("update")) trainingWidget->reload();
 }
@@ -80,7 +77,16 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 	switch(reason)
 	{
 		case QSystemTrayIcon::Trigger:
-			isVisible() ? hide() : show();
+			if(isVisible())
+			{
+				hide();
+				config->saveIsVisible(false);
+			}
+			else
+			{
+				show();
+				config->saveIsVisible(true);
+			}
 			break;
 
 		case QSystemTrayIcon::Context:

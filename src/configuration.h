@@ -49,6 +49,8 @@ public:
 
 	QString loadStyleSheet();
 	apiInfo loadApiInfo();
+	bool loadIsVisible();
+	void saveIsVisible(bool);
 public slots:
 	void saveApiInfo(apiInfo);
 	void saveFile();

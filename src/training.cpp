@@ -62,8 +62,8 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* pa
 	layout->addWidget(skillLabel, 1, 1);
 	layout->addWidget(skillLevelLabel, 1, 2);
 	layout->addWidget(spLabel, 2, 1, 1, 2);
-	layout->addWidget(etaLabel, 3, 1);
-	layout->addWidget(rateLabel, 3, 2);
+	layout->addWidget(etaLabel, 3, 1, 1, 2);
+	layout->addWidget(rateLabel, 4, 1);
 	layout->addWidget(syncLabel, 4, 2);
 
 	adjustSize();
@@ -129,26 +129,29 @@ double SkillTraining::currentSP()
 
 void SkillTraining::onSTimer()
 {
-	if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
+	if(el->firstChildElement("skillInTraining").text().toInt())
 	{
-		sTimer->stop();
-		tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel), QSystemTrayIcon::NoIcon, 60000 );		
+		if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
+		{
+			tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel), QSystemTrayIcon::NoIcon, 60000 );		
+			tray->setToolTip(tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel));
+		}
+		spLabel->setText(QString("%1  / %2 (%3%)")
+					.arg(currentSP(), 0, 'f', 1)
+					.arg(el->firstChildElement("trainingDestinationSP").text())
+					//.arg((currentSP() - currentSkillRank * skillSP->at(currentSkillRank -1) )
+					//	/ el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
+					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
+		);
+		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toString("d:h:m:s").split(":");
+		etaLabel->setText(tr("%n d(s), ", "", todoTimeStringList->at(0).toInt())
+				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
+				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
+				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
+			);
+		tray->setToolTip(skillLabel->text() + "\n" + skillLevelLabel->text() + "\n" + spLabel->text() + "\n" + etaLabel->text());
 	}
 	syncLabel->setText(syncTime->fromTime_t(syncTime->currentDateTime().secsTo(*syncTime)).toString("mm:ss"));
-	spLabel->setText(QString("%1  / %2 (%3%)")
-				.arg(currentSP(), 0, 'f', 1)
-				.arg(el->firstChildElement("trainingDestinationSP").text())
-				//.arg((currentSP() - currentSkillRank * skillSP->at(currentSkillRank -1) )
-				//	/ el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
-				.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
-	);
-	*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime) - 86400).toString("d:h:h:m:s").split(":");
-	etaLabel->setText(tr("%n d(s), ", "", todoTimeStringList->at(1).toInt())
-			+ tr("%n h(s), ", "", todoTimeStringList->at(2).toInt())
-			+ tr("%n m(s), ", "", todoTimeStringList->at(3).toInt())
-			+ tr("%n s(s), ", "", todoTimeStringList->at(4).toInt())	
-		);
-	tray->setToolTip(skillLabel->text() + "\n" + skillLevelLabel->text() + "\n" + spLabel->text() + "\n" + etaLabel->text());
 }
 
 QString SkillTraining::iToRoman(int i)
@@ -184,17 +187,20 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			// (destSP - startSP) / (secs from startTime to EndTime) == SP/sec
 			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
 					/ beginTime->secsTo(QDateTime::fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss"));
-			sTimer->start();
+			rateLabel->setText(QString("%1 SP/s").arg(trainFactor, 0, 'f', 3));
 		}
 		else
 		{
 			skillLabel->clear();
 			skillLevelLabel->clear();
+			etaLabel->clear();
+			spLabel->clear();
+			rateLabel->clear();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
+			tray->setToolTip(tr("There is currently no skill in Training!"));
 		}
 		*syncTime = syncTime->currentDateTime().addSecs(3600);
-		hTimer->stop();
-		hTimer->start(3600000); // 1h
+		sTimer->start();
 	}
 }
 

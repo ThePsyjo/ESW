@@ -30,13 +30,9 @@ int main(int argc, char ** argv)
 	QApplication app( argc, argv );
 
 	QTranslator translator;
-	//printf("%s\n", QLocale::languageToString(QLocale::system().language()).toAscii().data());
-	//if(! translator.load(QCoreApplication::applicationDirPath() + "/res/" + QLocale::languageToString(QLocale::system().language())))
 	if(! translator.load(":/" + QLocale::languageToString(QLocale::system().language())))
-		//if(! translator.load(QCoreApplication::applicationDirPath() + "/res/en.qm"))
 		if(! translator.load(":/en.qm"))
 		{
-			//QMessageBox::critical(NULL, "Error", "Error while loading language.\nCheck whether ./res/[(en)(de)].qm is available!");
 			QMessageBox::critical(NULL, "Error", "Something went wrong while loading language. See project-site if there are any updates.");
 			return 1;
 		}
@@ -46,7 +42,6 @@ int main(int argc, char ** argv)
 	app.setWindowIcon(QIcon(":/appicon"));
 
 	MainWindow win;
-	win.show(); 
 
 	app.setStyle(new QCleanlooksStyle); // comment this if it won't compile
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );

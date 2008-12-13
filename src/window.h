@@ -45,7 +45,6 @@ private:
 private slots:
 	void handleAboutAction(QAction* a);
 	void handleFileAction(QAction* a);
-	void handleActionAction(QAction* a);
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 };
 

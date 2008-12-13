@@ -105,6 +105,14 @@ apiInfo ConfigHandler::loadApiInfo()
 	return v;
 }
 
+void ConfigHandler::saveIsVisible(bool b)
+{
+	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 0);
+}
 
+bool ConfigHandler::loadIsVisible()
+{
+	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("visible", "1").toInt();
+}
 
 
