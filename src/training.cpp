@@ -174,6 +174,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		*el = characterTraining->document()->documentElement().firstChildElement("result");
 		if(el->firstChildElement("skillInTraining").text().toInt())
 		{
+			tray->setIcon(QIcon(":/appicon"));
 			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
 			skillLabel->setText(skillName(el->firstChildElement("trainingTypeID").text().toInt()));
@@ -198,6 +199,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			rateLabel->clear();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
+			tray->setIcon(QIcon(":appicon_warn"));
 		}
 		*syncTime = syncTime->currentDateTime().addSecs(3600);
 		sTimer->start();

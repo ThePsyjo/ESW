@@ -41,7 +41,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	about->addAction("Qt");
 	connect(about, SIGNAL(triggered(QAction*)), this, SLOT(handleAboutAction(QAction*)));
 
-	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
+	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
 	trayIcon->show();
 

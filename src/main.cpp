@@ -40,6 +40,7 @@ int main(int argc, char ** argv)
 	app.installTranslator(&translator);
 
 	app.setWindowIcon(QIcon(":/appicon"));
+	//app.setWindowIcon(QIcon(":/appicon"));
 
 	MainWindow win;
 
