@@ -2,6 +2,8 @@
 	<qresource>
 		<file alias="appicon">esw_ico.png</file>
 		<file alias="appicon_warn">esw_ico_warn.png</file>
+		<file alias="appicon_svg">esw_ico.svg</file>
+		<file alias="appicon_warn_svg">esw_ico_warn.svg</file>
 		<file alias="German.qm">../src/German.qm</file>
 		<file alias="en.qm">../src/en.qm</file>
 	</qresource>

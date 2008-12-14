@@ -46,7 +46,6 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* pa
 
 	beginTime = new QDateTime;
 	endTime   = new QDateTime;
-	syncTime = new QDateTime;
 
 	el = new QDomElement; // multi purpose element
 
@@ -54,7 +53,6 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* pa
 	skillLevelLabel = new QLabel(this);
 	spLabel = new QLabel(this);
 	etaLabel = new QLabel(this);
-	syncLabel = new QLabel(this);
 	rateLabel = new QLabel(this);
 	
 	layout = new QGridLayout(this);
@@ -64,18 +62,14 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* pa
 	layout->addWidget(spLabel, 2, 1, 1, 2);
 	layout->addWidget(etaLabel, 3, 1, 1, 2);
 	layout->addWidget(rateLabel, 4, 1);
-	layout->addWidget(syncLabel, 4, 2);
 
 	adjustSize();
 
-	hTimer = new QTimer(this);
 	sTimer = new QTimer(this);
 
-	connect(hTimer, SIGNAL(timeout()), this, SLOT(reload()));
 	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
 
 	sTimer->setInterval(1000);
-	hTimer->start(3600000); // 1h
 }
 
 SkillTraining::~SkillTraining(){};
@@ -151,7 +145,6 @@ void SkillTraining::onSTimer()
 			);
 		tray->setToolTip(skillLabel->text() + "\n" + skillLevelLabel->text() + "\n" + spLabel->text() + "\n" + etaLabel->text());
 	}
-	syncLabel->setText(syncTime->fromTime_t(syncTime->currentDateTime().secsTo(*syncTime)).toString("mm:ss"));
 }
 
 QString SkillTraining::iToRoman(int i)
@@ -201,7 +194,6 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));
 		}
-		*syncTime = syncTime->currentDateTime().addSecs(3600);
 		sTimer->start();
 	}
 }
@@ -212,6 +204,5 @@ void SkillTraining::onSkillTreeDone(bool ok)
 	{
 		skillTreeAvailable = true;
 		reload();
-		//sTimer->start(1000); // 1s
 	}
 }

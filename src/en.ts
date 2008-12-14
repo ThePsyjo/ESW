@@ -122,7 +122,7 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="69"/>
+        <location filename="window.cpp" line="78"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -132,7 +132,7 @@ config will not be written</translation>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="64"/>
+        <location filename="window.cpp" line="73"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -142,12 +142,12 @@ config will not be written</translation>
         <translation>EveSkillWatcher 0.0.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="74"/>
+        <location filename="window.cpp" line="79"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="100"/>
+        <location filename="window.cpp" line="114"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -157,15 +157,20 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="75"/>
+        <location filename="window.cpp" line="80"/>
         <source>update</source>
         <translation>Update</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="57"/>
+        <source>next sync in</source>
+        <translation>next sync</translation>
     </message>
 </context>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="135"/>
+        <location filename="training.cpp" line="131"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) completed.</translation>
     </message>
@@ -180,12 +185,12 @@ config will not be written</translation>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="193"/>
+        <location filename="training.cpp" line="194"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="146"/>
+        <location filename="training.cpp" line="141"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n day, </numerusform>
@@ -193,7 +198,7 @@ config will not be written</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="147"/>
+        <location filename="training.cpp" line="142"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n hour, </numerusform>
@@ -201,7 +206,7 @@ config will not be written</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="148"/>
+        <location filename="training.cpp" line="143"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n minute, </numerusform>
@@ -209,7 +214,7 @@ config will not be written</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="149"/>
+        <location filename="training.cpp" line="144"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n second</numerusform>

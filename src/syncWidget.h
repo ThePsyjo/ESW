@@ -1,6 +1,6 @@
 
 /************************************************************************
- * training.h								*
+ * syncWidget.h								*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,51 +17,31 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef TRAINING_H
-#define TRAINING_H
+#ifndef SYNCWIDGET_H
+#define SYNCWIDGET_H
 
-#include <QDockWidget>
-#include <QGroupBox>
-#include <QGridLayout>
+#include <QString>
+#include <QTimer>
+#include <QDateTime>
 #include <QLabel>
-#include <QSystemTrayIcon>
+#include <QToolBar>
 
-#include "webDoc.h"
-#include "configuration.h"
-
-class SkillTraining : public QGroupBox
+class SyncWidget : public QToolBar
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QSystemTrayIcon*, QWidget*);
-	virtual ~SkillTraining();
+	//SyncWidget(QString, QString, QWidget*,  Qt::WFlags);
+	SyncWidget(QString, QString, QWidget * parent =0);//, Qt::WFlags f =0);
+	virtual ~SyncWidget();
 private:
-	ConfigHandler *conf;
-	WebDoc *skillTree, *characterTraining;
-	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *syncLabel, *rateLabel;
 	QTimer *sTimer;
-	QDateTime *beginTime, *endTime, *syncTime;
-	QGridLayout *layout;
-	bool skillTreeAvailable;
-	QString skillName(int);
-	int skillRank(int);
-	QDomElement *el;
-	QString iToRoman(int);
-	QVector<int> *skillSP;
-	int currentSkillRank;
-	double trainFactor;
-	double currentSP();
-	QSystemTrayIcon *tray;
-	QString currentSkillLevel, currentSkillName;
-	QStringList *todoTimeStringList;
-	int d, h, m, s;
+	QDateTime *syncTime;
+	QString *timeFormat;
+	QLabel *syncLabel;
 private slots:
 	void onSTimer();
-	void onSkillTreeDone(bool);
-	void onCharacterTrainingDone(bool);
 public slots:
-	void reload();
+	void set(int);
 };
 
 #endif
-

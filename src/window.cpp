@@ -52,8 +52,16 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIcon->setContextMenu(trayIconMenu);
 
 	trainingWidget = new SkillTraining(config, trayIcon, this);
-
 	setCentralWidget(trainingWidget);
+
+	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
+	addToolBar(syncWidget);
+
+	hTimer = new QTimer(this);
+	hTimer->setInterval(3600000); // 1h
+	connect(hTimer, SIGNAL(timeout()), this, SLOT(onHTimer()));
+	hTimer->start();
+	syncWidget->set(hTimer->interval()/1000);
 
 	adjustSize();
 	setVisible(config->loadIsVisible());
@@ -69,7 +77,7 @@ void MainWindow::handleFileAction(QAction* a)
 {
 	if (a->text() == tr("exit")) close();
 	if (a->text() == tr("input API")) onApiInput();
-	if (a->text() == tr("update")) trainingWidget->reload();
+	if (a->text() == tr("update")) onHTimer();
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
@@ -106,7 +114,14 @@ void MainWindow::onApiInput()
 	ApiInput input(tr("API"), config, this);
 	input.show();
 	if(input.exec())
-		trainingWidget->update();
+		onHTimer();
+}
+
+void MainWindow::onHTimer()
+{
+	trainingWidget->update();
+	syncWidget->set(hTimer->interval()/1000);
+	hTimer->start();
 }
 
 MainWindow::~MainWindow()

@@ -8,22 +8,26 @@ DEPENDPATH += . src
 INCLUDEPATH += . src
 QT += xml network svg 
 #QTPLUGIN += qsvg
-OBJECTS_DIR += obj
-MOC_DIR += moc
-RCC_DIR += moc
+OBJECTS_DIR += tmp
+MOC_DIR += tmp
+RCC_DIR += tmp
+
+CONFIG += warn_on threa qt
 
 # Input
 HEADERS += src/window.h \
 	   src/configuration.h \
 	   src/apiInput.h \
 	   src/webDoc.h \
-	   src/training.h
+	   src/training.h \
+	   src/syncWidget.h
 SOURCES += src/main.cpp \
            src/window.cpp \
 	   src/configuration.cpp \
 	   src/apiInput.cpp \
 	   src/webDoc.cpp \
-	   src/training.cpp
+	   src/training.cpp \
+	   src/syncWidget.cpp
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

@@ -39,8 +39,12 @@ int main(int argc, char ** argv)
 
 	app.installTranslator(&translator);
 
-	app.setWindowIcon(QIcon(":/appicon"));
-	//app.setWindowIcon(QIcon(":/appicon"));
+//	QFile f(":appicon_svg");
+//	f.open( QIODevice::ReadOnly );
+//	QTextStream stream( &f );
+//	qDebug() << stream.readAll();
+
+	app.setWindowIcon(QIcon(":appicon"));
 
 	MainWindow win;
 

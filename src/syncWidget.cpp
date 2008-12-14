@@ -1,6 +1,6 @@
 
 /************************************************************************
- * window.h								*
+ * syncWidget.cpp							*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,41 +17,31 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef WINDOW_H
-#define WINDOW_H
-
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
-#include <QTimer>
-
-#include "configuration.h"
-#include "apiInput.h"
-#include "training.h"
 #include "syncWidget.h"
 
-class MainWindow : public QMainWindow
+SyncWidget::SyncWidget(QString name, QString format, QWidget * parent)//, Qt::WFlags f)
+        : QToolBar(name, parent)//, f)
 {
-Q_OBJECT
-public:
-	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
-	virtual ~MainWindow();
-private:
-	QMenu *about, *mFile, *mAction;
-	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
-	ConfigHandler *config;
-	SkillTraining *trainingWidget;
-	SyncWidget *syncWidget;
-	QTimer *hTimer;
-	void onApiInput();
-private slots:
-	void handleAboutAction(QAction* a);
-	void handleFileAction(QAction* a);
-	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
-	void onHTimer();
-};
+	sTimer = new QTimer(this);
+	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
+	sTimer->start(1000);
 
-#endif
+	timeFormat = new QString();
+	*timeFormat = format;
+	syncTime   = new QDateTime();
 
+	syncLabel  = new QLabel(this);
+	addWidget(syncLabel);
+}
+
+SyncWidget::~SyncWidget(){}
+
+void SyncWidget::onSTimer()
+{
+	syncLabel->setText(syncTime->fromTime_t(syncTime->currentDateTime().secsTo(*syncTime)).toString(*timeFormat));
+}
+#include <QDebug>
+void SyncWidget::set(int i)
+{
+	*syncTime = syncTime->currentDateTime().addSecs(i);
+}
