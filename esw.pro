@@ -20,14 +20,16 @@ HEADERS += src/window.h \
 	   src/apiInput.h \
 	   src/webDoc.h \
 	   src/training.h \
-	   src/syncWidget.h
+	   src/syncWidget.h \
+	   src/serverStatWidget.h
 SOURCES += src/main.cpp \
            src/window.cpp \
 	   src/configuration.cpp \
 	   src/apiInput.cpp \
 	   src/webDoc.cpp \
 	   src/training.cpp \
-	   src/syncWidget.cpp
+	   src/syncWidget.cpp \
+	   src/serverStatWidget.cpp
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

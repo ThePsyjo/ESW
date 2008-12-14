@@ -87,7 +87,7 @@ QString ConfigHandler::loadStyleSheet()
 	return genTag(doc->documentElement(), "Style").text();
 }
 
-////////////////////
+//ApiInfo//////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveApiInfo(apiInfo v)
 {
 	genTag ( doc->documentElement(), "userID" ).setAttribute("value", v.userID);
@@ -105,6 +105,7 @@ apiInfo ConfigHandler::loadApiInfo()
 	return v;
 }
 
+//Visibility///////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveIsVisible(bool b)
 {
 	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 0);
@@ -115,4 +116,13 @@ bool ConfigHandler::loadIsVisible()
 	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("visible", "1").toInt();
 }
 
+//widgetState//////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveState(QByteArray d)
+{
+	genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("state", d.toHex().data());
+}
 
+QByteArray ConfigHandler::loadState()
+{
+	return QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii()));
+}

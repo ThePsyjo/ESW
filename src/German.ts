@@ -111,7 +111,7 @@ config will not be written</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="78"/>
+        <location filename="window.cpp" line="85"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
@@ -121,7 +121,7 @@ config will not be written</source>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="73"/>
+        <location filename="window.cpp" line="80"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -131,12 +131,12 @@ config will not be written</source>
         <translation>EveSkillWatcher 0.0.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="79"/>
+        <location filename="window.cpp" line="86"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="114"/>
+        <location filename="window.cpp" line="121"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -146,14 +146,59 @@ config will not be written</source>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="80"/>
+        <location filename="window.cpp" line="87"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="57"/>
+        <location filename="window.cpp" line="62"/>
         <source>next sync in</source>
         <translation>nächster Sync</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="67"/>
+        <source>server status</source>
+        <translation>Server Status</translation>
+    </message>
+</context>
+<context>
+    <name>ServerStatWidget</name>
+    <message>
+        <location filename="serverStatWidget.cpp" line="38"/>
+        <source>Online</source>
+        <comment>server online message</comment>
+        <translation>Online</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="39"/>
+        <source>Offline</source>
+        <comment>server offline message</comment>
+        <translation>Offline</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="41"/>
+        <source>Other &quot;%1&quot;</source>
+        <translation>unbekannt: &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="43"/>
+        <source>Tranquility: %1
+Players: %2</source>
+        <translation type="obsolete">Tranquility: %1Spieler: %2</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="40"/>
+        <source>Unknown</source>
+        <comment>no server message</comment>
+        <translation>Unbekannt</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="44"/>
+        <source>Tranquility: %1
+Players: %2</source>
+        <comment>serverMessage, playerCount</comment>
+        <translation>Tranquility: %1
+Spieler: %2</translation>
     </message>
 </context>
 <context>
@@ -169,17 +214,17 @@ config will not be written</source>
         <translation type="obsolete">d &apos;Tage&apos;, h &apos;Stunden&apos;, m &apos;Minuten&apos;, s &apos;Sekunden&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="193"/>
+        <location filename="training.cpp" line="194"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="194"/>
+        <location filename="training.cpp" line="195"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="141"/>
+        <location filename="training.cpp" line="142"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -187,7 +232,7 @@ config will not be written</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="142"/>
+        <location filename="training.cpp" line="143"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -195,7 +240,7 @@ config will not be written</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="143"/>
+        <location filename="training.cpp" line="144"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -203,7 +248,7 @@ config will not be written</source>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="144"/>
+        <location filename="training.cpp" line="145"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n Sekunde</numerusform>

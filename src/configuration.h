@@ -25,6 +25,7 @@
 #include <QString>
 #include <QMessageBox>
 #include <QTimer>
+#include <QByteArray>
 
 class apiInfo
 {
@@ -48,11 +49,16 @@ public:
 	virtual ~ConfigHandler();
 
 	QString loadStyleSheet();
+	
 	apiInfo loadApiInfo();
+	void saveApiInfo(apiInfo);
+
 	bool loadIsVisible();
 	void saveIsVisible(bool);
+
+	void saveState(QByteArray);
+	QByteArray loadState();
 public slots:
-	void saveApiInfo(apiInfo);
 	void saveFile();
 };
 

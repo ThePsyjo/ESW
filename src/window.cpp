@@ -54,15 +54,22 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trainingWidget = new SkillTraining(config, trayIcon, this);
 	setCentralWidget(trainingWidget);
 
-	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
-	addToolBar(syncWidget);
-
 	hTimer = new QTimer(this);
 	hTimer->setInterval(3600000); // 1h
 	connect(hTimer, SIGNAL(timeout()), this, SLOT(onHTimer()));
 	hTimer->start();
-	syncWidget->set(hTimer->interval()/1000);
 
+	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
+	addToolBar(syncWidget);
+	syncWidget->set(hTimer->interval()/1000);
+	syncWidget->setObjectName("toolbar_sync");
+
+	serverStat = new ServerStatWidget(tr("server status"), this);
+	serverStat->reload();
+	serverStat->setObjectName("toolbar_serverstats");
+	addToolBar(serverStat);
+
+	restoreState(config->loadState());
 	adjustSize();
 	setVisible(config->loadIsVisible());
 }
@@ -120,10 +127,14 @@ void MainWindow::onApiInput()
 void MainWindow::onHTimer()
 {
 	trainingWidget->reload();
+	serverStat->reload();
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
 }
 
 MainWindow::~MainWindow()
-{delete config;}
+{
+	config->saveState(saveState());
+	delete config;
+}
 

@@ -22,7 +22,6 @@
 SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* parent)
 {
 	setParent(parent);
-	setTitle(tr("skill training"));
 
 	conf = c;
 	tray = ico;
