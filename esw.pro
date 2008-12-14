@@ -12,7 +12,7 @@ OBJECTS_DIR += tmp
 MOC_DIR += tmp
 RCC_DIR += tmp
 
-CONFIG += warn_on threa qt
+CONFIG += silent
 
 # Input
 HEADERS += src/window.h \

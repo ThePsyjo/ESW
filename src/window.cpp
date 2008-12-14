@@ -119,7 +119,7 @@ void MainWindow::onApiInput()
 
 void MainWindow::onHTimer()
 {
-	trainingWidget->update();
+	trainingWidget->reload();
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
 }

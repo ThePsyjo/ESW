@@ -22,6 +22,7 @@
 SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* parent)
 {
 	setParent(parent);
+	setTitle(tr("skill training"));
 
 	conf = c;
 	tray = ico;
@@ -137,7 +138,8 @@ void SkillTraining::onSTimer()
 					//	/ el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 		);
-		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toString("d:h:m:s").split(":");
+		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime) - 86400).toString("d:h:m:s").split(":");
+												//      ^^^^^ there is 1 day too much
 		etaLabel->setText(tr("%n d(s), ", "", todoTimeStringList->at(0).toInt())
 				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
 				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
