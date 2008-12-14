@@ -182,7 +182,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			// (destSP - startSP) / (secs from startTime to EndTime) == SP/sec
 			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
 					/ beginTime->secsTo(QDateTime::fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss"));
-			rateLabel->setText(QString("%1 SP/s").arg(trainFactor, 0, 'f', 3));
+			rateLabel->setText(QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0));
 		}
 		else
 		{
