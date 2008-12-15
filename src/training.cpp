@@ -130,11 +130,9 @@ void SkillTraining::onSTimer()
 			tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel), QSystemTrayIcon::NoIcon, 60000 );		
 			tray->setToolTip(tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel));
 		}
-		spLabel->setText(QString("%1  / %2 (%3%)")
-					.arg(currentSP(), 0, 'f', 1)
-					.arg(el->firstChildElement("trainingDestinationSP").text())
-					//.arg((currentSP() - currentSkillRank * skillSP->at(currentSkillRank -1) )
-					//	/ el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
+		spLabel->setText(QString("%L1  / %L2 (%3%)")
+					.arg(currentSP(), 3, 'f', 1)
+					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
 					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 		);
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime) - 86400).toString("d:h:m:s").split(":");

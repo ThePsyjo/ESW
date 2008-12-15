@@ -69,6 +69,11 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	serverStat->setObjectName("toolbar_serverstats");
 	addToolBar(serverStat);
 
+	characterWidget = new CharacterWidget(tr("Character"), config, this);
+	characterWidget->reload();
+	addToolBar(characterWidget);
+	characterWidget->setObjectName("toolbar_character");
+
 	restoreState(config->loadState());
 	adjustSize();
 	setVisible(config->loadIsVisible());
@@ -128,6 +133,7 @@ void MainWindow::onHTimer()
 {
 	trainingWidget->reload();
 	serverStat->reload();
+	characterWidget->reload();
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
 }

@@ -31,6 +31,7 @@ SyncWidget::SyncWidget(QString name, QString format, QWidget * parent)//, Qt::WF
 	syncTime   = new QDateTime();
 
 	syncLabel  = new QLabel(this);
+	syncLabel->setAlignment(Qt::AlignCenter);
 	addWidget(syncLabel);
 }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -81,6 +82,21 @@ Du kannst deine API-Informationen hier finden: http://myeve.eve-online.com/api/d
     </message>
 </context>
 <context>
+    <name>CharacterWidget</name>
+    <message>
+        <location filename="characterWidget.cpp" line="51"/>
+        <source>%1
+Member of %2
+Title %3
+%L4 ISK</source>
+        <comment>name, corpname, rank, balance</comment>
+        <translation>&lt;b&gt;%1&lt;/b&gt;&lt;br&gt;
+Mitglied von &lt;i&gt;%2&lt;/i&gt;&lt;br&gt;
+Titel %3&lt;br&gt;
+%L4 ISK</translation>
+    </message>
+</context>
+<context>
     <name>ConfigHandler</name>
     <message>
         <location filename="configuration.cpp" line="37"/>
@@ -110,7 +126,7 @@ config will not be written</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="85"/>
+        <location filename="window.cpp" line="90"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
@@ -120,7 +136,7 @@ config will not be written</source>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="80"/>
+        <location filename="window.cpp" line="85"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -130,12 +146,12 @@ config will not be written</source>
         <translation>EveSkillWatcher 0.0.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="86"/>
+        <location filename="window.cpp" line="91"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="121"/>
+        <location filename="window.cpp" line="126"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -145,7 +161,7 @@ config will not be written</source>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="87"/>
+        <location filename="window.cpp" line="92"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
@@ -159,6 +175,11 @@ config will not be written</source>
         <source>server status</source>
         <translation>Server Status</translation>
     </message>
+    <message>
+        <location filename="window.cpp" line="72"/>
+        <source>Character</source>
+        <translation>Charakter</translation>
+    </message>
 </context>
 <context>
     <name>ServerStatWidget</name>
@@ -166,13 +187,13 @@ config will not be written</source>
         <location filename="serverStatWidget.cpp" line="38"/>
         <source>Online</source>
         <comment>server online message</comment>
-        <translation>Online</translation>
+        <translation>&lt;font color=green&gt;Online&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="serverStatWidget.cpp" line="39"/>
         <source>Offline</source>
         <comment>server offline message</comment>
-        <translation>Offline</translation>
+        <translation>&lt;font color=red&gt;Offline&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="serverStatWidget.cpp" line="41"/>
@@ -213,17 +234,17 @@ Spieler: %2</translation>
         <translation type="obsolete">d &apos;Tage&apos;, h &apos;Stunden&apos;, m &apos;Minuten&apos;, s &apos;Sekunden&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="194"/>
+        <location filename="training.cpp" line="192"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="195"/>
+        <location filename="training.cpp" line="193"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="142"/>
+        <location filename="training.cpp" line="140"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -231,7 +252,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="143"/>
+        <location filename="training.cpp" line="141"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -239,7 +260,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="144"/>
+        <location filename="training.cpp" line="142"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -247,7 +268,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="145"/>
+        <location filename="training.cpp" line="143"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n Sekunde</numerusform>

@@ -1,6 +1,6 @@
 
 /************************************************************************
- * window.h								*
+ * characterWidget.h							*
  * Copyright (C) 2008  Psyjo						*
  *									*
  * This program is free software; you can redistribute it and/or modify	*
@@ -17,45 +17,29 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
 
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef CHARACTERWIDGET_H
+#define CHARACTERWIDGET_H
 
-#include <QMainWindow>
-#include <QMenuBar>
-#include <QMessageBox>
-#include <QSystemTrayIcon>
-#include <QTimer>
-
+#include <QLabel>
+#include <QToolBar>
+#include "webDoc.h"
 #include "configuration.h"
-#include "apiInput.h"
-#include "training.h"
-#include "syncWidget.h"
-#include "serverStatWidget.h"
-#include "characterWidget.h"
 
-class MainWindow : public QMainWindow
+class CharacterWidget : public QToolBar
 {
 Q_OBJECT
 public:
-	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
-	virtual ~MainWindow();
+	CharacterWidget(QString, ConfigHandler*, QWidget * parent =0);
+	virtual ~CharacterWidget();
 private:
-	QMenu *about, *mFile, *mAction;
-	QSystemTrayIcon *trayIcon;
-	QMenu *trayIconMenu;
-	ConfigHandler *config;
-	SkillTraining *trainingWidget;
-	SyncWidget *syncWidget;
-	ServerStatWidget *serverStat;
-	CharacterWidget *characterWidget;
-	QTimer *hTimer;
-	void onApiInput();
+	ConfigHandler *conf;
+	QLabel *content;
+	WebDoc *characterInfo;
+	QString getTitle();
 private slots:
-	void handleAboutAction(QAction* a);
-	void handleFileAction(QAction* a);
-	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
-	void onHTimer();
+	void onWebDoc(bool);
+public slots:
+	void reload();
 };
 
 #endif
-
