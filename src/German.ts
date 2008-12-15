@@ -62,9 +62,7 @@ at line %1, column %2:
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
-        <translation>Trage deine UserID und deinen API-Key in die dafür vorgesehenen Felder ein.
-Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.
-Du kannst deine API-Informationen hier finden: http://myeve.eve-online.com/api/default.asp .</translation>
+        <translation>Trage deine UserID und deinen API-Key in die dafür vorgesehenen Felder ein.&lt;br&gt;Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.&lt;br&gt;Du bekommst deine API-Informationen &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="159"/>
@@ -110,7 +108,11 @@ at line %1, column %2:
 &quot;%3&quot;
 
 config will not be written</source>
-        <translation>Parser Fehler in Datei %4:auf Zeile %1, Spalte %2:&quot;%3&quot;Konfiguration wird nicht geschrieben</translation>
+        <translation>Parser Fehler in Datei %4:
+auf Zeile %1, Spalte %2:
+&quot;%3&quot;
+
+Konfiguration wird nicht geschrieben</translation>
     </message>
     <message>
         <location filename="configuration.cpp" line="51"/>
@@ -143,7 +145,7 @@ config will not be written</source>
     <message>
         <location filename="window.cpp" line="25"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.0.1</translation>
+        <translation>EveSkillWatcher 0.1.0</translation>
     </message>
     <message>
         <location filename="window.cpp" line="91"/>

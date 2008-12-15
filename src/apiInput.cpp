@@ -47,6 +47,7 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	lApiKey = new QLabel(tr("ApiKey"));
 	lCharacterID = new QLabel(tr("CharacterID"));
 	lText = new QLabel(tr("Insert your UserID and your API-Key in the specified Fields.\nClick on connect to select your character.\nYou can get your own API-Information here : http://myeve.eve-online.com/api/default.asp ."));
+	lText->setOpenExternalLinks(true);
 
 	layout = new QGridLayout(this);
 

@@ -13,6 +13,7 @@ MOC_DIR += tmp
 RCC_DIR += tmp
 
 CONFIG += silent release
+MAKEFILE = Makefile
 
 # Input
 HEADERS += src/window.h \
