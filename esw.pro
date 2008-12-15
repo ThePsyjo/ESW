@@ -12,7 +12,7 @@ OBJECTS_DIR += tmp
 MOC_DIR += tmp
 RCC_DIR += tmp
 
-CONFIG += silent
+CONFIG += silent release
 
 # Input
 HEADERS += src/window.h \
@@ -33,3 +33,5 @@ SOURCES += src/main.cpp \
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc
+
+DESTDIR = ./
