@@ -126,3 +126,25 @@ QByteArray ConfigHandler::loadState()
 {
 	return QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii()));
 }
+
+//ontop////////////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveOntop(bool b)
+{
+	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("ontop", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("ontop", 0);
+}
+
+bool ConfigHandler::loadOntop()
+{
+	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("ontop", "0").toInt();
+}
+
+//ShowTray/////////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveShowTray(bool b)
+{
+	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("tray_visible", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("tray_visible", 0);
+}
+
+bool ConfigHandler::loadShowTray()
+{
+	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("tray_visible", "1").toInt();
+}

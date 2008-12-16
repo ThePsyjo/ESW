@@ -127,22 +127,22 @@ config will not be written</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="window.cpp" line="30"/>
+        <location filename="window.cpp" line="37"/>
         <source>&amp;file</source>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="92"/>
+        <location filename="window.cpp" line="108"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="39"/>
+        <location filename="window.cpp" line="60"/>
         <source>&amp;about</source>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="87"/>
+        <location filename="window.cpp" line="103"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -152,44 +152,69 @@ config will not be written</translation>
         <translation>EveSkillWatcher 0.1.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="93"/>
+        <location filename="window.cpp" line="109"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="128"/>
+        <location filename="window.cpp" line="173"/>
         <source>API</source>
         <translation>API</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="34"/>
+        <location filename="window.cpp" line="41"/>
         <source>A&amp;ction</source>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="94"/>
+        <location filename="window.cpp" line="110"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="64"/>
+        <location filename="window.cpp" line="78"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="69"/>
+        <location filename="window.cpp" line="83"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="74"/>
+        <location filename="window.cpp" line="88"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="54"/>
+        <location filename="window.cpp" line="74"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="40"/>
+        <source>CTRL+R</source>
+        <translation type="obsolete">CTRL+R</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="48"/>
+        <source>&amp;Options</source>
+        <translation>&amp;Options</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="115"/>
+        <source>always on &amp;top</source>
+        <translation>always on &amp;top</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="129"/>
+        <source>show tray &amp;icon</source>
+        <translation>show tray &amp;icon</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="186"/>
+        <source>last update @ %1.</source>
+        <translation>last update @ %1.</translation>
     </message>
 </context>
 <context>

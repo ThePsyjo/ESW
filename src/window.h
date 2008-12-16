@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QSystemTrayIcon>
 #include <QTimer>
+#include <QStatusBar>
 
 #include "configuration.h"
 #include "apiInput.h"
@@ -40,7 +41,8 @@ public:
 	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
 	virtual ~MainWindow();
 private:
-	QMenu *about, *mFile, *mAction;
+	QMenu *about, *mFile, *mAction, *mOption;
+	QAction *ontopAction, *showTrayAction, *updateAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -50,9 +52,11 @@ private:
 	CharacterWidget *characterWidget;
 	QTimer *hTimer;
 	void onApiInput();
+	QStatusBar *statusBar;
 private slots:
 	void handleAboutAction(QAction* a);
 	void handleFileAction(QAction* a);
+	void handleOptionAction(QAction* a);
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 	void onHTimer();
 };

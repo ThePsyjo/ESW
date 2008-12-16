@@ -26,24 +26,44 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
 	setStyleSheet(config->loadStyleSheet());
-	
+
+	hTimer = new QTimer(this);
+	hTimer->setInterval(3600000); // 1h
+	connect(hTimer, SIGNAL(timeout()), this, SLOT(onHTimer()));
+
+	statusBar = new QStatusBar(this);
+	setStatusBar(statusBar);
+
 	mFile = menuBar()->addMenu(tr("&file"));
 	mFile->addAction(tr("exit"));
 	connect(mFile, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 
 	mAction = menuBar()->addMenu(tr("A&ction"));
 	mAction->addAction(tr("input API"));
+	updateAction = new QAction(tr("update"), this);
+	updateAction->setShortcut(QKeySequence("F5")); 
 	mAction->addAction(tr("update"));
 	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 
+	mOption = menuBar()->addMenu(tr("&Options"));
+	ontopAction = new QAction(tr("always on &top"), this);
+	showTrayAction = new QAction(tr("show tray &icon"), this);
+	ontopAction->setCheckable(true);
+	showTrayAction->setCheckable(true);
+	showTrayAction->setChecked(config->loadShowTray());
+	ontopAction->setChecked(config->loadOntop());
+	mOption->addAction(ontopAction);
+	mOption->addAction(showTrayAction);
+	connect(mOption, SIGNAL(triggered(QAction*)), this, SLOT(handleOptionAction(QAction*)));
+
+	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
 	about->addAction("ESW");
 	about->addAction("Qt");
 	connect(about, SIGNAL(triggered(QAction*)), this, SLOT(handleAboutAction(QAction*)));
 
-	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
-	trayIcon->show();
+	if(config->loadShowTray()) trayIcon->show(); // only show when configured to show
 
 	trayIconMenu = new QMenu;
 	trayIconMenu->addAction(tr("update"));
@@ -53,13 +73,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 	trainingWidget = new SkillTraining(config, trayIcon, tr("skilltraining"), this);
 	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);
-	//addToolBar(trainingWidget);
 	trainingWidget->setObjectName("toolbar_training");
-
-	hTimer = new QTimer(this);
-	hTimer->setInterval(3600000); // 1h
-	connect(hTimer, SIGNAL(timeout()), this, SLOT(onHTimer()));
-	hTimer->start();
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
 	addToolBar(syncWidget);
@@ -79,6 +93,8 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	restoreState(config->loadState());
 	adjustSize();
 	setVisible(config->loadIsVisible());
+
+	hTimer->start();
 }
 
 void MainWindow::handleAboutAction(QAction* a)
@@ -92,6 +108,35 @@ void MainWindow::handleFileAction(QAction* a)
 	if (a->text() == tr("exit")) close();
 	if (a->text() == tr("input API")) onApiInput();
 	if (a->text() == tr("update")) onHTimer();
+}
+
+void MainWindow::handleOptionAction(QAction* a)
+{
+	if (a->text() == tr("always on &top"))
+		if(a->isChecked())
+		{
+			setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
+			show();
+			config->saveOntop(true);
+		}
+		else
+		{
+			setWindowFlags(Qt::Window);
+			show();
+			config->saveOntop(false);
+		}
+
+	if (a->text() == tr("show tray &icon"))
+		if(a->isChecked())
+		{
+			trayIcon->show();
+			config->saveShowTray(true);
+		}
+		else
+		{
+			trayIcon->hide();
+			config->saveShowTray(false);
+		}
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
@@ -138,6 +183,7 @@ void MainWindow::onHTimer()
 	characterWidget->reload();
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
+	statusBar->showMessage(tr("last update @ %1.").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")), 0);
 }
 
 MainWindow::~MainWindow()

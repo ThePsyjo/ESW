@@ -58,6 +58,12 @@ public:
 
 	void saveState(QByteArray);
 	QByteArray loadState();
+
+	bool loadOntop();
+	void saveOntop(bool);
+
+	bool loadShowTray();
+	void saveShowTray(bool);
 public slots:
 	void saveFile();
 };
