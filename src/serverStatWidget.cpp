@@ -19,10 +19,12 @@
 
 #include "serverStatWidget.h"
 
-ServerStatWidget::ServerStatWidget(QString name, QWidget * parent)
+ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget * parent)
         : QToolBar(name, parent)
 {
+	icon = ico;
 	content  = new QLabel(this);
+	content->setAlignment(Qt::AlignCenter);
 	addWidget(content);
 	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
@@ -34,11 +36,15 @@ void ServerStatWidget::onWebDoc(bool ok)
 {
 	if(ok)
 	{
+		lastStat = serverStat;
 		serverStat = serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("serverOpen").text();
 		if(serverStat == "True") serverStat = tr("Online", "server online message");
 		else if(serverStat == "False") serverStat = tr("Offline", "server offline message");
 		else if(serverStat.isEmpty()) serverStat = tr("Unknown", "no server message");
 		else serverStat = tr("Other \"%1\"").arg(serverStat);
+
+		if(lastStat != serverStat && ! lastStat.isEmpty())
+			icon->showMessage ( tr("Server status changed"), tr("Tranquility is now %1").arg(serverStat), QSystemTrayIcon::NoIcon, 60000 );
 
 		content->setText(tr("Tranquility: %1\nPlayers: %2", "serverMessage, playerCount")
 					.arg(serverStat)

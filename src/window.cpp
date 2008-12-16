@@ -66,7 +66,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	syncWidget->set(hTimer->interval()/1000);
 	syncWidget->setObjectName("toolbar_sync");
 
-	serverStat = new ServerStatWidget(tr("server status"), this);
+	serverStat = new ServerStatWidget(tr("server status"), trayIcon, this);
 	serverStat->reload();
 	serverStat->setObjectName("toolbar_serverstats");
 	addToolBar(serverStat);

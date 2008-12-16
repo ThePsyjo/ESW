@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -19,17 +18,17 @@
         <translation>c&amp;onnect</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="46"/>
+        <location filename="apiInput.cpp" line="48"/>
         <source>UserID</source>
         <translation>UserID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="47"/>
+        <location filename="apiInput.cpp" line="49"/>
         <source>ApiKey</source>
         <translation>ApiKey</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="48"/>
+        <location filename="apiInput.cpp" line="50"/>
         <source>CharacterID</source>
         <translation>CharacterID</translation>
     </message>
@@ -43,8 +42,12 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
     </message>
     <message>
         <location filename="apiInput.cpp" line="164"/>
-        <source>download error</source>
-        <translation type="obsolete">download error</translation>
+        <source>errorcode %1
+
+%2</source>
+        <translation>Errorcode %1
+
+&quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="165"/>
@@ -66,7 +69,7 @@ at line %1, column %2:
         <translation type="obsolete">Parse error in character listat line %1, column %2:&quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="49"/>
+        <location filename="apiInput.cpp" line="51"/>
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
@@ -75,18 +78,9 @@ Click on connect to select your character.
 You can get your own API-Information &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="160"/>
+        <location filename="apiInput.cpp" line="162"/>
         <source>API error</source>
         <translation>API error</translation>
-    </message>
-    <message>
-        <location filename="apiInput.cpp" line="162"/>
-        <source>errorcode %1
-
-%2</source>
-        <translation>Errorcode %1
-
-&quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -201,19 +195,19 @@ config will not be written</translation>
 <context>
     <name>ServerStatWidget</name>
     <message>
-        <location filename="serverStatWidget.cpp" line="38"/>
+        <location filename="serverStatWidget.cpp" line="41"/>
         <source>Online</source>
         <comment>server online message</comment>
         <translation>&lt;font color=green&gt;Online&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="39"/>
+        <location filename="serverStatWidget.cpp" line="42"/>
         <source>Offline</source>
         <comment>server offline message</comment>
         <translation>&lt;font color=red&gt;Offline&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="41"/>
+        <location filename="serverStatWidget.cpp" line="44"/>
         <source>Other &quot;%1&quot;</source>
         <translation>unknown: &quot;%1&quot;</translation>
     </message>
@@ -224,18 +218,28 @@ Players: %2</source>
         <translation type="obsolete">Tranquility: %1Players: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="40"/>
+        <location filename="serverStatWidget.cpp" line="43"/>
         <source>Unknown</source>
         <comment>no server message</comment>
         <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="44"/>
+        <location filename="serverStatWidget.cpp" line="50"/>
         <source>Tranquility: %1
 Players: %2</source>
         <comment>serverMessage, playerCount</comment>
         <translation>Tranquility: %1
 Players: %2</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="47"/>
+        <source>Server status changed</source>
+        <translation>Server status changed</translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="47"/>
+        <source>Tranquility is now %1</source>
+        <translation>Tranquility is now %1</translation>
     </message>
 </context>
 <context>

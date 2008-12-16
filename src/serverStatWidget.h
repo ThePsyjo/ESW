@@ -22,18 +22,20 @@
 
 #include <QLabel>
 #include <QToolBar>
+#include <QSystemTrayIcon>
 #include "webDoc.h"
 
 class ServerStatWidget : public QToolBar
 {
 Q_OBJECT
 public:
-	ServerStatWidget(QString, QWidget * parent =0);
+	ServerStatWidget(QString, QSystemTrayIcon*, QWidget * parent =0);
 	virtual ~ServerStatWidget();
 private:
 	QLabel *content;
 	WebDoc *serverStatDoc;
-	QString serverStat;
+	QString serverStat, lastStat;
+	QSystemTrayIcon *icon;
 private slots:
 	void onWebDoc(bool);
 public slots:
