@@ -3,7 +3,13 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+
+win32 {
+  DESTDIR = win
+  CONFIG -= debug_and_release
+  CONFIG += thread
+}
+
 DEPENDPATH += . src
 INCLUDEPATH += . src
 QT += xml network svg 
@@ -13,7 +19,6 @@ MOC_DIR += tmp
 RCC_DIR += tmp
 
 CONFIG += silent release
-MAKEFILE = Makefile
 
 # Input
 HEADERS += src/window.h \
@@ -37,4 +42,3 @@ SOURCES += src/main.cpp \
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc
 
-DESTDIR = ./

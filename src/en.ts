@@ -75,12 +75,12 @@ Click on connect to select your character.
 You can get your own API-Information &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="159"/>
+        <location filename="apiInput.cpp" line="160"/>
         <source>API error</source>
         <translation>API error</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="161"/>
+        <location filename="apiInput.cpp" line="162"/>
         <source>errorcode %1
 
 %2</source>
@@ -138,7 +138,7 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="90"/>
+        <location filename="window.cpp" line="92"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -148,22 +148,22 @@ config will not be written</translation>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="85"/>
+        <location filename="window.cpp" line="87"/>
         <source>about</source>
         <translation>about</translation>
     </message>
     <message>
         <location filename="window.cpp" line="25"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.0</translation>
+        <translation>EveSkillWatcher 0.1.1</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="91"/>
+        <location filename="window.cpp" line="93"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="126"/>
+        <location filename="window.cpp" line="128"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -173,24 +173,29 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="92"/>
+        <location filename="window.cpp" line="94"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="62"/>
+        <location filename="window.cpp" line="64"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="67"/>
+        <location filename="window.cpp" line="69"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="72"/>
+        <location filename="window.cpp" line="74"/>
         <source>Character</source>
         <translation>Character</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="54"/>
+        <source>skilltraining</source>
+        <translation>Skilltraining</translation>
     </message>
 </context>
 <context>
@@ -236,7 +241,7 @@ Players: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="131"/>
+        <location filename="training.cpp" line="121"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) completed.</translation>
     </message>
@@ -246,17 +251,17 @@ Players: %2</translation>
         <translation type="obsolete">d &apos;d&apos;, h &apos;h&apos;, m &apos;m&apos;, s &apos;s&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="192"/>
+        <location filename="training.cpp" line="180"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="193"/>
+        <location filename="training.cpp" line="181"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="140"/>
+        <location filename="training.cpp" line="130"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n day, </numerusform>
@@ -264,7 +269,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="141"/>
+        <location filename="training.cpp" line="131"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n hour, </numerusform>
@@ -272,7 +277,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="142"/>
+        <location filename="training.cpp" line="132"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n minute, </numerusform>
@@ -280,7 +285,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="143"/>
+        <location filename="training.cpp" line="133"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n second</numerusform>

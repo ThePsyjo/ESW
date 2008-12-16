@@ -20,41 +20,39 @@
 #ifndef TRAINING_H
 #define TRAINING_H
 
-#include <QDockWidget>
-#include <QGroupBox>
-#include <QGridLayout>
 #include <QLabel>
 #include <QSystemTrayIcon>
+#include <QDockWidget>
+//#include <QToolBar>
 
 #include "webDoc.h"
 #include "configuration.h"
 
-class SkillTraining : public QGroupBox
+class SkillTraining : public QDockWidget
+//class SkillTraining : public QToolBar
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QSystemTrayIcon*, QWidget*);
+	SkillTraining(ConfigHandler*, QSystemTrayIcon*, QString name, QWidget* parent =0);
 	virtual ~SkillTraining();
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
-	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *syncLabel, *rateLabel;
+	QLabel *content;
+	QString skill, skillLevel, sp, eta, sync, rate;
 	QTimer *sTimer;
-	QDateTime *beginTime, *endTime, *syncTime;
-	QGridLayout *layout;
+	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
 	QString skillName(int);
 	int skillRank(int);
 	QDomElement *el;
 	QString iToRoman(int);
 	QVector<int> *skillSP;
-	int currentSkillRank;
 	double trainFactor;
 	double currentSP();
 	QSystemTrayIcon *tray;
-	QString currentSkillLevel, currentSkillName;
 	QStringList *todoTimeStringList;
-	int d, h, m, s;
+	void genContent();
 private slots:
 	void onSTimer();
 	void onSkillTreeDone(bool);

@@ -51,8 +51,10 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 	trayIcon->setContextMenu(trayIconMenu);
 
-	trainingWidget = new SkillTraining(config, trayIcon, this);
-	setCentralWidget(trainingWidget);
+	trainingWidget = new SkillTraining(config, trayIcon, tr("skilltraining"), this);
+	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);
+	//addToolBar(trainingWidget);
+	trainingWidget->setObjectName("toolbar_training");
 
 	hTimer = new QTimer(this);
 	hTimer->setInterval(3600000); // 1h

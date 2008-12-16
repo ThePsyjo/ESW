@@ -19,10 +19,10 @@
 
 #include "training.h"
 
-SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* parent)
+SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString name, QWidget* parent)
+        : QDockWidget(name, parent)
+        //: QToolBar(name, parent)
 {
-	setParent(parent);
-
 	conf = c;
 	tray = ico;
 
@@ -47,28 +47,15 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QWidget* pa
 	beginTime = new QDateTime;
 	endTime   = new QDateTime;
 
-	el = new QDomElement; // multi purpose element
+	el = new QDomElement;
 
-	skillLabel = new QLabel(this);
-	skillLevelLabel = new QLabel(this);
-	spLabel = new QLabel(this);
-	etaLabel = new QLabel(this);
-	rateLabel = new QLabel(this);
-	
-	layout = new QGridLayout(this);
+	content = new QLabel(this);
 
-	layout->addWidget(skillLabel, 1, 1);
-	layout->addWidget(skillLevelLabel, 1, 2);
-	layout->addWidget(spLabel, 2, 1, 1, 2);
-	layout->addWidget(etaLabel, 3, 1, 1, 2);
-	layout->addWidget(rateLabel, 4, 1);
-
-	adjustSize();
+	setWidget(content);
+	//addWidget(content);
 
 	sTimer = new QTimer(this);
-
 	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
-
 	sTimer->setInterval(1000);
 }
 
@@ -86,6 +73,9 @@ void SkillTraining::reload()
 						);
 	}
 }
+
+void SkillTraining::genContent()
+{	content->setText(skill + "     " + skillLevel + "\n" + sp + "\n" + eta + "\n" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {
@@ -127,22 +117,24 @@ void SkillTraining::onSTimer()
 	{
 		if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
 		{
-			tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel), QSystemTrayIcon::NoIcon, 60000 );		
-			tray->setToolTip(tr("Skilltraining \"%1\" (%2) completed.").arg(currentSkillName).arg(currentSkillLevel));
+			tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );		
+			tray->setToolTip(tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel));
 		}
-		spLabel->setText(QString("%L1  / %L2 (%3%)")
+		sp = QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)
 					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
 					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
-		);
+		;
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime) - 86400).toString("d:h:m:s").split(":");
 												//      ^^^^^ there is 1 day too much
-		etaLabel->setText(tr("%n d(s), ", "", todoTimeStringList->at(0).toInt())
+		eta = tr("%n d(s), ", "", todoTimeStringList->at(0).toInt())
 				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
 				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
 				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
-			);
-		tray->setToolTip(skillLabel->text() + "\n" + skillLevelLabel->text() + "\n" + spLabel->text() + "\n" + etaLabel->text());
+			;
+		tray->setToolTip(skill + "\n" + skillLevel + "\n" + sp + "\n" + eta);
+
+		genContent();
 	}
 }
 
@@ -169,26 +161,22 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			tray->setIcon(QIcon(":/appicon"));
 			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
-			skillLabel->setText(skillName(el->firstChildElement("trainingTypeID").text().toInt()));
-			currentSkillName = skillLabel->text();
-			skillLevelLabel->setText(QString("%1 -> %2")
+			skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
+			skillLevel = QString("%1 -> %2")
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt()))
-							);
-			currentSkillLevel = skillLevelLabel->text();
-			currentSkillRank = skillRank(el->firstChildElement("trainingTypeID").text().toInt());
-			// (destSP - startSP) / (secs from startTime to EndTime) == SP/sec
+							;
 			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
 					/ beginTime->secsTo(QDateTime::fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss"));
-			rateLabel->setText(QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0));
+			rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
 		}
 		else
 		{
-			skillLabel->clear();
-			skillLevelLabel->clear();
-			etaLabel->clear();
-			spLabel->clear();
-			rateLabel->clear();
+			skill.clear();
+			skillLevel.clear();
+			eta.clear();
+			sp.clear();
+			rate.clear();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));
