@@ -174,11 +174,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		}
 		else
 		{
-			skill.clear();
-			skillLevel.clear();
-			eta.clear();
-			sp.clear();
-			rate.clear();
+			content->clear();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));
