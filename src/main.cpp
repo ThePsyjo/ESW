@@ -39,16 +39,14 @@ int main(int argc, char ** argv)
 
 	app.installTranslator(&translator);
 
-//	QFile f(":appicon_svg");
-//	f.open( QIODevice::ReadOnly );
-//	QTextStream stream( &f );
-//	qDebug() << stream.readAll();
-
 	app.setWindowIcon(QIcon(":appicon"));
 
 	MainWindow win;
 
-	app.setStyle(new QCleanlooksStyle); // comment this if it won't compile
+#ifdef Q_WS_WIN
+	app.setStyle(new QCleanlooksStyle);
+#endif
+
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();
 }
