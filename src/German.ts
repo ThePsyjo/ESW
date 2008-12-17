@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -139,7 +140,7 @@ Konfiguration wird nicht geschrieben</translation>
     <message>
         <location filename="window.cpp" line="25"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.2</translation>
+        <translation>EveSkillWatcher 0.1.3</translation>
     </message>
     <message>
         <location filename="window.cpp" line="118"/>
