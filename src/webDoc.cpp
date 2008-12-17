@@ -60,20 +60,22 @@ bool ok = true;
 //qDebug() << buf->data();
 //puts("----------");
 
-	QString errorStr;
-	int errorLine;
-	int errorColumn;
-        if (!doc->setContent(buf->data(), true, &errorStr, &errorLine, &errorColumn))
+	if(ok)
 	{
-		QMessageBox::warning(0, tr("parse error"),
-		tr("Parse error in %4\nat line %1, column %2:\n\"%3\"")
-		.arg(errorLine)
-		.arg(errorColumn)
-		.arg(errorStr)
-		.arg(url->toString()));
-		ok = false;
+		QString errorStr;
+		int errorLine;
+		int errorColumn;
+        	if (!doc->setContent(buf->data(), true, &errorStr, &errorLine, &errorColumn))
+		{
+			QMessageBox::warning(0, tr("parse error"),
+			tr("Parse error in %4\nat line %1, column %2:\n\"%3\"")
+			.arg(errorLine)
+			.arg(errorColumn)
+			.arg(errorStr)
+			.arg(url->toString()));
+			ok = false;
+		}
 	}
-
 	emit done(ok);
 }
 

@@ -24,7 +24,6 @@
 #include <QFile>
 #include <QString>
 #include <QMessageBox>
-#include <QTimer>
 #include <QByteArray>
 
 class apiInfo
@@ -44,6 +43,8 @@ private:
 	QDomElement genTag(QDomElement, QString);
 	bool tagCreated, doSave, change;
 	QTimer *timer;
+	void saveBool(QString, QString, bool);
+	bool loadBool(QString, QString, QString);
 public:
 	ConfigHandler(QString, QString);
 	virtual ~ConfigHandler();
@@ -64,6 +65,9 @@ public:
 
 	bool loadShowTray();
 	void saveShowTray(bool);
+
+	bool loadAutoSync();
+	void saveAutoSync(bool);
 public slots:
 	void saveFile();
 };

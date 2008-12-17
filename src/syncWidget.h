@@ -38,10 +38,13 @@ private:
 	QDateTime *syncTime;
 	QString *timeFormat;
 	QLabel *syncLabel;
+	int storedSecs;
 private slots:
 	void onSTimer();
 public slots:
 	void set(int);
+	void enable();
+	void disable();
 };
 
 #endif

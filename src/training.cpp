@@ -72,6 +72,8 @@ void SkillTraining::reload()
 						.arg(conf->loadApiInfo().characterID)
 						);
 	}
+	else
+		skillTree->get();
 }
 
 void SkillTraining::genContent()
@@ -193,3 +195,6 @@ void SkillTraining::onSkillTreeDone(bool ok)
 		reload();
 	}
 }
+
+void SkillTraining::retrySkillTree()
+{skillTree->get();}

@@ -46,3 +46,14 @@ void SyncWidget::set(int i)
 {
 	*syncTime = syncTime->currentDateTime().addSecs(i);
 }
+void SyncWidget::enable()
+{
+	set(storedSecs);
+	sTimer->start();
+}
+void SyncWidget::disable()
+{
+	sTimer->stop();
+	syncLabel->clear();
+	storedSecs = syncTime->currentDateTime().secsTo(*syncTime);
+}

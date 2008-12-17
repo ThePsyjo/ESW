@@ -42,7 +42,7 @@ public:
 	virtual ~MainWindow();
 private:
 	QMenu *about, *mFile, *mAction, *mOption;
-	QAction *ontopAction, *showTrayAction, *updateAction;
+	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -56,9 +56,11 @@ private:
 private slots:
 	void handleAboutAction(QAction* a);
 	void handleFileAction(QAction* a);
-	void handleOptionAction(QAction* a);
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 	void onHTimer();
+	void onOntopAction(bool);
+	void onShowTrayAction(bool);
+	void onAutoSyncAction(bool);
 };
 
 #endif

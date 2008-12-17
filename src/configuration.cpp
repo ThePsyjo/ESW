@@ -105,15 +105,25 @@ apiInfo ConfigHandler::loadApiInfo()
 	return v;
 }
 
+void ConfigHandler::saveBool(QString tag, QString attribute, bool b)
+{
+	b ? genTag ( doc->documentElement(), tag ).setAttribute(attribute, 1) : genTag ( doc->documentElement(), tag ).setAttribute(attribute, 0);
+}
+
+bool ConfigHandler::loadBool(QString tag, QString attribute, QString defaultValue)
+{
+	return genTag ( doc->documentElement(), tag ).attribute(attribute, defaultValue).toInt();
+}
+
 //Visibility///////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveIsVisible(bool b)
 {
-	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("visible", 0);
+	saveBool( "Options", "visible", b);
 }
 
 bool ConfigHandler::loadIsVisible()
 {
-	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("visible", "1").toInt();
+	return loadBool( "Options", "visible", "1");
 }
 
 //widgetState//////////////////////////////////////////////////////////////////////
@@ -130,21 +140,32 @@ QByteArray ConfigHandler::loadState()
 //ontop////////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveOntop(bool b)
 {
-	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("ontop", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("ontop", 0);
+	saveBool( "Options", "ontop", b);
 }
 
 bool ConfigHandler::loadOntop()
 {
-	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("ontop", "0").toInt();
+	return loadBool( "Options", "ontop", "0");
 }
 
-//ShowTray/////////////////////////////////////////////////////////////////////////
+//ShowTray////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveShowTray(bool b)
 {
-	b ? genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("tray_visible", 1) : genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("tray_visible", 0);
+	saveBool( "Options", "tray_visible", b);
 }
 
 bool ConfigHandler::loadShowTray()
 {
-	return genTag ( doc->documentElement(), "WindowSettings" ).attribute("tray_visible", "1").toInt();
+	return loadBool( "Options", "tray_visible", "1");
+}
+
+//AutoSync////////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveAutoSync(bool b)
+{
+	saveBool( "Options", "autosync", b);
+}
+
+bool ConfigHandler::loadAutoSync()
+{
+	return loadBool( "Options", "autosync", "1");
 }

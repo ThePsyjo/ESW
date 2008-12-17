@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -133,17 +132,17 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="108"/>
+        <location filename="window.cpp" line="117"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="60"/>
+        <location filename="window.cpp" line="66"/>
         <source>&amp;about</source>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="103"/>
+        <location filename="window.cpp" line="112"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -153,7 +152,7 @@ config will not be written</translation>
         <translation>EveSkillWatcher 0.1.2</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="109"/>
+        <location filename="window.cpp" line="118"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
@@ -168,27 +167,27 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="110"/>
+        <location filename="window.cpp" line="119"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="78"/>
+        <location filename="window.cpp" line="84"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="83"/>
+        <location filename="window.cpp" line="89"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="88"/>
+        <location filename="window.cpp" line="93"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="74"/>
+        <location filename="window.cpp" line="80"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -203,12 +202,12 @@ config will not be written</translation>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="115"/>
+        <location filename="window.cpp" line="49"/>
         <source>always on &amp;top</source>
         <translation>always on &amp;top</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="129"/>
+        <location filename="window.cpp" line="50"/>
         <source>show tray &amp;icon</source>
         <translation>show tray &amp;icon</translation>
     </message>
@@ -218,7 +217,7 @@ config will not be written</translation>
         <translation>last update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="102"/>
+        <location filename="window.cpp" line="111"/>
         <source>%1
 ESW
 
@@ -242,9 +241,14 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, see &lt;http://www.gnu.org/licenses/&gt;. </translation>
     </message>
     <message>
-        <location filename="window.cpp" line="102"/>
+        <location filename="window.cpp" line="111"/>
         <source>appname</source>
         <translation>EveSkillWatcher 0.1.2</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="51"/>
+        <source>autosync</source>
+        <translation>Autosync</translation>
     </message>
 </context>
 <context>
@@ -300,7 +304,7 @@ Players: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="121"/>
+        <location filename="training.cpp" line="123"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) completed.</translation>
     </message>
@@ -310,17 +314,17 @@ Players: %2</translation>
         <translation type="obsolete">d &apos;d&apos;, h &apos;h&apos;, m &apos;m&apos;, s &apos;s&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="180"/>
+        <location filename="training.cpp" line="182"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="181"/>
+        <location filename="training.cpp" line="183"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="130"/>
+        <location filename="training.cpp" line="132"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n day, </numerusform>
@@ -328,7 +332,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="131"/>
+        <location filename="training.cpp" line="133"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n hour, </numerusform>
@@ -336,7 +340,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="132"/>
+        <location filename="training.cpp" line="134"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n minute, </numerusform>
@@ -344,7 +348,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="133"/>
+        <location filename="training.cpp" line="135"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n second</numerusform>
@@ -369,12 +373,12 @@ page: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="68"/>
+        <location filename="webDoc.cpp" line="70"/>
         <source>parse error</source>
         <translation>parse error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="70"/>
+        <location filename="webDoc.cpp" line="72"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>

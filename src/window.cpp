@@ -48,13 +48,19 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	mOption = menuBar()->addMenu(tr("&Options"));
 	ontopAction = new QAction(tr("always on &top"), this);
 	showTrayAction = new QAction(tr("show tray &icon"), this);
+	autoSyncAction = new QAction(tr("autosync"), this);
 	ontopAction->setCheckable(true);
 	showTrayAction->setCheckable(true);
+	autoSyncAction->setCheckable(true);
 	showTrayAction->setChecked(config->loadShowTray());
 	ontopAction->setChecked(config->loadOntop());
+	autoSyncAction->setChecked(config->loadAutoSync());
 	mOption->addAction(ontopAction);
 	mOption->addAction(showTrayAction);
-	connect(mOption, SIGNAL(triggered(QAction*)), this, SLOT(handleOptionAction(QAction*)));
+	mOption->addAction(autoSyncAction);
+	connect(ontopAction, SIGNAL(toggled(bool)), this, SLOT(onOntopAction(bool)));
+	connect(showTrayAction, SIGNAL(toggled(bool)), this, SLOT(onShowTrayAction(bool)));
+	connect(autoSyncAction, SIGNAL(toggled(bool)), this, SLOT(onAutoSyncAction(bool)));
 
 	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
@@ -77,16 +83,14 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
 	addToolBar(syncWidget);
-	syncWidget->set(hTimer->interval()/1000);
+	config->loadAutoSync() ? syncWidget->set(hTimer->interval()/1000) : syncWidget->disable();
 	syncWidget->setObjectName("toolbar_sync");
 
 	serverStat = new ServerStatWidget(tr("server status"), trayIcon, this);
-	serverStat->reload();
 	serverStat->setObjectName("toolbar_serverstats");
 	addToolBar(serverStat);
 
 	characterWidget = new CharacterWidget(tr("Character"), config, this);
-	characterWidget->reload();
 	addToolBar(characterWidget);
 	characterWidget->setObjectName("toolbar_character");
 
@@ -94,7 +98,12 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	adjustSize();
 	setVisible(config->loadIsVisible());
 
-	hTimer->start();
+	if(config->loadAutoSync())
+	{
+		serverStat->reload();
+		characterWidget->reload();
+		hTimer->start();
+	}
 }
 
 void MainWindow::handleAboutAction(QAction* a)
@@ -110,33 +119,24 @@ void MainWindow::handleFileAction(QAction* a)
 	if (a->text() == tr("update")) onHTimer();
 }
 
-void MainWindow::handleOptionAction(QAction* a)
+void MainWindow::onOntopAction(bool b)
 {
-	if (a->text() == tr("always on &top"))
-		if(a->isChecked())
-		{
-			setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
-			show();
-			config->saveOntop(true);
-		}
-		else
-		{
-			setWindowFlags(Qt::Window);
-			show();
-			config->saveOntop(false);
-		}
+	b ? setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint) : setWindowFlags(Qt::Window);
+	show();
+	config->saveOntop(b);
+}
 
-	if (a->text() == tr("show tray &icon"))
-		if(a->isChecked())
-		{
-			trayIcon->show();
-			config->saveShowTray(true);
-		}
-		else
-		{
-			trayIcon->hide();
-			config->saveShowTray(false);
-		}
+void MainWindow::onShowTrayAction(bool b)
+{
+	b ? trayIcon->show() : trayIcon->hide();
+	config->saveShowTray(b);
+
+}
+void MainWindow::onAutoSyncAction(bool b)
+{
+	b ? hTimer->start() : hTimer->stop();
+	b ? syncWidget->enable() : syncWidget->disable();
+	config->saveAutoSync(b);
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)

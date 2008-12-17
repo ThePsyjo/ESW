@@ -57,6 +57,7 @@ private slots:
 	void onSTimer();
 	void onSkillTreeDone(bool);
 	void onCharacterTrainingDone(bool);
+	void retrySkillTree();
 public slots:
 	void reload();
 };
