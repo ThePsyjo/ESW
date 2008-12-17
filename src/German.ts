@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -123,7 +122,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="117"/>
+        <location filename="window.cpp" line="118"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
@@ -133,7 +132,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="113"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -143,12 +142,12 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>EveSkillWatcher 0.1.3</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="118"/>
+        <location filename="window.cpp" line="119"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="173"/>
+        <location filename="window.cpp" line="174"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -158,7 +157,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="119"/>
+        <location filename="window.cpp" line="120"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
@@ -203,12 +202,12 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="186"/>
+        <location filename="window.cpp" line="187"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="111"/>
+        <location filename="window.cpp" line="112"/>
         <source>%1
 ESW
 
@@ -232,7 +231,7 @@ Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen vo
 Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;http://www.gnu.org/licenses/&gt;. </translation>
     </message>
     <message>
-        <location filename="window.cpp" line="111"/>
+        <location filename="window.cpp" line="112"/>
         <source>appname</source>
         <translation>EveSkillWatcher 0.1.2</translation>
     </message>

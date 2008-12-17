@@ -95,8 +95,9 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	characterWidget->setObjectName("toolbar_character");
 
 	restoreState(config->loadState());
-	adjustSize();
+	//adjustSize();
 	setVisible(config->loadIsVisible());
+	if(config->loadOntop())setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
 
 	if(config->loadAutoSync())
 	{
