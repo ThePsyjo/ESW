@@ -78,5 +78,7 @@ void ServerStatWidget::reload()
 
 void ServerStatWidget::setServerStartupSingleShot()
 {
-	QTimer::singleShot(QDateTime::currentDateTime().secsTo(QDateTime(QDate::currentDate(), QTime(12, 1, 0), Qt::UTC).toLocalTime()) * 1000, this, SLOT(reload()));
+	QDateTime to = QDateTime(QDate::currentDate(), QTime(12, 1, 0), Qt::UTC).toLocalTime();
+	if(QDateTime::currentDateTime().secsTo(to) < 1) to = to.addDays(1);
+	QTimer::singleShot(QDateTime::currentDateTime().secsTo(to) * 1000, this, SLOT(reload()));
 }
