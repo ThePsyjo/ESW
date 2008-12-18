@@ -38,22 +38,35 @@ void ServerStatWidget::onWebDoc(bool ok)
 	if(ok)
 	{
 		lastStat = serverStat;
-		serverStat = serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("serverOpen").text();
-		if(serverStat == "True") serverStat = tr("Online", "server online message");
-		else if(serverStat == "False") { QTimer::singleShot(300000, this, SLOT(reload())); serverStat = tr("Offline", "server offline message"); }
-		else if(serverStat.isEmpty()) serverStat = tr("Unknown", "no server message");
-		else serverStat = tr("Other \"%1\"").arg(serverStat);
+		QDomElement e = serverStatDoc->document()->documentElement().firstChildElement("result");
+		if(e.firstChildElement("error").isElement())
+		{
+			serverStat = "error";
+			content->setText(tr("error %1\n\"%2\"")
+						.arg(e.firstChildElement("error").attribute("code"))
+						.arg(e.firstChildElement("error").text())
+			);
+		}
+		else
+		{
+			serverStat = e.firstChildElement("serverOpen").text();
 
-		if(serverStat == tr("Online", "server online message") && lastStat == tr("Offline", "server offline message"))
-			setServerStartupSingleShot();
+			if(serverStat == "True") serverStat = tr("Online", "server online message");
+			// wait 5mins and try again
+			else if(serverStat == "False") { QTimer::singleShot(300000, this, SLOT(reload())); serverStat = tr("Offline", "server offline message"); }
+			else if(serverStat.isEmpty()) serverStat = tr("Unknown", "no server message");
+			else serverStat = tr("Other \"%1\"").arg(serverStat);
+
+			if(serverStat == tr("Online", "server online message") && lastStat == tr("Offline", "server offline message"))
+				setServerStartupSingleShot();
+
+			content->setText(tr("Tranquility: %1\nPlayers: %2", "serverMessage, playerCount")
+						.arg(serverStat)
+						.arg(serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("onlinePlayers").text()));
+		}
 
 		if(lastStat != serverStat && ! lastStat.isEmpty())
 			icon->showMessage ( tr("Server status changed"), tr("Tranquility is now %1").arg(serverStat), QSystemTrayIcon::NoIcon, 60000 );
-
-		content->setText(tr("Tranquility: %1\nPlayers: %2", "serverMessage, playerCount")
-					.arg(serverStat)
-					.arg(serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("onlinePlayers").text())
-		);
 		
 	}
 }
