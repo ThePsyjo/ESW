@@ -132,7 +132,7 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="118"/>
+        <location filename="window.cpp" line="117"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -142,7 +142,7 @@ config will not be written</translation>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="113"/>
+        <location filename="window.cpp" line="112"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -152,12 +152,12 @@ config will not be written</translation>
         <translation>EveSkillWatcher 0.1.3</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="119"/>
+        <location filename="window.cpp" line="118"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="174"/>
+        <location filename="window.cpp" line="173"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -167,7 +167,7 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="120"/>
+        <location filename="window.cpp" line="119"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
@@ -212,12 +212,12 @@ config will not be written</translation>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="187"/>
+        <location filename="window.cpp" line="186"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="111"/>
         <source>%1
 ESW
 
@@ -241,7 +241,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, see &lt;http://www.gnu.org/licenses/&gt;. </translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="111"/>
         <source>appname</source>
         <translation>EveSkillWatcher 0.1.2</translation>
     </message>
@@ -254,19 +254,19 @@ You should have received a copy of the GNU General Public License along with thi
 <context>
     <name>ServerStatWidget</name>
     <message>
-        <location filename="serverStatWidget.cpp" line="41"/>
+        <location filename="serverStatWidget.cpp" line="47"/>
         <source>Online</source>
         <comment>server online message</comment>
         <translation>&lt;font color=green&gt;Online&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="42"/>
+        <location filename="serverStatWidget.cpp" line="47"/>
         <source>Offline</source>
         <comment>server offline message</comment>
         <translation>&lt;font color=red&gt;Offline&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="44"/>
+        <location filename="serverStatWidget.cpp" line="45"/>
         <source>Other &quot;%1&quot;</source>
         <translation>unknown: &quot;%1&quot;</translation>
     </message>
@@ -277,13 +277,13 @@ Players: %2</source>
         <translation type="obsolete">Tranquility: %1Players: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="43"/>
+        <location filename="serverStatWidget.cpp" line="44"/>
         <source>Unknown</source>
         <comment>no server message</comment>
         <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="50"/>
+        <location filename="serverStatWidget.cpp" line="54"/>
         <source>Tranquility: %1
 Players: %2</source>
         <comment>serverMessage, playerCount</comment>
@@ -291,12 +291,12 @@ Players: %2</source>
 Players: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="47"/>
+        <location filename="serverStatWidget.cpp" line="51"/>
         <source>Server status changed</source>
         <translation>Server status changed</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="47"/>
+        <location filename="serverStatWidget.cpp" line="51"/>
         <source>Tranquility is now %1</source>
         <translation>Tranquility is now %1</translation>
     </message>
@@ -314,12 +314,12 @@ Players: %2</translation>
         <translation type="obsolete">d &apos;d&apos;, h &apos;h&apos;, m &apos;m&apos;, s &apos;s&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="182"/>
+        <location filename="training.cpp" line="178"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="183"/>
+        <location filename="training.cpp" line="179"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>

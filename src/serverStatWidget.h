@@ -36,6 +36,7 @@ private:
 	WebDoc *serverStatDoc;
 	QString serverStat, lastStat;
 	QSystemTrayIcon *icon;
+	void setServerStartupSingleShot();
 private slots:
 	void onWebDoc(bool);
 public slots:

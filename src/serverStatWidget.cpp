@@ -28,6 +28,7 @@ ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget *
 	addWidget(content);
 	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
+	setServerStartupSingleShot();
 }
 
 ServerStatWidget::~ServerStatWidget(){}
@@ -39,9 +40,12 @@ void ServerStatWidget::onWebDoc(bool ok)
 		lastStat = serverStat;
 		serverStat = serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("serverOpen").text();
 		if(serverStat == "True") serverStat = tr("Online", "server online message");
-		else if(serverStat == "False") serverStat = tr("Offline", "server offline message");
+		else if(serverStat == "False") { QTimer::singleShot(300000, this, SLOT(reload())); serverStat = tr("Offline", "server offline message"); }
 		else if(serverStat.isEmpty()) serverStat = tr("Unknown", "no server message");
 		else serverStat = tr("Other \"%1\"").arg(serverStat);
+
+		if(serverStat == tr("Online", "server online message") && lastStat == tr("Offline", "server offline message"))
+			setServerStartupSingleShot();
 
 		if(lastStat != serverStat && ! lastStat.isEmpty())
 			icon->showMessage ( tr("Server status changed"), tr("Tranquility is now %1").arg(serverStat), QSystemTrayIcon::NoIcon, 60000 );
@@ -57,4 +61,9 @@ void ServerStatWidget::onWebDoc(bool ok)
 void ServerStatWidget::reload()
 {
 	serverStatDoc->get();
+}
+
+void ServerStatWidget::setServerStartupSingleShot()
+{
+	QTimer::singleShot(QDateTime::currentDateTime().secsTo(QDateTime(QDate::currentDate(), QTime(12, 1, 0), Qt::UTC).toLocalTime()) * 1000, this, SLOT(reload()));
 }
