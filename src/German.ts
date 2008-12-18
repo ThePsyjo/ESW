@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -137,7 +138,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="25"/>
+        <location filename="window.cpp" line="111"/>
         <source>appName</source>
         <translation>EveSkillWatcher 0.1.3</translation>
     </message>
@@ -213,7 +214,9 @@ ESW
 
 Copyright (C) 2008  Psyjo
 
- This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+http://code.google.com/p/eveskillwatcher/
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  See the GNU General Public License for more details.
@@ -224,6 +227,8 @@ ESW
 
 Copyright (C) 2008  Psyjo
 
+http://code.google.com/p/eveskillwatcher/
+
 Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -233,7 +238,7 @@ Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Prog
     <message>
         <location filename="window.cpp" line="111"/>
         <source>appname</source>
-        <translation>EveSkillWatcher 0.1.2</translation>
+        <translation type="obsolete">EveSkillWatcher 0.1.2</translation>
     </message>
     <message>
         <location filename="window.cpp" line="51"/>
@@ -244,19 +249,19 @@ Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Prog
 <context>
     <name>ServerStatWidget</name>
     <message>
-        <location filename="serverStatWidget.cpp" line="47"/>
+        <location filename="serverStatWidget.cpp" line="60"/>
         <source>Online</source>
         <comment>server online message</comment>
         <translation>&lt;font color=green&gt;Online&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="47"/>
+        <location filename="serverStatWidget.cpp" line="60"/>
         <source>Offline</source>
         <comment>server offline message</comment>
         <translation>&lt;font color=red&gt;Offline&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="45"/>
+        <location filename="serverStatWidget.cpp" line="58"/>
         <source>Other &quot;%1&quot;</source>
         <translation>unbekannt: &quot;%1&quot;</translation>
     </message>
@@ -267,13 +272,13 @@ Players: %2</source>
         <translation type="obsolete">Tranquility: %1Spieler: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="44"/>
+        <location filename="serverStatWidget.cpp" line="57"/>
         <source>Unknown</source>
         <comment>no server message</comment>
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="54"/>
+        <location filename="serverStatWidget.cpp" line="64"/>
         <source>Tranquility: %1
 Players: %2</source>
         <comment>serverMessage, playerCount</comment>
@@ -281,12 +286,12 @@ Players: %2</source>
 Spieler: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="51"/>
+        <location filename="serverStatWidget.cpp" line="69"/>
         <source>Server status changed</source>
         <translation>Server Status geändert</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="51"/>
+        <location filename="serverStatWidget.cpp" line="69"/>
         <source>Tranquility is now %1</source>
         <translation>Tranquility ist jetz %1</translation>
     </message>
@@ -294,6 +299,13 @@ Spieler: %2</translation>
         <location filename="serverStatWidget.cpp" line="48"/>
         <source>Tranquility is now </source>
         <translation type="obsolete">Tranquility ist jetzt  </translation>
+    </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="46"/>
+        <source>error %1
+&quot;%2&quot;</source>
+        <translation>Fehlercode %1
+&quot;%2&quot;</translation>
     </message>
 </context>
 <context>

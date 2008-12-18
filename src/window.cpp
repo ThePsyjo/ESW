@@ -108,7 +108,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 void MainWindow::handleAboutAction(QAction* a)
 {
-	if (a->text() == "ESW") QMessageBox::about ( this, tr("about"), tr("%1\nESW\n\nCopyright (C) 2008  Psyjo\n\n This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n See the GNU General Public License for more details.\n\n You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.").arg(tr("appname")));
+	if (a->text() == "ESW") QMessageBox::about ( this, tr("about"), tr("%1\nESW\n\nCopyright (C) 2008  Psyjo\n\nhttp://code.google.com/p/eveskillwatcher/\n\nThis program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n See the GNU General Public License for more details.\n\n You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.").arg(tr("appName")));
 	if (a->text() == "Qt") QMessageBox::aboutQt ( this, tr("about"));
 }
 
