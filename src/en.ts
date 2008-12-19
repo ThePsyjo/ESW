@@ -133,7 +133,7 @@ config will not be written</translation>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="117"/>
+        <location filename="window.cpp" line="118"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -143,22 +143,22 @@ config will not be written</translation>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="113"/>
         <source>about</source>
         <translation>about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="111"/>
+        <location filename="window.cpp" line="112"/>
         <source>appName</source>
         <translation>EveSkillWatcher 0.1.3</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="118"/>
+        <location filename="window.cpp" line="119"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="173"/>
+        <location filename="window.cpp" line="174"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -168,7 +168,7 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="119"/>
+        <location filename="window.cpp" line="120"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
@@ -213,7 +213,7 @@ config will not be written</translation>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="186"/>
+        <location filename="window.cpp" line="187"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
@@ -232,7 +232,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
  See the GNU General Public License for more details.
 
  You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.</source>
-        <translation>%1
+        <translation type="obsolete">%1
 ESW
 
 Copyright (C) 2008  Psyjo
@@ -254,6 +254,11 @@ You should have received a copy of the GNU General Public License along with thi
         <location filename="window.cpp" line="51"/>
         <source>autosync</source>
         <translation>Autosync</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="112"/>
+        <source>&lt;html&gt;%1&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
+        <translation>&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

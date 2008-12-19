@@ -123,7 +123,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="117"/>
+        <location filename="window.cpp" line="118"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
@@ -133,22 +133,22 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="113"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="111"/>
+        <location filename="window.cpp" line="112"/>
         <source>appName</source>
         <translation>EveSkillWatcher 0.1.3</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="118"/>
+        <location filename="window.cpp" line="119"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="173"/>
+        <location filename="window.cpp" line="174"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -158,7 +158,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="119"/>
+        <location filename="window.cpp" line="120"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
@@ -203,7 +203,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="186"/>
+        <location filename="window.cpp" line="187"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
@@ -222,7 +222,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
  See the GNU General Public License for more details.
 
  You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.</source>
-        <translation>%1
+        <translation type="obsolete">%1
 ESW
 
 Copyright (C) 2008  Psyjo
@@ -244,6 +244,11 @@ Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Prog
         <location filename="window.cpp" line="51"/>
         <source>autosync</source>
         <translation>Autosync</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="112"/>
+        <source>&lt;html&gt;%1&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
+        <translation>&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
