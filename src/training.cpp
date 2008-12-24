@@ -57,6 +57,10 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	sTimer = new QTimer(this);
 	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
 	sTimer->setInterval(1000);
+
+	skillEndTimer = new QTimer(this);
+	skillEndTimer->setSingleShot(true);
+	connect(skillEndTimer, SIGNAL(timeout()), this, SLOT(onSkillEndTimer()));
 }
 
 SkillTraining::~SkillTraining(){};
@@ -117,11 +121,6 @@ void SkillTraining::onSTimer()
 {
 	if(el->firstChildElement("skillInTraining").text().toInt())
 	{
-		if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
-		{
-			tray->showMessage ( "", tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );		
-			tray->setToolTip(tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel));
-		}
 		sp = QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)
 					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
@@ -163,6 +162,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			tray->setIcon(QIcon(":/appicon"));
 			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
+			skillEndTimer->start(endTime->currentDateTime().secsTo(*endTime)); // set event when skilltraining is finished
 			skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
 			skillLevel = QString("%1 -> %2")
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
@@ -192,5 +192,11 @@ void SkillTraining::onSkillTreeDone(bool ok)
 	}
 }
 
-void SkillTraining::retrySkillTree()
-{skillTree->get();}
+void SkillTraining::onSkillEndTimer()
+{
+	if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
+	{
+		tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
+		skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
+	}
+}

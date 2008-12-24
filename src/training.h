@@ -40,7 +40,7 @@ private:
 	WebDoc *skillTree, *characterTraining;
 	QLabel *content;
 	QString skill, skillLevel, sp, eta, sync, rate;
-	QTimer *sTimer;
+	QTimer *sTimer, *skillEndTimer;
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
 	QString skillName(int);
@@ -55,9 +55,9 @@ private:
 	void genContent();
 private slots:
 	void onSTimer();
+	void onSkillEndTimer();
 	void onSkillTreeDone(bool);
 	void onCharacterTrainingDone(bool);
-	void retrySkillTree();
 public slots:
 	void reload();
 };

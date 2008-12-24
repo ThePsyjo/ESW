@@ -316,7 +316,7 @@ Spieler: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="123"/>
+        <location filename="training.cpp" line="199"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skill Training &quot;%1&quot; (%2) abgeschlossen.</translation>
     </message>
@@ -336,7 +336,7 @@ Spieler: %2</translation>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="132"/>
+        <location filename="training.cpp" line="131"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -344,7 +344,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="133"/>
+        <location filename="training.cpp" line="132"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -352,7 +352,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="134"/>
+        <location filename="training.cpp" line="133"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -360,12 +360,17 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="135"/>
+        <location filename="training.cpp" line="134"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
             <numerusform>%n Sekunden</numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="199"/>
+        <source>Skilltraining</source>
+        <translation>Skilltraining</translation>
     </message>
 </context>
 <context>
