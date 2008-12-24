@@ -19,22 +19,22 @@
         <translation>&amp;verbinden</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="48"/>
+        <location filename="apiInput.cpp" line="46"/>
         <source>UserID</source>
         <translation>UserID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="49"/>
+        <location filename="apiInput.cpp" line="47"/>
         <source>ApiKey</source>
         <translation>ApiKey</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="50"/>
+        <location filename="apiInput.cpp" line="48"/>
         <source>CharacterID</source>
         <translation>CharacterID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="164"/>
+        <location filename="apiInput.cpp" line="161"/>
         <source>errorcode %1
 
 %2</source>
@@ -62,14 +62,14 @@ at line %1, column %2:
         <translation type="obsolete">Parser Fehler in Charakterlisteauf Zeile %1, Spalte %2:&quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="51"/>
+        <location filename="apiInput.cpp" line="49"/>
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
         <translation>Trage deine UserID und deinen API-Key in die dafür vorgesehenen Felder ein.&lt;br&gt;Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.&lt;br&gt;Du bekommst deine API-Informationen &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="162"/>
+        <location filename="apiInput.cpp" line="159"/>
         <source>API error</source>
         <translation>API Fehler</translation>
     </message>
@@ -140,7 +140,7 @@ Konfiguration wird nicht geschrieben</translation>
     <message>
         <location filename="window.cpp" line="112"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.3</translation>
+        <translation>EveSkillWatcher 0.1.4</translation>
     </message>
     <message>
         <location filename="window.cpp" line="119"/>
