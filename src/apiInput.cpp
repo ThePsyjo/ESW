@@ -34,10 +34,8 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
         okButton	= new QPushButton (tr("&Save"), this);
         cancelButton	= new QPushButton (tr("&Cancel"), this);
         connectButton	= new QPushButton (tr("c&onnect"), this);
-        characterButton	= new QPushButton (this);
 
-	characterMenu = new QMenu(this);
-	characterButton->setMenu(characterMenu);
+        characterSelect	= new QComboBox (this);
 
 	eUserID = new QLineEdit(QString("%1").arg(conf->loadApiInfo().userID), this);
 	eApiKey = new QLineEdit(conf->loadApiInfo().apiKey, this);
@@ -64,7 +62,7 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	layout->addWidget(connectButton, 4, 2);
 
 	layout->addWidget(lCharacterID, 5, 1);
-	layout->addWidget(characterButton, 5, 2);
+	layout->addWidget(characterSelect, 5, 2);
 	
 
 	layout->addWidget(okButton, 1, 3);
@@ -74,7 +72,6 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	connect(okButton	, SIGNAL(clicked()), this, SLOT(onOkClick()));
 	connect(cancelButton	, SIGNAL(clicked()), this, SLOT(reject()));
 	connect(connectButton	, SIGNAL(clicked()), this, SLOT(onConnectClick()));
-	connect(characterMenu	, SIGNAL(triggered(QAction*)), this, SLOT(onCharacterMenuAction(QAction*)));
 
 	adjustSize();
 }
@@ -108,7 +105,7 @@ bool ApiInput::validID(bool b)
 
 	if(b)
 	{
-		if( characterButton->text().isEmpty() )
+		if( characterSelect->currentText().isEmpty() )
 		{
 			redel(lCharacterID);
 			return false;
@@ -132,7 +129,7 @@ void ApiInput::onOkClick()
 	QDomNodeList l = characters->document()->documentElement().elementsByTagName("row");
 	for (int i = 0; i < l.size(); i++)
 	{
-		if(l.item(i).toElement().attribute("name") == characterButton->text())
+		if(l.item(i).toElement().attribute("name") == characterSelect->currentText())
 		{
 			v.characterID = l.item(i).toElement().attribute("characterID").toInt();
 			break;
@@ -154,7 +151,7 @@ void ApiInput::onConnectClick()
 void ApiInput::onCharactersDocDone(bool ok)
 {
 	if(!ok) {setCursor(Qt::ArrowCursor);return;}
-	characterMenu->clear();
+	characterSelect->clear();
 
 	QDomElement e = characters->document()->documentElement().firstChildElement("error");
 	if(e.hasAttribute("code"))
@@ -170,14 +167,9 @@ void ApiInput::onCharactersDocDone(bool ok)
 
 	QDomNodeList l = characters->document()->documentElement().elementsByTagName("row");
 	for (int i = 0; i < l.size(); i++)
-		characterMenu->addAction(l.item(i).toElement().attribute("name"));
-
-	characterButton->setText(l.item(0).toElement().attribute("name"));
+		characterSelect->addItem(l.item(i).toElement().attribute("name"));
 
 	gotData=true;
 
 	setCursor(Qt::ArrowCursor);
 }
-
-void ApiInput::onCharacterMenuAction(QAction *a)
-{	characterButton->setText(a->text()); validID(1);	}

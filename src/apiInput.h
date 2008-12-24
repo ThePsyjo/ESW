@@ -21,7 +21,7 @@
 #define API_INPUT_H
 
 #include <QPushButton>
-#include <QMenu>
+#include <QComboBox>
 #include <QLineEdit>
 #include <QLabel>
 #include <QString>
@@ -40,10 +40,10 @@ private:
 	ConfigHandler *conf;
 	WebDoc *characters;
 	QDomDocument *doc;
-	QPushButton *okButton, *cancelButton, *connectButton, *characterButton;
-	QMenu *characterMenu;
+	QPushButton *okButton, *cancelButton, *connectButton;
 	QLabel *lUserID, *lApiKey, *lCharacterID, *lText;
 	QLineEdit *eUserID, *eApiKey;
+	QComboBox *characterSelect;
 	QGridLayout *layout;
 	bool gotData;
 	void redel(QWidget*);
@@ -52,7 +52,6 @@ private:
 private slots:
 	void onOkClick();
 	void onConnectClick();
-	void onCharacterMenuAction(QAction*);
 	void onCharactersDocDone(bool);
 };
 
