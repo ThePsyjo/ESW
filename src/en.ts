@@ -150,7 +150,7 @@ config will not be written</translation>
     <message>
         <location filename="window.cpp" line="112"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.4</translation>
+        <translation>EveSkillWatcher 0.1.5</translation>
     </message>
     <message>
         <location filename="window.cpp" line="119"/>
@@ -321,7 +321,7 @@ Players: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="199"/>
+        <location filename="training.cpp" line="217"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) completed.</translation>
     </message>
@@ -331,17 +331,17 @@ Players: %2</translation>
         <translation type="obsolete">d &apos;d&apos;, h &apos;h&apos;, m &apos;m&apos;, s &apos;s&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="178"/>
+        <location filename="training.cpp" line="196"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="179"/>
+        <location filename="training.cpp" line="197"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="131"/>
+        <location filename="training.cpp" line="146"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n day, </numerusform>
@@ -349,7 +349,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="132"/>
+        <location filename="training.cpp" line="147"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n hour, </numerusform>
@@ -357,7 +357,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="133"/>
+        <location filename="training.cpp" line="148"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n minute, </numerusform>
@@ -365,7 +365,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="134"/>
+        <location filename="training.cpp" line="149"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n second</numerusform>
@@ -373,9 +373,21 @@ Players: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="199"/>
+        <location filename="training.cpp" line="217"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="93"/>
+        <source>%1</source>
+        <comment>endTimeStr in downtime</comment>
+        <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="95"/>
+        <source>%1</source>
+        <comment>endTimeStr ! in downtime</comment>
+        <translation>%1</translation>
     </message>
 </context>
 <context>

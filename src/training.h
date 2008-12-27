@@ -39,7 +39,7 @@ private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
 	QLabel *content;
-	QString skill, skillLevel, sp, eta, sync, rate;
+	QString skill, skillLevel, sp, eta, sync, rate, endTimeStr;
 	QTimer *sTimer, *skillEndTimer;
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
@@ -53,6 +53,7 @@ private:
 	QSystemTrayIcon *tray;
 	QStringList *todoTimeStringList;
 	void genContent();
+	void genEndTime();
 private slots:
 	void onSTimer();
 	void onSkillEndTimer();

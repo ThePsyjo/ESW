@@ -47,9 +47,13 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	beginTime = new QDateTime;
 	endTime   = new QDateTime;
 
+	beginTime->setTimeSpec(Qt::UTC);
+	endTime->setTimeSpec(Qt::UTC);
+
 	el = new QDomElement;
 
 	content = new QLabel(this);
+	content->setTextFormat(Qt::RichText);
 
 	setWidget(content);
 	//addWidget(content);
@@ -80,8 +84,19 @@ void SkillTraining::reload()
 		skillTree->get();
 }
 
+void SkillTraining::genEndTime()
+{
+	// endtime > date @ endtime 1200  AND  endtime < date @ endtime 1300
+	// -> downtime
+	if(*endTime > QDateTime::fromString(endTime->toString("yyyyMMdd") + "1200", "yyyyMMddhhmmss") &&
+	   *endTime < QDateTime::fromString(endTime->toString("yyyyMMdd") + "1300", "yyyyMMddhhmmss"))
+		endTimeStr = QString(tr("%1", "endTimeStr in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
+	else
+		endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
+}
+
 void SkillTraining::genContent()
-{	content->setText(skill + "     " + skillLevel + "\n" + sp + "\n" + eta + "\n" + rate);	}
+{	content->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {
@@ -162,7 +177,10 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			tray->setIcon(QIcon(":/appicon"));
 			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
-			skillEndTimer->start(endTime->currentDateTime().secsTo(*endTime)); // set event when skilltraining is finished
+			beginTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
+			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
+			genEndTime(); // generate endTimeStr // red if in downtime
+			skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
 			skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
 			skillLevel = QString("%1 -> %2")
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
