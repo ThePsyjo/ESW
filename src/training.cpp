@@ -141,9 +141,9 @@ void SkillTraining::onSTimer()
 					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
 					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 		;
-		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime) - 86400).toString("d:h:m:s").split(":");
-												//      ^^^^^ there is 1 day too much
-		eta = tr("%n d(s), ", "", todoTimeStringList->at(0).toInt())
+		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
+		// only time
+		eta = tr("%n d(s), ", "", endTime->currentDateTime().daysTo(endTime->addDays(-1)))
 				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
 				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
 				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
