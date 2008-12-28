@@ -143,7 +143,7 @@ void SkillTraining::onSTimer()
 		;
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
 		// only time
-		eta = tr("%n d(s), ", "", endTime->currentDateTime().daysTo(endTime->addDays(-1)))
+		eta = tr("%n d(s), ", "", endTime->currentDateTime().daysTo(*endTime))
 				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
 				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
 				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
