@@ -160,7 +160,7 @@ QString SkillTraining::iToRoman(int i)
 	{
 	case 1: return "I";
 	case 2: return "II";
-	case 3: return "II";
+	case 3: return "III";
 	case 4: return "IV";
 	case 5: return "V";
 	default: return QString("%1").arg(i);
