@@ -39,7 +39,7 @@ void ServerStatWidget::onWebDoc(bool ok)
 	{
 		lastStat = serverStat;
 		QDomElement e = serverStatDoc->document()->documentElement().firstChildElement("result");
-		if(e.firstChildElement("error").isElement())
+		if(! e.firstChildElement("error").isNull())
 		{
 			serverStat = "error";
 			content->setText(tr("error %1\n\"%2\"")
