@@ -99,10 +99,10 @@ void SkillTraining::reload()
 
 void SkillTraining::genEndTime()
 {
-	// endtime > date @ endtime 1200  AND  endtime < date @ endtime 1300
+	// endtime > date @ endtime 1100  AND  endtime < date @ endtime 1200
 	// -> downtime
-	if(*endTime > QDateTime::fromString(endTime->toString("yyyyMMdd") + "1200", "yyyyMMddhhmmss") &&
-	   *endTime < QDateTime::fromString(endTime->toString("yyyyMMdd") + "1300", "yyyyMMddhhmmss"))
+	if (*endTime > QDateTime(endTime->date(), QTime(11, 0, 0), Qt::UTC) &&
+	   (*endTime < QDateTime(endTime->date(), QTime(12, 0, 0), Qt::UTC)))
 		endTimeStr = QString(tr("%1", "endTimeStr in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
 	else
 		endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
