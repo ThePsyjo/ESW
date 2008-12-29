@@ -52,11 +52,24 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 
 	el = new QDomElement;
 
-	content = new QLabel(this);
-	content->setTextFormat(Qt::RichText);
+	contentLabel = new QLabel(this);
+	contentLabel->setTextFormat(Qt::RichText);
 
-	setWidget(content);
-	//addWidget(content);
+	contentWidget = new QWidget(this);
+	
+	progressBar = new QProgressBar(this);
+	progressBar->setRange(0, 100);
+
+	contentWidgetLayout = new QVBoxLayout;
+
+	contentWidget->setLayout(contentWidgetLayout);
+
+	contentWidgetLayout->addWidget(contentLabel);
+	contentWidgetLayout->addWidget(progressBar);
+
+//	setWidget(contentLabel);
+	//addWidget(contentLabel);
+	setWidget(contentWidget);
 
 	sTimer = new QTimer(this);
 	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
@@ -96,7 +109,7 @@ void SkillTraining::genEndTime()
 }
 
 void SkillTraining::genContent()
-{	content->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
+{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {
@@ -141,6 +154,7 @@ void SkillTraining::onSTimer()
 					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
 					.arg(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
 		;
+		progressBar->setValue(int(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100));
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
 		// only time
 		eta = tr("%n d(s), ", "", endTime->currentDateTime().daysTo(*endTime))
@@ -192,7 +206,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		}
 		else
 		{
-			content->clear();
+			contentLabel->clear();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));
@@ -218,3 +232,6 @@ void SkillTraining::onSkillEndTimer()
 		skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
 	}
 }
+
+void SkillTraining::showProgressBar(bool b)
+{ b ? progressBar->show() : progressBar->hide(); }

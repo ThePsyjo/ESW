@@ -23,6 +23,8 @@
 #include <QLabel>
 #include <QSystemTrayIcon>
 #include <QDockWidget>
+#include <QProgressBar>
+#include <QVBoxLayout>
 //#include <QToolBar>
 
 #include "webDoc.h"
@@ -38,7 +40,7 @@ public:
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
-	QLabel *content;
+	QLabel *contentLabel;
 	QString skill, skillLevel, sp, eta, sync, rate, endTimeStr;
 	QTimer *sTimer, *skillEndTimer;
 	QDateTime *beginTime, *endTime;
@@ -54,6 +56,9 @@ private:
 	QStringList *todoTimeStringList;
 	void genContent();
 	void genEndTime();
+	QWidget *contentWidget;
+	QVBoxLayout *contentWidgetLayout;
+	QProgressBar *progressBar;
 private slots:
 	void onSTimer();
 	void onSkillEndTimer();
@@ -61,6 +66,7 @@ private slots:
 	void onCharacterTrainingDone(bool);
 public slots:
 	void reload();
+	void showProgressBar(bool);
 };
 
 #endif

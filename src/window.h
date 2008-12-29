@@ -42,7 +42,7 @@ public:
 	virtual ~MainWindow();
 private:
 	QMenu *about, *mFile, *mAction, *mOption;
-	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction;
+	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -61,6 +61,7 @@ private slots:
 	void onOntopAction(bool);
 	void onShowTrayAction(bool);
 	void onAutoSyncAction(bool);
+	void onShowProgressBarAction(bool);
 };
 
 #endif

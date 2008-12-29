@@ -49,18 +49,23 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	ontopAction = new QAction(tr("always on &top"), this);
 	showTrayAction = new QAction(tr("show tray &icon"), this);
 	autoSyncAction = new QAction(tr("autosync"), this);
+	showProgressBarAction = new QAction(tr("show progressbar"), this);
 	ontopAction->setCheckable(true);
 	showTrayAction->setCheckable(true);
 	autoSyncAction->setCheckable(true);
+	showProgressBarAction->setCheckable(true);
 	showTrayAction->setChecked(config->loadShowTray());
 	ontopAction->setChecked(config->loadOntop());
 	autoSyncAction->setChecked(config->loadAutoSync());
+	showProgressBarAction->setChecked(config->loadProgressBar());
 	mOption->addAction(ontopAction);
 	mOption->addAction(showTrayAction);
 	mOption->addAction(autoSyncAction);
+	mOption->addAction(showProgressBarAction);
 	connect(ontopAction, SIGNAL(toggled(bool)), this, SLOT(onOntopAction(bool)));
 	connect(showTrayAction, SIGNAL(toggled(bool)), this, SLOT(onShowTrayAction(bool)));
 	connect(autoSyncAction, SIGNAL(toggled(bool)), this, SLOT(onAutoSyncAction(bool)));
+	connect(showProgressBarAction, SIGNAL(toggled(bool)), this, SLOT(onShowProgressBarAction(bool)));
 
 	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
@@ -79,6 +84,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 	trainingWidget = new SkillTraining(config, trayIcon, tr("skilltraining"), this);
 	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);
+	trainingWidget->showProgressBar(config->loadProgressBar());
 	trainingWidget->setObjectName("toolbar_training");
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
@@ -138,6 +144,12 @@ void MainWindow::onAutoSyncAction(bool b)
 	b ? hTimer->start() : hTimer->stop();
 	b ? syncWidget->enable() : syncWidget->disable();
 	config->saveAutoSync(b);
+}
+
+void MainWindow::onShowProgressBarAction(bool b)
+{
+	trainingWidget->showProgressBar(b);
+	config->saveProgressBar(b);
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)

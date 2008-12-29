@@ -68,6 +68,9 @@ public:
 
 	bool loadAutoSync();
 	void saveAutoSync(bool);
+
+	bool loadProgressBar();
+	void saveProgressBar(bool);
 public slots:
 	void saveFile();
 };

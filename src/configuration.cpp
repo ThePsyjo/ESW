@@ -169,3 +169,14 @@ bool ConfigHandler::loadAutoSync()
 {
 	return loadBool( "Options", "autosync", "1");
 }
+
+//ProgressBar/////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveProgressBar(bool b)
+{
+	saveBool( "Options", "progressbar", b);
+}
+
+bool ConfigHandler::loadProgressBar()
+{
+	return loadBool( "Options", "progressbar", "1");
+}
