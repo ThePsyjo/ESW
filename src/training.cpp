@@ -157,7 +157,7 @@ void SkillTraining::onSTimer()
 		progressBar->setValue(int(currentSP() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100));
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
 		// only time
-		eta = tr("%n d(s), ", "", endTime->currentDateTime().daysTo(*endTime))
+		eta = 		  tr("%n d(s), ", "", int(endTime->currentDateTime().secsTo(*endTime) / 86400)) // int(secs / 86400) = full days
 				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
 				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
 				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
