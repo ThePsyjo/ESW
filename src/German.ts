@@ -140,7 +140,7 @@ Konfiguration wird nicht geschrieben</translation>
     <message>
         <location filename="window.cpp" line="118"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.6</translation>
+        <translation>EveSkillWatcher 0.1.7</translation>
     </message>
     <message>
         <location filename="window.cpp" line="125"/>
