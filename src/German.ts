@@ -321,7 +321,7 @@ Spieler: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="231"/>
+        <location filename="training.cpp" line="237"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skill Training &quot;%1&quot; (%2) abgeschlossen.</translation>
     </message>
@@ -331,17 +331,17 @@ Spieler: %2</translation>
         <translation type="obsolete">d &apos;Tage&apos;, h &apos;Stunden&apos;, m &apos;Minuten&apos;, s &apos;Sekunden&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="210"/>
+        <location filename="training.cpp" line="215"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="211"/>
+        <location filename="training.cpp" line="216"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="160"/>
+        <location filename="training.cpp" line="164"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -349,7 +349,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="161"/>
+        <location filename="training.cpp" line="165"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -357,7 +357,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="162"/>
+        <location filename="training.cpp" line="166"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -365,7 +365,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="163"/>
+        <location filename="training.cpp" line="167"/>
         <source>%n s(s), </source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
@@ -373,21 +373,26 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="231"/>
+        <location filename="training.cpp" line="244"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="106"/>
+        <location filename="training.cpp" line="110"/>
         <source>%1</source>
         <comment>endTimeStr in downtime</comment>
         <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="108"/>
+        <location filename="training.cpp" line="112"/>
         <source>%1</source>
         <comment>endTimeStr ! in downtime</comment>
         <translation>%1</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="244"/>
+        <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
+        <translation>Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
 </context>
 <context>

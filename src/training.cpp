@@ -78,6 +78,10 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	skillEndTimer = new QTimer(this);
 	skillEndTimer->setSingleShot(true);
 	connect(skillEndTimer, SIGNAL(timeout()), this, SLOT(onSkillEndTimer()));
+
+	preNotifyTimer = new QTimer(this);
+	preNotifyTimer->setSingleShot(true);
+	connect(preNotifyTimer, SIGNAL(timeout()), this, SLOT(onPreNotifyTimer()));
 }
 
 SkillTraining::~SkillTraining(){};
@@ -142,7 +146,7 @@ int SkillTraining::skillRank(int id)
 double SkillTraining::currentSP()
 {
 	return el->firstChildElement("trainingStartSP").text().toDouble()
-		+ trainFactor * QDateTime::fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss").secsTo(QDateTime::currentDateTime());
+		+ trainFactor * beginTime->secsTo(beginTime->currentDateTime());
 }
 
 void SkillTraining::onSTimer()
@@ -195,13 +199,14 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
 			genEndTime(); // generate endTimeStr // red if in downtime
 			skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
+			preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
 			skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
 			skillLevel = QString("%1 -> %2")
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
 							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt()))
 							;
 			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
-					/ beginTime->secsTo(QDateTime::fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss"));
+					/ beginTime->secsTo(*endTime);
 			rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
 		}
 		else
@@ -226,11 +231,17 @@ void SkillTraining::onSkillTreeDone(bool ok)
 
 void SkillTraining::onSkillEndTimer()
 {
-	if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
+	//if(currentSP() >= el->firstChildElement("trainingDestinationSP").text().toDouble())
+	if(endTime->currentDateTime() >= *endTime)
 	{
 		tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
 		skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
 	}
+}
+
+void SkillTraining::onPreNotifyTimer()
+{
+	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) finished soon.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
 }
 
 void SkillTraining::showProgressBar(bool b)
