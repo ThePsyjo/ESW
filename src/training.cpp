@@ -26,13 +26,6 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	conf = c;
 	tray = ico;
 
-	skillSP    = new QVector<int>(5);
-	skillSP->insert(1, 250);
-	skillSP->insert(2, 1415);
-	skillSP->insert(3, 8000);
-	skillSP->insert(4, 45255);
-	skillSP->insert(5, 256000);
-
 	todoTimeStringList = new QStringList();
 
 	skillTreeAvailable = false;
@@ -151,7 +144,7 @@ double SkillTraining::currentSP()
 
 void SkillTraining::onSTimer()
 {
-	if(el->firstChildElement("skillInTraining").text().toInt())
+	if(*endTime >= endTime->currentDateTime())
 	{
 		sp = QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)

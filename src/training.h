@@ -49,7 +49,6 @@ private:
 	int skillRank(int);
 	QDomElement *el;
 	QString iToRoman(int);
-	QVector<int> *skillSP;
 	double trainFactor;
 	double currentSP();
 	QSystemTrayIcon *tray;
