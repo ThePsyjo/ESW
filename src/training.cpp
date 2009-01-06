@@ -185,11 +185,14 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		*el = characterTraining->document()->documentElement().firstChildElement("result");
 		if(el->firstChildElement("skillInTraining").text().toInt())
 		{
-			tray->setIcon(QIcon(":/appicon"));
 			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
 			beginTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
 			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
+		}
+
+		if(*endTime >= endTime->currentDateTime()) // if training is not finished
+		{
 			genEndTime(); // generate endTimeStr // red if in downtime
 			skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
 			preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
@@ -201,6 +204,9 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
 					/ beginTime->secsTo(*endTime);
 			rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
+
+			tray->setIcon(QIcon(":/appicon"));
+			sTimer->start();
 		}
 		else
 		{
@@ -209,7 +215,6 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));
 		}
-		sTimer->start();
 	}
 }
 
