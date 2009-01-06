@@ -189,28 +189,37 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
 			beginTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
 			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
-		}
 
-		if(*endTime >= endTime->currentDateTime()) // if training is not finished
-		{
-			genEndTime(); // generate endTimeStr // red if in downtime
-			skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
-			preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
-			skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
-			skillLevel = QString("%1 -> %2")
-							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
-							.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt()))
-							;
-			trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
-					/ beginTime->secsTo(*endTime);
-			rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
+			if(*endTime >= endTime->currentDateTime()) // if training is not finished
+			{		
+				genEndTime(); // generate endTimeStr // red if in downtime
+				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
+				preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
+				skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
+				skillLevel = QString("%1 -> %2")
+								.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
+								.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt()))
+								;
+				trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
+						/ beginTime->secsTo(*endTime);
+				rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
 
-			tray->setIcon(QIcon(":/appicon"));
-			sTimer->start();
+				tray->setIcon(QIcon(":/appicon"));
+				sTimer->start();
+			}
+			else
+			{
+				contentLabel->clear();
+				progressBar->reset();
+				tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
+				tray->setToolTip(tr("There is currently no skill in Training!"));
+				tray->setIcon(QIcon(":appicon_warn"));
+			}
 		}
-		else
+		else // redundancy !   we will all die :/
 		{
 			contentLabel->clear();
+			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":appicon_warn"));

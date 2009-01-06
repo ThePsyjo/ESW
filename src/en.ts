@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -326,7 +325,7 @@ Players: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="235"/>
+        <location filename="training.cpp" line="244"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) completed.</translation>
     </message>
@@ -336,12 +335,12 @@ Players: %2</translation>
         <translation type="obsolete">d &apos;d&apos;, h &apos;h&apos;, m &apos;m&apos;, s &apos;s&apos;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="214"/>
+        <location filename="training.cpp" line="223"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="215"/>
+        <location filename="training.cpp" line="224"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
@@ -378,7 +377,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="242"/>
+        <location filename="training.cpp" line="251"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -395,7 +394,7 @@ Players: %2</translation>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="242"/>
+        <location filename="training.cpp" line="251"/>
         <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) finished soon.</translation>
     </message>
