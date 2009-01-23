@@ -106,7 +106,7 @@ void SkillTraining::genEndTime()
 }
 
 void SkillTraining::genContent()
-{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
+{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + endTime->toString("  (dddd)") + "<br>" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {

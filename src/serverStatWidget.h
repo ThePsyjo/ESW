@@ -37,6 +37,7 @@ private:
 	QString serverStat, lastStat;
 	QSystemTrayIcon *icon;
 	void setServerStartupSingleShot();
+	bool busy;
 private slots:
 	void onWebDoc(bool);
 public slots:

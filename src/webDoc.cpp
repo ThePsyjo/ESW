@@ -67,8 +67,7 @@ bool ok = true;
 		int errorColumn;
         	if (!doc->setContent(buf->data(), true, &errorStr, &errorLine, &errorColumn))
 		{
-			QMessageBox::warning(0, tr("parse error"),
-			tr("Parse error in %4\nat line %1, column %2:\n\"%3\"")
+			QMessageBox::warning(0, tr("parse error"), tr("Parse error in %4\nat line %1, column %2:\n\"%3\"")
 			.arg(errorLine)
 			.arg(errorColumn)
 			.arg(errorStr)
