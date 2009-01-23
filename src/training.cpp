@@ -100,13 +100,13 @@ void SkillTraining::genEndTime()
 	// -> downtime
 	if (*endTime > QDateTime(endTime->date(), QTime(11, 0, 0), Qt::UTC) &&
 	   (*endTime < QDateTime(endTime->date(), QTime(12, 0, 0), Qt::UTC)))
-		endTimeStr = QString(tr("%1", "endTimeStr in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
+		endTimeStr = QString(tr("%1", "endTimeStr in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
 	else
-		endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd hh:mm:ss"));
+		endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
 }
 
 void SkillTraining::genContent()
-{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + endTime->toString("  (dddd)") + "<br>" + rate);	}
+{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {
