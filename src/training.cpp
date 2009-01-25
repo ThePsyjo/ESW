@@ -96,13 +96,16 @@ void SkillTraining::reload()
 
 void SkillTraining::genEndTime()
 {
+	if ( endTime->date().day() == endTime->currentDateTime().date().day() )
+		endTimeStrFmt = "yyyy-MM-dd hh:mm:ss";		// if different day ->
+	else	endTimeStrFmt = "yyyy-MM-dd (dddd) hh:mm:ss";	// show ending day
+
 	// endtime > date @ endtime 1100  AND  endtime < date @ endtime 1200
 	// -> downtime
 	if (*endTime > QDateTime(endTime->date(), QTime(11, 0, 0), Qt::UTC) &&
 	   (*endTime < QDateTime(endTime->date(), QTime(12, 0, 0), Qt::UTC)))
-		endTimeStr = QString(tr("%1", "endTimeStr in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
-	else
-		endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
+		endTimeStr = QString(tr("%1", "endTimeStr in downtime")  ).arg(endTime->toLocalTime().toString(endTimeStrFmt));
+	else	endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString(endTimeStrFmt));
 }
 
 void SkillTraining::genContent()

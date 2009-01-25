@@ -41,7 +41,7 @@ private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
 	QLabel *contentLabel;
-	QString skill, skillLevel, sp, eta, sync, rate, endTimeStr;
+	QString skill, skillLevel, sp, eta, sync, rate, endTimeStr, endTimeStrFmt;
 	QTimer *sTimer, *skillEndTimer, *preNotifyTimer;
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
