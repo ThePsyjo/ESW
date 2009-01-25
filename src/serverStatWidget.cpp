@@ -24,6 +24,7 @@ ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget *
 {
 	icon = ico;
 	content  = new QLabel(this);
+	content->setMargin(3);
 	content->setAlignment(Qt::AlignCenter);
 	addWidget(content);
 	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");

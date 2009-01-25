@@ -110,6 +110,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 		characterWidget->reload();
 		hTimer->start();
 	}
+				adjustSize();
 }
 
 void MainWindow::handleAboutAction(QAction* a)

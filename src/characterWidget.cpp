@@ -24,7 +24,7 @@ CharacterWidget::CharacterWidget(QString name, ConfigHandler *c, QWidget * paren
 {
 	conf = c;
 	content  = new QLabel(this);
-	content->setMargin(4);
+	content->setMargin(3);
 	addWidget(content);
 	characterInfo = new WebDoc("http://api.eve-online.com/char/CharacterSheet.xml.aspx");
 	connect(characterInfo, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
