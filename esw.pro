@@ -18,6 +18,17 @@ OBJECTS_DIR += tmp
 MOC_DIR += tmp
 RCC_DIR += tmp
 
+LIBS += -lm
+
+unix {
+	message("POSIX")
+} else:win32-g++ {
+	message("Win32")
+} else {
+	message("!!WARNING!!")
+	message("unknown behavior of -lm - option")
+}
+
 CONFIG += silent release
 
 # Input

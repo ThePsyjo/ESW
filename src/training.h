@@ -46,11 +46,13 @@ private:
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
 	QString skillName(int);
-	int skillRank(int);
+	int getSkillRank(int);
+	int skillRank;
 	QDomElement *el;
 	QString iToRoman(int);
 	double trainFactor;
 	double currentSP();
+	double currentSPZero();
 	QSystemTrayIcon *tray;
 	QStringList *todoTimeStringList;
 	void genContent();
