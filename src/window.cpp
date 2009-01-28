@@ -67,7 +67,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(autoSyncAction, SIGNAL(toggled(bool)), this, SLOT(onAutoSyncAction(bool)));
 	connect(showProgressBarAction, SIGNAL(toggled(bool)), this, SLOT(onShowProgressBarAction(bool)));
 
-	trayIcon = new QSystemTrayIcon(QIcon(":appicon"), this);
+	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
 	about->addAction("ESW");
 	about->addAction("Qt");

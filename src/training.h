@@ -51,8 +51,7 @@ private:
 	QDomElement *el;
 	QString iToRoman(int);
 	double trainFactor;
-	double currentSP();
-	double currentSPZero();
+	double currentSP(), currentLevelSP(), lastSP(), destinationSP(), destinationLevelSP();
 	QSystemTrayIcon *tray;
 	QStringList *todoTimeStringList;
 	void genContent();

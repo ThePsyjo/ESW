@@ -145,13 +145,28 @@ double SkillTraining::currentSP()
 		+ trainFactor * beginTime->secsTo(beginTime->currentDateTime());
 }
 
-double SkillTraining::currentSPZero()
+double SkillTraining::lastSP()
 {
-	return currentSP() - (pow(2, ((2.5 * ( el->firstChildElement("trainingToLevel").text().toInt() - 1 )) - 2.5)/*/pow*/) * 250 * skillRank );
-//					       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//							current skill level
+// return SP of last skillLevel
+	return pow(2, ((2.5 * ( el->firstChildElement("trainingToLevel").text().toInt() - 1 )) - 2.5)/*/pow*/) * 250 * skillRank;
+//				^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//					current skill level
 }
 
+double SkillTraining::currentLevelSP()
+{
+	return currentSP() - lastSP();
+}
+
+double SkillTraining::destinationSP()
+{
+	return el->firstChildElement("trainingDestinationSP").text().toDouble();
+}
+
+double SkillTraining::destinationLevelSP()
+{
+	return destinationSP() - lastSP();
+}
 
 void SkillTraining::onSTimer()
 {
@@ -159,10 +174,10 @@ void SkillTraining::onSTimer()
 	{
 		sp = QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)
-					.arg(el->firstChildElement("trainingDestinationSP").text().toDouble(), 3, 'f', 1)
-					.arg(currentSPZero() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100, 0, 'f', 1)
+					.arg(destinationSP(), 3, 'f', 1)
+					.arg(currentLevelSP() / destinationLevelSP() * 100, 0, 'f', 1)
 		;
-		progressBar->setValue(int(currentSPZero() / el->firstChildElement("trainingDestinationSP").text().toDouble() * 100));
+		progressBar->setValue(int(currentLevelSP() / destinationLevelSP() * 100));
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
 		// only time
 		eta = 		  tr("%n d(s), ", "", int(endTime->currentDateTime().secsTo(*endTime) / 86400)) // int(secs / 86400) = full days
@@ -225,7 +240,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 				progressBar->reset();
 				tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 				tray->setToolTip(tr("There is currently no skill in Training!"));
-				tray->setIcon(QIcon(":appicon_warn"));
+				tray->setIcon(QIcon(":/appicon_warn"));
 			}
 		}
 		else // redundancy !   we will all die :/
@@ -234,7 +249,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
-			tray->setIcon(QIcon(":appicon_warn"));
+			tray->setIcon(QIcon(":/appicon_warn"));
 		}
 	}
 }
