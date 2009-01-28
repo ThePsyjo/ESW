@@ -222,7 +222,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			if(*endTime >= endTime->currentDateTime()) // if training is not finished
 			{		
 				genEndTime(); // generate endTimeStr // red if in downtime
-				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 10) * 1000); // set event when skilltraining is finished
+				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime)) * 1000); // set event when skilltraining is finished
 				preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
 				skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
 				skillRank = getSkillRank(el->firstChildElement("trainingTypeID").text().toInt());
