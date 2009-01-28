@@ -178,13 +178,16 @@ void SkillTraining::onSTimer()
 					.arg(currentLevelSP() / destinationLevelSP() * 100, 0, 'f', 1)
 		;
 		progressBar->setValue(int(currentLevelSP() / destinationLevelSP() * 100));
-		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("d:h:m:s").split(":");
+
+		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("h:m:s").split(":");
 		// only time
-		eta = 		  tr("%n d(s), ", "", int(endTime->currentDateTime().secsTo(*endTime) / 86400)) // int(secs / 86400) = full days
-				+ tr("%n h(s), ", "", todoTimeStringList->at(1).toInt())
-				+ tr("%n m(s), ", "", todoTimeStringList->at(2).toInt())
-				+ tr("%n s(s), ", "", todoTimeStringList->at(3).toInt())	
-			;
+		eta.clear();
+		cnt = endTime->currentDateTime().secsTo(*endTime);
+		if(cnt >= 86400)eta += tr("%n d(s), ", "", int(cnt / 86400)); // int(secs / 86400) = full days
+		if(cnt >= 3600)	eta += tr("%n h(s), ", "", todoTimeStringList->at(0).toInt());
+		if(cnt >= 60)	eta += tr("%n m(s), ", "", todoTimeStringList->at(1).toInt());
+		if(cnt >= 0)	eta += tr("%n s(s)",   "", todoTimeStringList->at(2).toInt());
+
 		tray->setToolTip(skill + "\n" + skillLevel + "\n" + sp + "\n" + eta);
 
 		genContent();

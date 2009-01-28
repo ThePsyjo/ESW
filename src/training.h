@@ -25,7 +25,7 @@
 #include <QDockWidget>
 #include <QProgressBar>
 #include <QVBoxLayout>
-//#include <QToolBar>
+#include <QList>
 
 #include "webDoc.h"
 #include "configuration.h"
@@ -47,7 +47,7 @@ private:
 	bool skillTreeAvailable;
 	QString skillName(int);
 	int getSkillRank(int);
-	int skillRank;
+	int skillRank, cnt;
 	QDomElement *el;
 	QString iToRoman(int);
 	double trainFactor;
