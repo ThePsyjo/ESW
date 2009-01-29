@@ -19,14 +19,17 @@
 
 #include "window.h"
 
-MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
+MainWindow::MainWindow( QApplication *appl, QWidget * parent, Qt::WFlags f)
         : QMainWindow(parent, f)
 {
-	setWindowTitle(tr("appName"));
+	app = appl;
+	setWindowTitle(app->applicationName() +" "+ app->applicationVersion());
 
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
-	setStyle(QStyleFactory::create(config->loadStyle()));
-	setStyleSheet(config->loadStyleSheet());
+	if(! config->loadStyle().isEmpty())
+		setStyle(QStyleFactory::create(config->loadStyle()));
+	if(! config->loadStyleSheet().isEmpty())
+		setStyleSheet(config->loadStyleSheet());
 
 	hTimer = new QTimer(this);
 	hTimer->setInterval(3600000); // 1h
@@ -118,13 +121,13 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 		characterWidget->reload();
 		hTimer->start();
 	}
-				adjustSize();
+	adjustSize();
 }
 
 void MainWindow::handleAboutAction(QAction* a)
 {
 	if (a->text() == "ESW")
-	QMessageBox::about( this, tr("about"), tr("<html>%1<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(tr("appName")));
+	QMessageBox::about( this, tr("about"), tr("<html>%1 %2<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(app->applicationName()).arg(app->applicationVersion()));
 	if (a->text() == "Qt") QMessageBox::aboutQt ( this, tr("about"));
 }
 

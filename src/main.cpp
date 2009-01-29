@@ -27,7 +27,7 @@
 //
 int main(int argc, char ** argv)
 {
-	QApplication app( argc, argv );
+	QApplication *app = new QApplication( argc, argv );
 
 	QTranslator translator;
 	if(! translator.load(":/" + QLocale::languageToString(QLocale::system().language())))
@@ -37,10 +37,13 @@ int main(int argc, char ** argv)
 			return 1;
 		}
 
-	app.installTranslator(&translator);
-	app.setWindowIcon(QIcon(":/appicon"));
-	MainWindow win;
+	app->installTranslator(&translator);
+	app->setWindowIcon(QIcon(":/appicon"));
+	app->setApplicationName("EveSkillWatcher");
+	app->setApplicationVersion("0.1.9");
 
-	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
-	return app.exec();
+	MainWindow win(app);
+
+	app->connect( app, SIGNAL( lastWindowClosed() ), app, SLOT( quit() ) );
+	return app->exec();
 }

@@ -100,107 +100,107 @@ config will not be written</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="window.cpp" line="38"/>
+        <location filename="window.cpp" line="39"/>
         <source>&amp;file</source>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="133"/>
+        <location filename="window.cpp" line="134"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="79"/>
+        <location filename="window.cpp" line="80"/>
         <source>&amp;about</source>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="128"/>
+        <location filename="window.cpp" line="129"/>
         <source>about</source>
         <translation>about</translation>
     </message>
     <message>
         <location filename="window.cpp" line="127"/>
         <source>appName</source>
-        <translation>EveSkillWatcher 0.1.9</translation>
+        <translation type="obsolete">EveSkillWatcher 0.1.9</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="134"/>
+        <location filename="window.cpp" line="135"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="195"/>
+        <location filename="window.cpp" line="196"/>
         <source>API</source>
         <translation>API</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="42"/>
+        <location filename="window.cpp" line="43"/>
         <source>A&amp;ction</source>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="135"/>
+        <location filename="window.cpp" line="136"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="98"/>
+        <location filename="window.cpp" line="99"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="103"/>
+        <location filename="window.cpp" line="104"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="107"/>
+        <location filename="window.cpp" line="108"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="93"/>
+        <location filename="window.cpp" line="94"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="54"/>
+        <location filename="window.cpp" line="55"/>
         <source>&amp;Options</source>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="55"/>
+        <location filename="window.cpp" line="56"/>
         <source>always on &amp;top</source>
         <translation>always on &amp;top</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="56"/>
+        <location filename="window.cpp" line="57"/>
         <source>show tray &amp;icon</source>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="208"/>
+        <location filename="window.cpp" line="209"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="57"/>
+        <location filename="window.cpp" line="58"/>
         <source>autosync</source>
         <translation>Autosync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="127"/>
+        <location filename="window.cpp" line="128"/>
         <source>&lt;html&gt;%1&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="58"/>
+        <location filename="window.cpp" line="59"/>
         <source>show progressbar</source>
         <translation>show progressbar</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="49"/>
+        <location filename="window.cpp" line="50"/>
         <source>&amp;Style</source>
         <translation>&amp;Style</translation>
     </message>

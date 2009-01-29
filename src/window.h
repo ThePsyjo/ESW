@@ -27,6 +27,7 @@
 #include <QTimer>
 #include <QStatusBar>
 #include <QStyleFactory>
+#include <QApplication>
 
 #include "configuration.h"
 #include "apiInput.h"
@@ -39,9 +40,10 @@ class MainWindow : public QMainWindow
 {
 Q_OBJECT
 public:
-	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
+	MainWindow( QApplication*, QWidget * parent =0, Qt::WFlags f =0 );
 	virtual ~MainWindow();
 private:
+	QApplication *app;
 	QMenu *about, *mFile, *mAction, *mOption, *mStyle;
 	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction;
 	QSystemTrayIcon *trayIcon;
