@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
+<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -100,22 +101,22 @@ config will not be written</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="window.cpp" line="39"/>
+        <location filename="window.cpp" line="43"/>
         <source>&amp;file</source>
         <translation>&amp;file</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="134"/>
+        <location filename="window.cpp" line="138"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="80"/>
+        <location filename="window.cpp" line="84"/>
         <source>&amp;about</source>
         <translation>&amp;about</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="129"/>
+        <location filename="window.cpp" line="133"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -125,84 +126,89 @@ config will not be written</translation>
         <translation type="obsolete">EveSkillWatcher 0.1.9</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="135"/>
+        <location filename="window.cpp" line="139"/>
         <source>input API</source>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="196"/>
+        <location filename="window.cpp" line="200"/>
         <source>API</source>
         <translation>API</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="43"/>
+        <location filename="window.cpp" line="47"/>
         <source>A&amp;ction</source>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="136"/>
+        <location filename="window.cpp" line="140"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="99"/>
+        <location filename="window.cpp" line="103"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="104"/>
+        <location filename="window.cpp" line="108"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="108"/>
+        <location filename="window.cpp" line="112"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="94"/>
+        <location filename="window.cpp" line="98"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="55"/>
+        <location filename="window.cpp" line="59"/>
         <source>&amp;Options</source>
         <translation>&amp;Options</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="56"/>
+        <location filename="window.cpp" line="60"/>
         <source>always on &amp;top</source>
         <translation>always on &amp;top</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="57"/>
+        <location filename="window.cpp" line="61"/>
         <source>show tray &amp;icon</source>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="209"/>
+        <location filename="window.cpp" line="213"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="58"/>
+        <location filename="window.cpp" line="62"/>
         <source>autosync</source>
         <translation>Autosync</translation>
     </message>
     <message>
         <location filename="window.cpp" line="128"/>
         <source>&lt;html&gt;%1&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
-        <translation>&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="59"/>
+        <location filename="window.cpp" line="63"/>
         <source>show progressbar</source>
         <translation>show progressbar</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="50"/>
+        <location filename="window.cpp" line="54"/>
         <source>&amp;Style</source>
         <translation>&amp;Style</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="132"/>
+        <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
+        <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

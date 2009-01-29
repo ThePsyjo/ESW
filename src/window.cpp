@@ -26,10 +26,12 @@ MainWindow::MainWindow( QApplication *appl, QWidget * parent, Qt::WFlags f)
 	setWindowTitle(app->applicationName() +" "+ app->applicationVersion());
 
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
+
 	if(! config->loadStyle().isEmpty())
 		setStyle(QStyleFactory::create(config->loadStyle()));
 	if(! config->loadStyleSheet().isEmpty())
 		setStyleSheet(config->loadStyleSheet());
+	else	setStyleSheet("* {}"); // without any stylesheet, windowstyles won't apply
 
 	hTimer = new QTimer(this);
 	hTimer->setInterval(3600000); // 1h
