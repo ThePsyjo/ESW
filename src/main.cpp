@@ -38,14 +38,8 @@ int main(int argc, char ** argv)
 		}
 
 	app.installTranslator(&translator);
-
 	app.setWindowIcon(QIcon(":/appicon"));
-
 	MainWindow win;
-
-#ifdef Q_WS_WIN
-	app.setStyle(new QCleanlooksStyle);
-#endif
 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
 	return app.exec();

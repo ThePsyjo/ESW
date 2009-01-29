@@ -25,6 +25,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	setWindowTitle(tr("appName"));
 
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
+	setStyle(QStyleFactory::create(config->loadStyle()));
 	setStyleSheet(config->loadStyleSheet());
 
 	hTimer = new QTimer(this);
@@ -45,6 +46,11 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	mAction->addAction(tr("update"));
 	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
 
+	mStyle = new QMenu(tr("&Style"), this);
+	foreach(QString s, QStyleFactory::keys())	// fill in all available Styles
+		mStyle->addAction(s);			//
+	connect(mStyle, SIGNAL(triggered(QAction*)), this, SLOT(onStyleMenu(QAction*)));
+
 	mOption = menuBar()->addMenu(tr("&Options"));
 	ontopAction = new QAction(tr("always on &top"), this);
 	showTrayAction = new QAction(tr("show tray &icon"), this);
@@ -62,6 +68,8 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	mOption->addAction(showTrayAction);
 	mOption->addAction(autoSyncAction);
 	mOption->addAction(showProgressBarAction);
+	mOption->addSeparator();
+	mOption->addMenu(mStyle);
 	connect(ontopAction, SIGNAL(toggled(bool)), this, SLOT(onOntopAction(bool)));
 	connect(showTrayAction, SIGNAL(toggled(bool)), this, SLOT(onShowTrayAction(bool)));
 	connect(autoSyncAction, SIGNAL(toggled(bool)), this, SLOT(onAutoSyncAction(bool)));
@@ -198,6 +206,12 @@ void MainWindow::onHTimer()
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
 	statusBar->showMessage(tr("last update @ %1.").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")), 0);
+}
+
+void MainWindow::onStyleMenu(QAction* a)
+{
+	setStyle(QStyleFactory::create(a->text()));
+	config->saveStyle(a->text());
 }
 
 MainWindow::~MainWindow()

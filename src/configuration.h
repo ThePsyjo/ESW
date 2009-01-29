@@ -50,6 +50,9 @@ public:
 	virtual ~ConfigHandler();
 
 	QString loadStyleSheet();
+
+	QString loadStyle();
+	void saveStyle(QString);
 	
 	apiInfo loadApiInfo();
 	void saveApiInfo(apiInfo);

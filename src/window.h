@@ -26,6 +26,7 @@
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QStatusBar>
+#include <QStyleFactory>
 
 #include "configuration.h"
 #include "apiInput.h"
@@ -41,7 +42,7 @@ public:
 	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
 	virtual ~MainWindow();
 private:
-	QMenu *about, *mFile, *mAction, *mOption;
+	QMenu *about, *mFile, *mAction, *mOption, *mStyle;
 	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
@@ -62,6 +63,7 @@ private slots:
 	void onShowTrayAction(bool);
 	void onAutoSyncAction(bool);
 	void onShowProgressBarAction(bool);
+	void onStyleMenu(QAction*);
 };
 
 #endif

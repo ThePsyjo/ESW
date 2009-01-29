@@ -87,6 +87,17 @@ QString ConfigHandler::loadStyleSheet()
 	return genTag(doc->documentElement(), "Style").text();
 }
 
+//WindowStyle//////////////////////////////////////////////////////////////////////
+QString ConfigHandler::loadStyle()
+{
+	return genTag(doc->documentElement(), "WindowStyle").attribute("value", "default");
+}
+
+void ConfigHandler::saveStyle(QString s)
+{
+	genTag(doc->documentElement(), "WindowStyle").setAttribute("value", s);
+}
+
 //ApiInfo//////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveApiInfo(apiInfo v)
 {
