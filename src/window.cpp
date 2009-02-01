@@ -238,7 +238,7 @@ void MainWindow::closeEvent ( QCloseEvent *event )
 	// if close-to-tray is set, do so
 	config->loadCloseToTray() ? event->accept() : QApplication::exit();
 	// save this state
-	config->saveIsVisible(false);
+	trayIcon->isVisible() ? config->saveIsVisible(false) : config->saveIsVisible(true);
 }
 
 MainWindow::~MainWindow()
