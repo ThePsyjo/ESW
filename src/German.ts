@@ -99,22 +99,22 @@ Konfiguration wird nicht geschrieben</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="window.cpp" line="43"/>
+        <location filename="window.cpp" line="42"/>
         <source>&amp;file</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="138"/>
+        <location filename="window.cpp" line="145"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="84"/>
+        <location filename="window.cpp" line="91"/>
         <source>&amp;about</source>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="133"/>
+        <location filename="window.cpp" line="140"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -124,67 +124,67 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">EveSkillWatcher 0.1.9</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="139"/>
+        <location filename="window.cpp" line="146"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="200"/>
+        <location filename="window.cpp" line="211"/>
         <source>API</source>
         <translation>API</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="47"/>
+        <location filename="window.cpp" line="46"/>
         <source>A&amp;ction</source>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="140"/>
+        <location filename="window.cpp" line="147"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="103"/>
+        <location filename="window.cpp" line="110"/>
         <source>next sync in</source>
         <translation>nächster Sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="108"/>
+        <location filename="window.cpp" line="115"/>
         <source>server status</source>
         <translation>Server Status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="112"/>
+        <location filename="window.cpp" line="119"/>
         <source>Character</source>
         <translation>Charakter</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="98"/>
+        <location filename="window.cpp" line="105"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="59"/>
+        <location filename="window.cpp" line="58"/>
         <source>&amp;Options</source>
         <translation>&amp;Optionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="60"/>
+        <location filename="window.cpp" line="59"/>
         <source>always on &amp;top</source>
         <translation>Immer im &amp;Vordergrund</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="61"/>
+        <location filename="window.cpp" line="60"/>
         <source>show tray &amp;icon</source>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="213"/>
+        <location filename="window.cpp" line="224"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="62"/>
+        <location filename="window.cpp" line="61"/>
         <source>autosync</source>
         <translation>Autosync</translation>
     </message>
@@ -194,19 +194,24 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="63"/>
+        <location filename="window.cpp" line="62"/>
         <source>show progressbar</source>
         <translation>Fortschrittsanzeige anzeigen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="54"/>
+        <location filename="window.cpp" line="53"/>
         <source>&amp;Style</source>
         <translation>&amp;Style</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="132"/>
+        <location filename="window.cpp" line="139"/>
         <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="63"/>
+        <source>close to &amp;tray</source>
+        <translation>in System&amp;tray schließen</translation>
     </message>
 </context>
 <context>
@@ -263,22 +268,22 @@ Spieler: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="274"/>
+        <location filename="training.cpp" line="273"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skill Training &quot;%1&quot; (%2) abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="253"/>
+        <location filename="training.cpp" line="252"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="254"/>
+        <location filename="training.cpp" line="253"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="186"/>
+        <location filename="training.cpp" line="185"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -286,7 +291,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="187"/>
+        <location filename="training.cpp" line="186"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -294,7 +299,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="188"/>
+        <location filename="training.cpp" line="187"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -302,29 +307,29 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="281"/>
+        <location filename="training.cpp" line="280"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="107"/>
+        <location filename="training.cpp" line="106"/>
         <source>%1</source>
         <comment>endTimeStr in downtime</comment>
         <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="108"/>
+        <location filename="training.cpp" line="107"/>
         <source>%1</source>
         <comment>endTimeStr ! in downtime</comment>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="281"/>
+        <location filename="training.cpp" line="280"/>
         <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="189"/>
+        <location filename="training.cpp" line="188"/>
         <source>%n s(s)</source>
         <translation>
             <numerusform>%n Sekunde</numerusform>

@@ -41,9 +41,9 @@ int main(int argc, char ** argv)
 	app->setWindowIcon(QIcon(":/appicon"));
 	app->setApplicationName("EveSkillWatcher");
 	app->setApplicationVersion("0.1.9");
+	app->setQuitOnLastWindowClosed(false);
+	
+	MainWindow win;
 
-	MainWindow win(app);
-
-	app->connect( app, SIGNAL( lastWindowClosed() ), app, SLOT( quit() ) );
 	return app->exec();
 }

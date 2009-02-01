@@ -19,16 +19,15 @@
 
 #include "window.h"
 
-MainWindow::MainWindow( QApplication *appl, QWidget * parent, Qt::WFlags f)
+MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
         : QMainWindow(parent, f)
 {
-	app = appl;
-	setWindowTitle(app->applicationName() +" "+ app->applicationVersion());
-
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
+	config->loadIsVisible() ? show() : hide();
+	// set win title "ESW 1.2.3"
+	setWindowTitle(QApplication::applicationName() +" "+ QApplication::applicationVersion());
 
-	if(! config->loadStyle().isEmpty())
-		setStyle(QStyleFactory::create(config->loadStyle()));
+	setStyle(QStyleFactory::create(config->loadStyle()));
 	if(! config->loadStyleSheet().isEmpty())
 		setStyleSheet(config->loadStyleSheet());
 	else	setStyleSheet("* {}"); // without any stylesheet, windowstyles won't apply
@@ -61,24 +60,32 @@ MainWindow::MainWindow( QApplication *appl, QWidget * parent, Qt::WFlags f)
 	showTrayAction = new QAction(tr("show tray &icon"), this);
 	autoSyncAction = new QAction(tr("autosync"), this);
 	showProgressBarAction = new QAction(tr("show progressbar"), this);
+	closeToTrayAction = new QAction(tr("close to &tray"), this);
+
 	ontopAction->setCheckable(true);
 	showTrayAction->setCheckable(true);
 	autoSyncAction->setCheckable(true);
 	showProgressBarAction->setCheckable(true);
+	closeToTrayAction->setCheckable(true);
+
 	showTrayAction->setChecked(config->loadShowTray());
 	ontopAction->setChecked(config->loadOntop());
 	autoSyncAction->setChecked(config->loadAutoSync());
 	showProgressBarAction->setChecked(config->loadProgressBar());
+	closeToTrayAction->setChecked(config->loadCloseToTray());
+	
 	mOption->addAction(ontopAction);
 	mOption->addAction(showTrayAction);
 	mOption->addAction(autoSyncAction);
 	mOption->addAction(showProgressBarAction);
+	mOption->addAction(closeToTrayAction);
 	mOption->addSeparator();
 	mOption->addMenu(mStyle);
 	connect(ontopAction, SIGNAL(toggled(bool)), this, SLOT(onOntopAction(bool)));
 	connect(showTrayAction, SIGNAL(toggled(bool)), this, SLOT(onShowTrayAction(bool)));
 	connect(autoSyncAction, SIGNAL(toggled(bool)), this, SLOT(onAutoSyncAction(bool)));
 	connect(showProgressBarAction, SIGNAL(toggled(bool)), this, SLOT(onShowProgressBarAction(bool)));
+	connect(closeToTrayAction, SIGNAL(toggled(bool)), this, SLOT(onCloseToTrayAction(bool)));
 
 	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
@@ -129,13 +136,13 @@ MainWindow::MainWindow( QApplication *appl, QWidget * parent, Qt::WFlags f)
 void MainWindow::handleAboutAction(QAction* a)
 {
 	if (a->text() == "ESW")
-	QMessageBox::about( this, tr("about"), tr("<html>%1 %2<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(app->applicationName()).arg(app->applicationVersion()));
+	QMessageBox::about( this, tr("about"), tr("<html>%1 %2<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()));
 	if (a->text() == "Qt") QMessageBox::aboutQt ( this, tr("about"));
 }
 
 void MainWindow::handleFileAction(QAction* a)
 {
-	if (a->text() == tr("exit")) close();
+	if (a->text() == tr("exit")) QApplication::exit();
 	if (a->text() == tr("input API")) onApiInput();
 	if (a->text() == tr("update")) onHTimer();
 }
@@ -151,7 +158,6 @@ void MainWindow::onShowTrayAction(bool b)
 {
 	b ? trayIcon->show() : trayIcon->hide();
 	config->saveShowTray(b);
-
 }
 void MainWindow::onAutoSyncAction(bool b)
 {
@@ -164,6 +170,11 @@ void MainWindow::onShowProgressBarAction(bool b)
 {
 	trainingWidget->showProgressBar(b);
 	config->saveProgressBar(b);
+}
+
+void MainWindow::onCloseToTrayAction(bool b)
+{
+	config->saveCloseToTray(b);
 }
 
 void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
@@ -217,6 +228,17 @@ void MainWindow::onStyleMenu(QAction* a)
 {
 	setStyle(QStyleFactory::create(a->text()));
 	config->saveStyle(a->text());
+}
+
+void MainWindow::closeEvent ( QCloseEvent *event )
+{
+	// tray is visible -> close to tray
+	// else close app
+	trayIcon->isVisible() ? event->accept() : QApplication::exit();
+	// if close-to-tray is set, do so
+	config->loadCloseToTray() ? event->accept() : QApplication::exit();
+	// save this state
+	config->saveIsVisible(false);
 }
 
 MainWindow::~MainWindow()

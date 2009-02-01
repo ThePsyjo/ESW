@@ -25,13 +25,11 @@
 #include <QDockWidget>
 #include <QProgressBar>
 #include <QVBoxLayout>
-#include <QList>
 
 #include "webDoc.h"
 #include "configuration.h"
 
 class SkillTraining : public QDockWidget
-//class SkillTraining : public QToolBar
 {
 Q_OBJECT
 public:

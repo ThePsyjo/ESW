@@ -74,6 +74,9 @@ public:
 
 	bool loadProgressBar();
 	void saveProgressBar(bool);
+
+	bool loadCloseToTray();
+	void saveCloseToTray(bool);
 public slots:
 	void saveFile();
 };

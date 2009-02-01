@@ -21,7 +21,6 @@
 
 SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString name, QWidget* parent)
         : QDockWidget(name, parent)
-        //: QToolBar(name, parent)
 {
 	conf = c;
 	tray = ico;

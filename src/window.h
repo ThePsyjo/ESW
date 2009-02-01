@@ -28,6 +28,7 @@
 #include <QStatusBar>
 #include <QStyleFactory>
 #include <QApplication>
+#include <QCloseEvent>
 
 #include "configuration.h"
 #include "apiInput.h"
@@ -40,12 +41,13 @@ class MainWindow : public QMainWindow
 {
 Q_OBJECT
 public:
-	MainWindow( QApplication*, QWidget * parent =0, Qt::WFlags f =0 );
+	MainWindow( QWidget * parent =0, Qt::WFlags f =0 );
 	virtual ~MainWindow();
+protected:
+	void closeEvent ( QCloseEvent *event );
 private:
-	QApplication *app;
 	QMenu *about, *mFile, *mAction, *mOption, *mStyle;
-	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction;
+	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction, *closeToTrayAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -65,6 +67,7 @@ private slots:
 	void onShowTrayAction(bool);
 	void onAutoSyncAction(bool);
 	void onShowProgressBarAction(bool);
+	void onCloseToTrayAction(bool);
 	void onStyleMenu(QAction*);
 };
 

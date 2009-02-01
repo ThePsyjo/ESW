@@ -191,3 +191,15 @@ bool ConfigHandler::loadProgressBar()
 {
 	return loadBool( "Options", "progressbar", "1");
 }
+
+//CloseToTray//////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveCloseToTray(bool b)
+{
+	saveBool( "Options", "close2tray", b);
+}
+
+bool ConfigHandler::loadCloseToTray()
+{
+	return loadBool( "Options", "close2tray", "1");
+}
+
