@@ -23,7 +23,6 @@
 #include <QLocale>
 #include "window.h"
 
-#include <QCleanlooksStyle>
 //
 int main(int argc, char ** argv)
 {

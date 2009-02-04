@@ -24,7 +24,6 @@
 #include <QMessageBox>
 #include <QBuffer>
 #include <QtNetwork/QHttp>
-#include <QWidget>
 
 class WebDoc : public QObject
 {
