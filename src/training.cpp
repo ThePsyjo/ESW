@@ -95,7 +95,7 @@ void SkillTraining::reload()
 
 void SkillTraining::genEndTime()
 {
-	if ( endTime->date().day() == endTime->currentDateTime().date().day() )
+	if ( endTime->toLocalTime().date().day() == endTime->toLocalTime().currentDateTime().date().day() )
 		endTimeStrFmt = "yyyy-MM-dd hh:mm:ss";		// if different day ->
 	else	endTimeStrFmt = "yyyy-MM-dd (dddd) hh:mm:ss";	// show ending day
 
