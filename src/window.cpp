@@ -149,7 +149,8 @@ void MainWindow::handleFileAction(QAction* a)
 
 void MainWindow::onOntopAction(bool b)
 {
-	b ? setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint) : setWindowFlags(Qt::Window);
+	b ? setWindowFlags(Qt::Dialog | Qt::WindowStaysOnTopHint) : setWindowFlags(Qt::Dialog);
+	setWindowIcon(QIcon(":/appicon"));
 	show();
 	config->saveOntop(b);
 }
