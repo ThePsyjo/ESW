@@ -221,7 +221,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			if(*endTime >= endTime->currentDateTime()) // if training is not finished
 			{		
 				genEndTime(); // generate endTimeStr // red if in downtime
-				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime)) * 1000); // set event when skilltraining is finished
+				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 2) * 1000); // set event when skilltraining is finished
 				preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
 				skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
 				skillRank = getSkillRank(el->firstChildElement("trainingTypeID").text().toInt());
@@ -271,7 +271,7 @@ void SkillTraining::onSkillEndTimer()
 	if(endTime->currentDateTime() >= *endTime)
 	{
 		tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
-		skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
+		skillEndTimer->singleShot(300000, this, SLOT(reload())); // reload after 5 minutes
 	}
 }
 
