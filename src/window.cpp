@@ -240,13 +240,22 @@ void MainWindow::closeEvent ( QCloseEvent *event )
 	// save this state
 	trayIcon->isVisible() ? config->saveIsVisible(false) : config->saveIsVisible(true);
 
-	connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(handleMinimizedTip()));
-
 	if(config->loadCloseToTray() && trayIcon->isVisible())
 	{
 		if(config->loadCloseToTrayTip())
+		{
+			connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(handleMinimizedTip()));
+			// watch for click on message
+			QTimer::singleShot(10000, this, SLOT(disconnectMinimizedTip()));
+			// disconnect watch after 10 secs
 			trayIcon->showMessage("", tr("%1 minimized.").arg(QApplication::applicationName()));
+		}
 	}
+}
+
+void MainWindow::disconnectMinimizedTip() // is needed as slot, see top function
+{
+	disconnect(trayIcon, SIGNAL(messageClicked()), 0, 0);
 }
 
 void MainWindow::handleMinimizedTip()
@@ -254,9 +263,9 @@ void MainWindow::handleMinimizedTip()
 	QMessageBox msgBox;
 	msgBox.setText(tr("hide this tip ?"));
  	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(0) : config->saveCloseToTrayTip(1);
 	// 16384 is yes  ...
-	disconnect(trayIcon, SIGNAL(messageClicked()), 0, 0);
+	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(0) : config->saveCloseToTrayTip(1);
+	disconnectMinimizedTip();
 }
 
 MainWindow::~MainWindow()

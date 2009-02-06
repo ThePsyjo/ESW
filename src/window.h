@@ -70,6 +70,7 @@ private slots:
 	void onCloseToTrayAction(bool);
 	void onStyleMenu(QAction*);
 	void handleMinimizedTip();
+	void disconnectMinimizedTip();
 };
 
 #endif
