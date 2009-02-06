@@ -213,6 +213,16 @@ Konfiguration wird nicht geschrieben</translation>
         <source>close to &amp;tray</source>
         <translation>in System&amp;tray schließen</translation>
     </message>
+    <message>
+        <location filename="window.cpp" line="248"/>
+        <source>%1 minimized.</source>
+        <translation>%1 ist jetzt im Systemtray minimiert.</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="255"/>
+        <source>hide this tip ?</source>
+        <translation>Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
+    </message>
 </context>
 <context>
     <name>ServerStatWidget</name>

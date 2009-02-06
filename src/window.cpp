@@ -239,6 +239,24 @@ void MainWindow::closeEvent ( QCloseEvent *event )
 	config->loadCloseToTray() ? event->accept() : QApplication::exit();
 	// save this state
 	trayIcon->isVisible() ? config->saveIsVisible(false) : config->saveIsVisible(true);
+
+	connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(handleMinimizedTip()));
+
+	if(config->loadCloseToTray() && trayIcon->isVisible())
+	{
+		if(config->loadCloseToTrayTip())
+			trayIcon->showMessage("", tr("%1 minimized.").arg(QApplication::applicationName()));
+	}
+}
+
+void MainWindow::handleMinimizedTip()
+{
+	QMessageBox msgBox;
+	msgBox.setText(tr("hide this tip ?"));
+ 	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(0) : config->saveCloseToTrayTip(1);
+	// 16384 is yes  ...
+	disconnect(trayIcon, SIGNAL(messageClicked()), 0, 0);
 }
 
 MainWindow::~MainWindow()

@@ -215,6 +215,16 @@ config will not be written</translation>
         <source>close to &amp;tray</source>
         <translation>close to system&amp;tray</translation>
     </message>
+    <message>
+        <location filename="window.cpp" line="248"/>
+        <source>%1 minimized.</source>
+        <translation>%1 is now minimized to the systemtray.</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="255"/>
+        <source>hide this tip ?</source>
+        <translation>Hide this tip in the future ?</translation>
+    </message>
 </context>
 <context>
     <name>ServerStatWidget</name>

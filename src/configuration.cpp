@@ -203,3 +203,14 @@ bool ConfigHandler::loadCloseToTray()
 	return loadBool( "Options", "close2tray", "1");
 }
 
+//CloseToTrayTip///////////////////////////////////////////////////////////////////
+void ConfigHandler::saveCloseToTrayTip(bool b)
+{
+	saveBool( "Options", "close2trayTip", b);
+}
+
+bool ConfigHandler::loadCloseToTrayTip()
+{
+	return loadBool( "Options", "close2trayTip", "1");
+}
+

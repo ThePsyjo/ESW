@@ -77,6 +77,9 @@ public:
 
 	bool loadCloseToTray();
 	void saveCloseToTray(bool);
+
+	bool loadCloseToTrayTip();
+	void saveCloseToTrayTip(bool);
 public slots:
 	void saveFile();
 };

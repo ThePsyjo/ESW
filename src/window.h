@@ -69,6 +69,7 @@ private slots:
 	void onShowProgressBarAction(bool);
 	void onCloseToTrayAction(bool);
 	void onStyleMenu(QAction*);
+	void handleMinimizedTip();
 };
 
 #endif
