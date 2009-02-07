@@ -261,11 +261,11 @@ void MainWindow::disconnectMinimizedTip() // is needed as slot, see top function
 
 void MainWindow::handleMinimizedTip()
 {
-	QMessageBox msgBox;
-	msgBox.setText(tr("hide this tip ?"));
+	QMessageBox msgBox(this);
+	msgBox.setText(tr("show this tip further ?"));
  	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
 	// 16384 is yes  ...
-	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(0) : config->saveCloseToTrayTip(1);
+	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(1) : config->saveCloseToTrayTip(0);
 	disconnectMinimizedTip();
 }
 

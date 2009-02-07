@@ -131,7 +131,7 @@ config will not be written</translation>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="211"/>
+        <location filename="window.cpp" line="212"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -181,7 +181,7 @@ config will not be written</translation>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="224"/>
+        <location filename="window.cpp" line="225"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
@@ -216,14 +216,19 @@ config will not be written</translation>
         <translation>close to system&amp;tray</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="248"/>
+        <location filename="window.cpp" line="252"/>
         <source>%1 minimized.</source>
         <translation>%1 is now minimized to the systemtray.</translation>
     </message>
     <message>
         <location filename="window.cpp" line="255"/>
         <source>hide this tip ?</source>
-        <translation>Hide this tip in the future ?</translation>
+        <translation type="obsolete">Hide this tip in the future ?</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="265"/>
+        <source>show this tip further ?</source>
+        <translation>Show this tip further ?</translation>
     </message>
 </context>
 <context>

@@ -129,7 +129,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="211"/>
+        <location filename="window.cpp" line="212"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -179,7 +179,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="224"/>
+        <location filename="window.cpp" line="225"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
@@ -214,14 +214,19 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>in System&amp;tray schließen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="248"/>
+        <location filename="window.cpp" line="252"/>
         <source>%1 minimized.</source>
         <translation>%1 ist jetzt im Systemtray minimiert.</translation>
     </message>
     <message>
         <location filename="window.cpp" line="255"/>
         <source>hide this tip ?</source>
-        <translation>Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
+        <translation type="obsolete">Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="265"/>
+        <source>show this tip further ?</source>
+        <translation>Diesen Tipp weiterhin anzeigen ?</translation>
     </message>
 </context>
 <context>
