@@ -39,7 +39,7 @@ HEADERS += src/window.h \
 	   src/training.h \
 	   src/syncWidget.h \
 	   src/serverStatWidget.h \
-	   src/characterWidget.h
+	   src/characterWidget.h 
 SOURCES += src/main.cpp \
            src/window.cpp \
 	   src/configuration.cpp \
@@ -48,7 +48,7 @@ SOURCES += src/main.cpp \
 	   src/training.cpp \
 	   src/syncWidget.cpp \
 	   src/serverStatWidget.cpp \
-	   src/characterWidget.cpp
+	   src/characterWidget.cpp 
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc
