@@ -104,17 +104,17 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="145"/>
+        <location filename="window.cpp" line="97"/>
         <source>exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="91"/>
+        <location filename="window.cpp" line="86"/>
         <source>&amp;about</source>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="140"/>
+        <location filename="window.cpp" line="143"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -124,67 +124,67 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">EveSkillWatcher 0.1.9</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="146"/>
+        <location filename="window.cpp" line="46"/>
         <source>input API</source>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="212"/>
+        <location filename="window.cpp" line="208"/>
         <source>API</source>
         <translation>API</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="46"/>
+        <location filename="window.cpp" line="45"/>
         <source>A&amp;ction</source>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="147"/>
+        <location filename="window.cpp" line="96"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="110"/>
+        <location filename="window.cpp" line="105"/>
         <source>next sync in</source>
         <translation>nächster Sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="115"/>
+        <location filename="window.cpp" line="110"/>
         <source>server status</source>
         <translation>Server Status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="119"/>
+        <location filename="window.cpp" line="114"/>
         <source>Character</source>
         <translation>Charakter</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="105"/>
+        <location filename="window.cpp" line="100"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="58"/>
+        <location filename="window.cpp" line="54"/>
         <source>&amp;Options</source>
         <translation>&amp;Optionen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="59"/>
+        <location filename="window.cpp" line="55"/>
         <source>always on &amp;top</source>
         <translation>Immer im &amp;Vordergrund</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="60"/>
+        <location filename="window.cpp" line="56"/>
         <source>show tray &amp;icon</source>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="225"/>
+        <location filename="window.cpp" line="221"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="61"/>
+        <location filename="window.cpp" line="57"/>
         <source>autosync</source>
         <translation>Autosync</translation>
     </message>
@@ -194,27 +194,27 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="62"/>
+        <location filename="window.cpp" line="58"/>
         <source>show progressbar</source>
         <translation>Fortschrittsanzeige anzeigen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="53"/>
+        <location filename="window.cpp" line="49"/>
         <source>&amp;Style</source>
         <translation>&amp;Style</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="139"/>
+        <location filename="window.cpp" line="138"/>
         <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="63"/>
+        <location filename="window.cpp" line="59"/>
         <source>close to &amp;tray</source>
         <translation>in System&amp;tray schließen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="252"/>
+        <location filename="window.cpp" line="248"/>
         <source>%1 minimized.</source>
         <translation>%1 ist jetzt im Systemtray minimiert.</translation>
     </message>
@@ -224,9 +224,19 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="265"/>
+        <location filename="window.cpp" line="263"/>
         <source>show this tip further ?</source>
         <translation>Diesen Tipp weiterhin anzeigen ?</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="43"/>
+        <source>CTRL+Q</source>
+        <translation type="obsolete">STRG+Q</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="262"/>
+        <source>tip</source>
+        <translation>Tipp</translation>
     </message>
 </context>
 <context>

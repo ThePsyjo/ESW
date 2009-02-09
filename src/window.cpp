@@ -40,15 +40,11 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	setStatusBar(statusBar);
 
 	mFile = menuBar()->addMenu(tr("&file"));
-	mFile->addAction(tr("exit"));
-	connect(mFile, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
+	mFile->addAction(tr("exit"), this, SLOT(handleExitAction()), Qt::CTRL + Qt::Key_Q);
 
 	mAction = menuBar()->addMenu(tr("A&ction"));
-	mAction->addAction(tr("input API"));
-	updateAction = new QAction(tr("update"), this);
-	updateAction->setShortcut(QKeySequence("F5")); 
-	mAction->addAction(tr("update"));
-	connect(mAction, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
+	mAction->addAction(tr("input API"), this, SLOT(handleInputApiAction()), Qt::Key_F8);
+	mAction->addAction(tr("update"), this, SLOT(onHTimer()), Qt::Key_F5);
 
 	mStyle = new QMenu(tr("&Style"), this);
 	foreach(QString s, QStyleFactory::keys())	// fill in all available Styles
@@ -87,19 +83,18 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	connect(showProgressBarAction, SIGNAL(toggled(bool)), this, SLOT(onShowProgressBarAction(bool)));
 	connect(closeToTrayAction, SIGNAL(toggled(bool)), this, SLOT(onCloseToTrayAction(bool)));
 
-	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
 	about = menuBar()->addMenu(tr("&about"));
-	about->addAction("ESW");
-	about->addAction("Qt");
-	connect(about, SIGNAL(triggered(QAction*)), this, SLOT(handleAboutAction(QAction*)));
+	about->addAction("ESW", this,  SLOT(handleAboutEswAction()));
+	about->addAction("Qt", this,  SLOT(handleAboutQtAction()));
+
+	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
 
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
 	if(config->loadShowTray()) trayIcon->show(); // only show when configured to show
 
 	trayIconMenu = new QMenu;
-	trayIconMenu->addAction(tr("update"));
-	trayIconMenu->addAction(tr("exit"));
-	connect(trayIconMenu, SIGNAL(triggered(QAction*)), this, SLOT(handleFileAction(QAction*)));
+	trayIconMenu->addAction(tr("update"), this, SLOT(onHTimer()));
+	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
 	trainingWidget = new SkillTraining(config, trayIcon, tr("skilltraining"), this);
@@ -133,18 +128,19 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	adjustSize();
 }
 
-void MainWindow::handleAboutAction(QAction* a)
+void MainWindow::handleExitAction()
 {
-	if (a->text() == "ESW")
-	QMessageBox::about( this, tr("about"), tr("<html>%1 %2<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()));
-	if (a->text() == "Qt") QMessageBox::aboutQt ( this, tr("about"));
+	QApplication::exit();
 }
 
-void MainWindow::handleFileAction(QAction* a)
+void MainWindow::handleAboutEswAction()
 {
-	if (a->text() == tr("exit")) QApplication::exit();
-	if (a->text() == tr("input API")) onApiInput();
-	if (a->text() == tr("update")) onHTimer();
+	QMessageBox::about( this, tr("about"), tr("<html>%1 %2<br>ESW<br><br>Copyright (C) 2008,2009 Psyjo<br><br><a href=\"http://www.code.google.com/p/eveskillwatcher/\">Project site</a><br><br>This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.<br>See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with this program; if not, see <a href=\"http://www.gnu.org/licenses/\">this link</a>.</html>").arg(QApplication::applicationName()).arg(QApplication::applicationVersion()));
+}
+
+void MainWindow::handleAboutQtAction()
+{
+	QMessageBox::aboutQt ( this, tr("about"));
 }
 
 void MainWindow::onOntopAction(bool b)
@@ -207,7 +203,7 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 
 }
 
-void MainWindow::onApiInput()
+void MainWindow::handleInputApiAction()
 {
 	ApiInput input(tr("API"), config, this);
 	input.show();
@@ -261,11 +257,13 @@ void MainWindow::disconnectMinimizedTip() // is needed as slot, see top function
 
 void MainWindow::handleMinimizedTip()
 {
-	QMessageBox msgBox(this);
-	msgBox.setText(tr("show this tip further ?"));
- 	msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-	// 16384 is yes  ...
-	msgBox.exec() == 16384 ? config->saveCloseToTrayTip(1) : config->saveCloseToTrayTip(0);
+	// buttons need to be localized
+	QMessageBox(	QMessageBox::Question,
+			tr("tip"),
+			tr("show this tip further ?"),
+			QMessageBox::Yes | QMessageBox::No,
+			this)
+	.exec() == QMessageBox::No ? config->saveCloseToTrayTip(0) : config->saveCloseToTrayTip(1);
 	disconnectMinimizedTip();
 }
 

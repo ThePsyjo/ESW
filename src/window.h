@@ -47,7 +47,7 @@ protected:
 	void closeEvent ( QCloseEvent *event );
 private:
 	QMenu *about, *mFile, *mAction, *mOption, *mStyle;
-	QAction *ontopAction, *showTrayAction, *updateAction, *autoSyncAction, *showProgressBarAction, *closeToTrayAction;
+	QAction *ontopAction, *showTrayAction, *autoSyncAction, *showProgressBarAction, *closeToTrayAction;
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
@@ -56,11 +56,10 @@ private:
 	ServerStatWidget *serverStat;
 	CharacterWidget *characterWidget;
 	QTimer *hTimer;
-	void onApiInput();
 	QStatusBar *statusBar;
 private slots:
-	void handleAboutAction(QAction* a);
-	void handleFileAction(QAction* a);
+	void handleAboutEswAction();
+	void handleAboutQtAction();
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
 	void onHTimer();
 	void onOntopAction(bool);
@@ -71,6 +70,8 @@ private slots:
 	void onStyleMenu(QAction*);
 	void handleMinimizedTip();
 	void disconnectMinimizedTip();
+	void handleExitAction();
+	void handleInputApiAction();
 };
 
 #endif
