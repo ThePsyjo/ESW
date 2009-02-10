@@ -47,9 +47,7 @@
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
-        <translation>Insert your UserID and your API-Key in the specified Fields.
-Click on connect to select your character.
-You can get your own API-Information &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
+        <translation>Insert your UserID and your API-Key in the specified Fields.&lt;br&gt;Click on connect to select your character.&lt;br&gt;You can get your own API-Information &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;here&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="159"/>
@@ -103,7 +101,7 @@ config will not be written</translation>
     <message>
         <location filename="window.cpp" line="42"/>
         <source>&amp;file</source>
-        <translation>&amp;file</translation>
+        <translation>&amp;File</translation>
     </message>
     <message>
         <location filename="window.cpp" line="97"/>
@@ -113,7 +111,7 @@ config will not be written</translation>
     <message>
         <location filename="window.cpp" line="86"/>
         <source>&amp;about</source>
-        <translation>&amp;about</translation>
+        <translation>&amp;About</translation>
     </message>
     <message>
         <location filename="window.cpp" line="143"/>
