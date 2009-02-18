@@ -19,7 +19,7 @@
 
 #include "webDoc.h"
 
-WebDoc::WebDoc(QString u)
+WebDoc::WebDoc(QString u, bool _errorCodeHandle )
 {
 	buf  = new QBuffer(this);
 	buf->open(QBuffer::ReadWrite);
@@ -27,6 +27,7 @@ WebDoc::WebDoc(QString u)
 	url = new QUrl(u);
 	connect(http, SIGNAL(done(bool)), this, SLOT(httpGetDone(bool)));
 	doc = new QDomDocument;
+	errorCodeHandle = _errorCodeHandle;
 }
 
 WebDoc::~WebDoc(){};
@@ -75,6 +76,19 @@ bool ok = true;
 			ok = false;
 		}
 	}
+
+	if(ok)
+	{
+		if(doc->documentElement().firstChildElement("error").hasAttribute("code"))
+		{
+			ok=false; // set false if there is an errorcode
+			if(errorCodeHandle)
+				QMessageBox::warning(0, tr("Server Error"), tr("Server has reported an error\n\nCode:\t%1\nMessage:\t%2")
+					.arg(doc->documentElement().firstChildElement("error").attribute("code", "unknown"))
+					.arg(doc->documentElement().firstChildElement("error").text()));
+		}
+	}
+
 	emit done(ok);
 }
 

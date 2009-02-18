@@ -360,12 +360,12 @@ Players: %2</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="52"/>
+        <location filename="webDoc.cpp" line="53"/>
         <source>download error</source>
         <translation>download error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="53"/>
+        <location filename="webDoc.cpp" line="54"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -374,18 +374,34 @@ page: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="70"/>
+        <location filename="webDoc.cpp" line="71"/>
         <source>parse error</source>
         <translation>parse error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="71"/>
+        <location filename="webDoc.cpp" line="72"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
         <translation>Parse error in document from %4
 at line %1, column %2:
 &quot;%3&quot;</translation>
+    </message>
+    <message>
+        <location filename="webDoc.cpp" line="86"/>
+        <source>Server Error</source>
+        <translation>Server Error</translation>
+    </message>
+    <message>
+        <location filename="webDoc.cpp" line="87"/>
+        <source>Server has reported an error
+
+Code:<byte value="x9"/>%1
+Message:<byte value="x9"/>%2</source>
+        <translation>Server has reported an error
+
+Code:<byte value="x9"/>%1
+Message:<byte value="x9"/>%2</translation>
     </message>
 </context>
 </TS>
