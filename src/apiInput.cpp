@@ -27,7 +27,7 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	setModal(1);
 	conf = c;
 
-	characters = new WebDoc("http://api.eve-online.com/account/Characters.xml.aspx");
+	characters = new WebDoc("http://api.eve-online.com/account/Characters.xml.aspx", true);
 	connect(characters, SIGNAL(done(bool)), this, SLOT(onCharactersDocDone(bool)));
 	gotData=false;
 

@@ -27,7 +27,7 @@ ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget *
 	content->setMargin(3);
 	content->setAlignment(Qt::AlignCenter);
 	addWidget(content);
-	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx", true);
+	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 	setServerStartupSingleShot();
 	busy=false;

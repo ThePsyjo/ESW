@@ -30,7 +30,7 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	skillTreeAvailable = false;
 
 	skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
-	characterTraining = new WebDoc("http://api.eve-online.com/char/SkillInTraining.xml.aspx");
+	characterTraining = new WebDoc("http://api.eve-online.com/char/SkillInTraining.xml.aspx", true);
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(characterTraining, SIGNAL(done(bool)), this, SLOT(onCharacterTrainingDone(bool)));
 
