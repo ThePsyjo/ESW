@@ -39,7 +39,7 @@ int main(int argc, char ** argv)
 	app->installTranslator(&translator);
 	app->setWindowIcon(QIcon(":/appicon"));
 	app->setApplicationName("EveSkillWatcher");
-	app->setApplicationVersion("0.1.11");
+	app->setApplicationVersion("0.1.12");
 	app->setQuitOnLastWindowClosed(false);
 	
 	MainWindow win;

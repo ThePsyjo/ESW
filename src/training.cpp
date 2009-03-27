@@ -30,7 +30,8 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString nam
 	skillTreeAvailable = false;
 
 	skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
-	characterTraining = new WebDoc("http://api.eve-online.com/char/SkillInTraining.xml.aspx", true);
+//	characterTraining = new WebDoc("http://api.eve-online.com/char/SkillInTraining.xml.aspx", true);
+	characterTraining = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true);
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(characterTraining, SIGNAL(done(bool)), this, SLOT(onCharacterTrainingDone(bool)));
 
@@ -140,14 +141,14 @@ int SkillTraining::getSkillRank(int id)
 
 double SkillTraining::currentSP()
 {
-	return el->firstChildElement("trainingStartSP").text().toDouble()
+	return el->attribute("startSP").toDouble()
 		+ trainFactor * beginTime->secsTo(beginTime->currentDateTime());
 }
 
 double SkillTraining::lastSP()
 {
 // return SP of last skillLevel
-	return pow(2, ((2.5 * ( el->firstChildElement("trainingToLevel").text().toInt() - 1 )) - 2.5)/*/pow*/) * 250 * skillRank;
+	return pow(2, ((2.5 * ( el->attribute("level").toInt() - 1 )) - 2.5)/*/pow*/) * 250 * skillRank;
 //				^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //					current skill level
 }
@@ -159,7 +160,7 @@ double SkillTraining::currentLevelSP()
 
 double SkillTraining::destinationSP()
 {
-	return el->firstChildElement("trainingDestinationSP").text().toDouble();
+	return el->attribute("endSP").toDouble();
 }
 
 double SkillTraining::destinationLevelSP()
@@ -210,11 +211,23 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 {
 	if(ok)
 	{
-		*el = characterTraining->document()->documentElement().firstChildElement("result");
-		if(el->firstChildElement("skillInTraining").text().toInt())
+//		*el = characterTraining->document()->documentElement().firstChildElement("result");
+		QDomNodeList l = characterTraining->document()->documentElement().elementsByTagName("row");
+
+	        for(int i = 0; i < l.size(); i++)
 		{
-			*beginTime = beginTime->fromString(el->firstChildElement("trainingStartTime").text(), "yyyy-MM-dd hh:mm:ss");
-			*endTime = endTime->fromString(el->firstChildElement("trainingEndTime").text(), "yyyy-MM-dd hh:mm:ss");
+//			if(l.item(i).toElement().attribute("queuePosition").toInt() == 1)
+			if(l.item(i).toElement().attribute("queuePosition") == "1")
+			{
+				*el = l.item(i).toElement();
+				break;
+			}
+		}
+
+		if(l.size() > 0)
+		{
+			*beginTime = beginTime->fromString(el->attribute("startTime"), "yyyy-MM-dd hh:mm:ss");
+			*endTime = endTime->fromString(el->attribute("endTime"), "yyyy-MM-dd hh:mm:ss");
 			beginTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
 			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
 
@@ -223,13 +236,13 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 				genEndTime(); // generate endTimeStr // red if in downtime
 				skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 2) * 1000); // set event when skilltraining is finished
 				preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
-				skill = skillName(el->firstChildElement("trainingTypeID").text().toInt());
-				skillRank = getSkillRank(el->firstChildElement("trainingTypeID").text().toInt());
+				skill = skillName(el->attribute("typeID").toInt());
+				skillRank = getSkillRank(el->attribute("typeID").toInt());
 				skillLevel = QString("%1 -> %2")
-								.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt() - 1))
-								.arg(iToRoman(el->firstChildElement("trainingToLevel").text().toInt()))
+								.arg(iToRoman(el->attribute("level").toInt() - 1))
+								.arg(iToRoman(el->attribute("level").toInt()))
 								;
-				trainFactor = (el->firstChildElement("trainingDestinationSP").text().toDouble() - el->firstChildElement("trainingStartSP").text().toDouble())
+				trainFactor = (el->attribute("endSP").toDouble() - el->attribute("startSP").toDouble())
 						/ beginTime->secsTo(*endTime);
 				rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
 
@@ -247,6 +260,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		}
 		else // redundancy !   we will all die :/
 		{
+			el->clear();
 			contentLabel->clear();
 			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
