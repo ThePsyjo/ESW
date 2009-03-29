@@ -114,7 +114,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="143"/>
+        <location filename="window.cpp" line="150"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -129,7 +129,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="208"/>
+        <location filename="window.cpp" line="215"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -144,22 +144,22 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="105"/>
+        <location filename="window.cpp" line="112"/>
         <source>next sync in</source>
         <translation>nächster Sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="110"/>
+        <location filename="window.cpp" line="117"/>
         <source>server status</source>
         <translation>Server Status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="114"/>
+        <location filename="window.cpp" line="121"/>
         <source>Character</source>
         <translation>Charakter</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="100"/>
+        <location filename="window.cpp" line="103"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -179,7 +179,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="221"/>
+        <location filename="window.cpp" line="228"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
@@ -204,7 +204,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Style</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="138"/>
+        <location filename="window.cpp" line="145"/>
         <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
@@ -214,7 +214,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>in System&amp;tray schließen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="248"/>
+        <location filename="window.cpp" line="255"/>
         <source>%1 minimized.</source>
         <translation>%1 ist jetzt im Systemtray minimiert.</translation>
     </message>
@@ -224,7 +224,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="263"/>
+        <location filename="window.cpp" line="270"/>
         <source>show this tip further ?</source>
         <translation>Diesen Tipp weiterhin anzeigen ?</translation>
     </message>
@@ -234,9 +234,14 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">STRG+Q</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="262"/>
+        <location filename="window.cpp" line="269"/>
         <source>tip</source>
         <translation>Tipp</translation>
+    </message>
+    <message>
+        <location filename="window.cpp" line="108"/>
+        <source>skilltqueue</source>
+        <translation>SkillQueue</translation>
     </message>
 </context>
 <context>
@@ -291,19 +296,32 @@ Spieler: %2</translation>
     </message>
 </context>
 <context>
+    <name>SkillQueue</name>
+    <message>
+        <location filename="queue.cpp" line="112"/>
+        <source>Skillqueue</source>
+        <translation>SkillQueue</translation>
+    </message>
+    <message>
+        <location filename="queue.cpp" line="112"/>
+        <source>Last Entry in skillqueue will end in less than a day.</source>
+        <translation>Letzter Eintrag in der SkillQueue wird in weniger als einem Tag enden.</translation>
+    </message>
+</context>
+<context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="273"/>
+        <location filename="training.cpp" line="289"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skill Training &quot;%1&quot; (%2) abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="252"/>
+        <location filename="training.cpp" line="268"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="253"/>
+        <location filename="training.cpp" line="269"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
@@ -332,7 +350,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="280"/>
+        <location filename="training.cpp" line="296"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -349,7 +367,7 @@ Spieler: %2</translation>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="280"/>
+        <location filename="training.cpp" line="296"/>
         <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
@@ -365,12 +383,12 @@ Spieler: %2</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="53"/>
+        <location filename="webDoc.cpp" line="58"/>
         <source>download error</source>
         <translation>Download Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="54"/>
+        <location filename="webDoc.cpp" line="59"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -379,12 +397,12 @@ Seite: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="71"/>
+        <location filename="webDoc.cpp" line="76"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="72"/>
+        <location filename="webDoc.cpp" line="77"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
@@ -393,12 +411,12 @@ auf Zeile %1, Spalte %2:
 &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="86"/>
+        <location filename="webDoc.cpp" line="91"/>
         <source>Server Error</source>
         <translation>Server Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="87"/>
+        <location filename="webDoc.cpp" line="92"/>
         <source>Server has reported an error
 
 Code:<byte value="x9"/>%1

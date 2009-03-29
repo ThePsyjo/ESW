@@ -19,21 +19,20 @@
 
 #include "training.h"
 
-SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, QString name, QWidget* parent)
+SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc *q, QString name, QWidget* parent)
         : QDockWidget(name, parent)
 {
 	conf = c;
 	tray = ico;
 
 	todoTimeStringList = new QStringList();
+	skillTree = t;
+	characterTraining = q;
 
-	skillTreeAvailable = false;
-
-	skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
-//	characterTraining = new WebDoc("http://api.eve-online.com/char/SkillInTraining.xml.aspx", true);
-	characterTraining = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true);
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(characterTraining, SIGNAL(done(bool)), this, SLOT(onCharacterTrainingDone(bool)));
+
+	skillTreeAvailable = false;
 
 	skillTree->get();
 

@@ -33,7 +33,7 @@ class SkillTraining : public QDockWidget
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QSystemTrayIcon*, QString name, QWidget* parent =0);
+	SkillTraining(ConfigHandler*, QSystemTrayIcon*, WebDoc*, WebDoc*, QString name, QWidget* parent =0);
 	virtual ~SkillTraining();
 private:
 	ConfigHandler *conf;

@@ -97,10 +97,17 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
-	trainingWidget = new SkillTraining(config, trayIcon, tr("skilltraining"), this);
+        skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
+	skillQueue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true);
+
+	trainingWidget = new SkillTraining(config, trayIcon, skillTree, skillQueue, tr("skilltraining"), this);
 	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);
 	trainingWidget->showProgressBar(config->loadProgressBar());
 	trainingWidget->setObjectName("toolbar_training");
+
+	queueWidget = new SkillQueue(config, trayIcon, skillTree, skillQueue, tr("skilltqueue"), this);
+	addToolBar(queueWidget);
+	queueWidget->setObjectName("toolbar_skillqueue");
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
 	addToolBar(syncWidget);

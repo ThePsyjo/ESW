@@ -30,7 +30,6 @@ ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget *
 	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 	setServerStartupSingleShot();
-	busy=false;
 }
 
 ServerStatWidget::~ServerStatWidget(){}
@@ -70,16 +69,11 @@ void ServerStatWidget::onWebDoc(bool ok)
 		if(lastStat != serverStat && ! lastStat.isEmpty())
 			icon->showMessage ( tr("Server status changed"), tr("Tranquility is now %1").arg(serverStat), QSystemTrayIcon::NoIcon, 60000 );
 	}
-	busy=false;
 }
 
 void ServerStatWidget::reload()
 {
-	if(!busy)
-	{
-		busy=true;
-		serverStatDoc->get();
-	}
+	serverStatDoc->get();
 }
 
 void ServerStatWidget::setServerStartupSingleShot()

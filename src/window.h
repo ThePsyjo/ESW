@@ -33,9 +33,11 @@
 #include "configuration.h"
 #include "apiInput.h"
 #include "training.h"
+#include "queue.h"
 #include "syncWidget.h"
 #include "serverStatWidget.h"
 #include "characterWidget.h"
+#include "webDoc.h"
 
 class MainWindow : public QMainWindow
 {
@@ -52,11 +54,13 @@ private:
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
 	SkillTraining *trainingWidget;
+	SkillQueue *queueWidget;
 	SyncWidget *syncWidget;
 	ServerStatWidget *serverStat;
 	CharacterWidget *characterWidget;
 	QTimer *hTimer;
 	QStatusBar *statusBar;
+	WebDoc *skillTree, *skillQueue;
 private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();

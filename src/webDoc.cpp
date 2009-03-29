@@ -28,16 +28,21 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle )
 	connect(http, SIGNAL(done(bool)), this, SLOT(httpGetDone(bool)));
 	doc = new QDomDocument;
 	errorCodeHandle = _errorCodeHandle;
+	busy=false;
 }
 
 WebDoc::~WebDoc(){};
 
 void WebDoc::_get(QString urlargs)
 {
-	buf->reset();
-	buf->buffer().clear();
-	http->setHost(url->host());
-	http->get(url->path() + urlargs, buf);
+	if(! busy)
+	{
+		busy=true;
+		buf->reset();
+		buf->buffer().clear();
+		http->setHost(url->host());
+		http->get(url->path() + urlargs, buf);
+	}
 }
 void WebDoc::get(QString urlargs)
 {	_get(urlargs);	}
@@ -88,7 +93,8 @@ bool ok = true;
 					.arg(doc->documentElement().firstChildElement("error").text()));
 		}
 	}
-
+	
+	busy=false;
 	emit done(ok);
 }
 
