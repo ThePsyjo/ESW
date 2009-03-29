@@ -213,7 +213,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 	{
 //		*el = characterTraining->document()->documentElement().firstChildElement("result");
 		QDomNodeList l = characterTraining->document()->documentElement().elementsByTagName("row");
-
+/*
 	        for(int i = 0; i < l.size(); i++)
 		{
 //			if(l.item(i).toElement().attribute("queuePosition").toInt() == 1)
@@ -223,6 +223,8 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 				break;
 			}
 		}
+*/
+		*el = l.item(0).toElement();
 
 		if(l.size() > 0)
 		{
@@ -230,6 +232,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			*endTime = endTime->fromString(el->attribute("endTime"), "yyyy-MM-dd hh:mm:ss");
 			beginTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
 			endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
+
 
 			if(*endTime >= endTime->currentDateTime()) // if training is not finished
 			{		
