@@ -52,7 +52,7 @@ void WebDoc::get()
 
 void WebDoc::httpGetDone(bool error)
 {
-bool ok = true;
+	ok = true;
 	if(error)
 	{
 		QMessageBox::warning(0, tr("download error"),tr("error while downloading %3.\npage: \"%1\"\n\"%2\"")

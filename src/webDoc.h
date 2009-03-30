@@ -40,7 +40,7 @@ private:
 	QBuffer *buf;
 	QDomDocument *doc;
 	void _get(QString);
-	bool errorCodeHandle, busy;
+	bool errorCodeHandle, busy, ok;
 private slots:
 	void httpGetDone(bool);
 signals:
