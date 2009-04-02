@@ -41,6 +41,7 @@ SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc
 
 	contentLabel = new QLabel(this);
 	contentLabel->setTextFormat(Qt::RichText);
+	contentLabel->setMargin(3);
 	contentLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
 	addWidget(contentLabel);
@@ -98,6 +99,7 @@ void SkillQueue::onQueueDone(bool ok)
 				content.append("</b> (" + QString::number(l.at(cnt).toElement().attribute("level").toInt()-1) + " -> " + l.at(cnt).toElement().attribute("level") + ")<br>");
 			}
 			contentLabel->setText(content);
+			contentLabel->adjustSize();
 		}
 		else
 			contentLabel->clear();
