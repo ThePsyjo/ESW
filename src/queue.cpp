@@ -90,9 +90,9 @@ void SkillQueue::onQueueDone(bool ok)
 				// #1	
 				content.append("#" + l.at(cnt).toElement().attribute("queuePosition") + " <i>");
 				// #1	2009-01-01 (someday) 00:00:00
-				content.append(startTime->toString("yyyy-MM-dd (dddd) hh:mm:ss"));
+				content.append(startTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
 				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00
-				content.append(" - " + endTime->toString("yyyy-MM-dd (dddd) hh:mm:ss"));
+				content.append(" - " + endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
 				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill
 				content.append("</i> <b>" + skillName(l.at(cnt).toElement().attribute("typeID").toInt()));
 				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill (0 -> 1)
