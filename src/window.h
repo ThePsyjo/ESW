@@ -61,6 +61,7 @@ private:
 	QTimer *hTimer;
 	QStatusBar *statusBar;
 	WebDoc *skillTree, *skillQueue;
+	QWidget *dummy;
 private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();

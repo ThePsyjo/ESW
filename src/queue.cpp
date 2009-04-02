@@ -20,7 +20,7 @@
 #include "queue.h"
 
 SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc *q, QString name, QWidget* parent)
-        : QToolBar(name, parent)
+        : QDockWidget(name, parent)
 {
 	conf = c;
 	tray = ico;
@@ -44,7 +44,7 @@ SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc
 	contentLabel->setMargin(3);
 	contentLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
-	addWidget(contentLabel);
+	setWidget(contentLabel);
 
 //	preDayTimer = new QTimer(this);
 //	connect(preDayTimer, SIGNAL(timeout()), this, SLOT(onPreDayTimer()));
@@ -99,7 +99,6 @@ void SkillQueue::onQueueDone(bool ok)
 				content.append("</b> (" + QString::number(l.at(cnt).toElement().attribute("level").toInt()-1) + " -> " + l.at(cnt).toElement().attribute("level") + ")<br>");
 			}
 			contentLabel->setText(content);
-			contentLabel->adjustSize();
 		}
 		else
 			contentLabel->clear();

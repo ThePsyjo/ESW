@@ -22,13 +22,13 @@
 
 #include <QLabel>
 #include <QSystemTrayIcon>
-#include <QToolBar>
+#include <QDockWidget>
 //#include <QVBoxLayout>
 
 #include "webDoc.h"
 #include "configuration.h"
 
-class SkillQueue : public QToolBar
+class SkillQueue : public QDockWidget
 {
 Q_OBJECT
 public:

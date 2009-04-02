@@ -20,7 +20,7 @@
 #include "syncWidget.h"
 
 SyncWidget::SyncWidget(QString name, QString format, QWidget * parent)//, Qt::WFlags f)
-        : QToolBar(name, parent)//, f)
+        : QDockWidget(name, parent)//, f)
 {
 	sTimer = new QTimer(this);
 	connect(sTimer, SIGNAL(timeout()), this, SLOT(onSTimer()));
@@ -32,7 +32,7 @@ SyncWidget::SyncWidget(QString name, QString format, QWidget * parent)//, Qt::WF
 
 	syncLabel  = new QLabel(this);
 	syncLabel->setAlignment(Qt::AlignCenter);
-	addWidget(syncLabel);
+	setWidget(syncLabel);
 }
 
 SyncWidget::~SyncWidget(){}

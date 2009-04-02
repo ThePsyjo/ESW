@@ -20,13 +20,13 @@
 #include "serverStatWidget.h"
 
 ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget * parent)
-        : QToolBar(name, parent)
+        : QDockWidget(name, parent)
 {
 	icon = ico;
 	content  = new QLabel(this);
 	content->setMargin(3);
 	content->setAlignment(Qt::AlignCenter);
-	addWidget(content);
+	setWidget(content);
 	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 	setServerStartupSingleShot();

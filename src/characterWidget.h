@@ -21,11 +21,11 @@
 #define CHARACTERWIDGET_H
 
 #include <QLabel>
-#include <QToolBar>
+#include <QDockWidget>
 #include "webDoc.h"
 #include "configuration.h"
 
-class CharacterWidget : public QToolBar
+class CharacterWidget : public QDockWidget
 {
 Q_OBJECT
 public:

@@ -22,6 +22,9 @@
 MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
         : QMainWindow(parent, f)
 {
+	dummy = new QWidget(this);
+	setCentralWidget(dummy); // to be able to group the dockwidgets around nothing ...
+
 	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
 	config->loadIsVisible() ? show() : hide();
 	// set win title "ESW 1.2.3"
@@ -106,20 +109,20 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trainingWidget->setObjectName("toolbar_training");
 
 	queueWidget = new SkillQueue(config, trayIcon, skillTree, skillQueue, tr("skilltqueue"), this);
-	addToolBar(queueWidget);
+	addDockWidget(Qt::TopDockWidgetArea, queueWidget);
 	queueWidget->setObjectName("toolbar_skillqueue");
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
-	addToolBar(syncWidget);
+	addDockWidget(Qt::TopDockWidgetArea, syncWidget);
 	config->loadAutoSync() ? syncWidget->set(hTimer->interval()/1000) : syncWidget->disable();
 	syncWidget->setObjectName("toolbar_sync");
 
 	serverStat = new ServerStatWidget(tr("server status"), trayIcon, this);
 	serverStat->setObjectName("toolbar_serverstats");
-	addToolBar(serverStat);
+	addDockWidget(Qt::TopDockWidgetArea, serverStat);
 
 	characterWidget = new CharacterWidget(tr("Character"), config, this);
-	addToolBar(characterWidget);
+	addDockWidget(Qt::TopDockWidgetArea, characterWidget);
 	characterWidget->setObjectName("toolbar_character");
 
 	restoreState(config->loadState());

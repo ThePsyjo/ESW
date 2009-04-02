@@ -24,9 +24,9 @@
 #include <QTimer>
 #include <QDateTime>
 #include <QLabel>
-#include <QToolBar>
+#include <QDockWidget>
 
-class SyncWidget : public QToolBar
+class SyncWidget : public QDockWidget
 {
 Q_OBJECT
 public:

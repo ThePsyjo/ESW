@@ -21,11 +21,11 @@
 #define SERVERSTATWIDGET_H
 
 #include <QLabel>
-#include <QToolBar>
+#include <QDockWidget>
 #include <QSystemTrayIcon>
 #include "webDoc.h"
 
-class ServerStatWidget : public QToolBar
+class ServerStatWidget : public QDockWidget
 {
 Q_OBJECT
 public:
