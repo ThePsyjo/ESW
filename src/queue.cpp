@@ -41,6 +41,7 @@ SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc
 
 	contentLabel = new QLabel(this);
 	contentLabel->setTextFormat(Qt::RichText);
+	contentLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
 	addWidget(contentLabel);
 
