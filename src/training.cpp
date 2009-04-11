@@ -166,7 +166,11 @@ double SkillTraining::destinationSP()
 
 double SkillTraining::destinationLevelSP()
 {
-	return destinationSP() - lastSP();
+	if(el->attribute("level").toInt() == 1)
+	// training 0 -> 1 // same as above
+		return destinationSP();
+	else
+		return destinationSP() - lastSP();
 }
 
 void SkillTraining::onSTimer()
