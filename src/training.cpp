@@ -152,7 +152,11 @@ double SkillTraining::lastSP()
 
 double SkillTraining::currentLevelSP()
 {
-	return currentSP() - lastSP();
+	if(el->attribute("level").toInt() == 1)
+	// training 0 -> 1
+		return currentSP();
+	else
+		return currentSP() - lastSP();
 }
 
 double SkillTraining::destinationSP()
