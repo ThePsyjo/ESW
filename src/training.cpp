@@ -50,7 +50,7 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, 
 	contentWidget = new QWidget(this);
 	
 	progressBar = new QProgressBar(this);
-	progressBar->setRange(0, 100);
+	progressBar->setRange(0, 1000);
 
 	contentWidgetLayout = new QVBoxLayout;
 
@@ -182,7 +182,7 @@ void SkillTraining::onSTimer()
 					.arg(destinationSP(), 3, 'f', 1)
 					.arg(currentLevelSP() / destinationLevelSP() * 100, 0, 'f', 1)
 		;
-		progressBar->setValue(int(currentLevelSP() / destinationLevelSP() * 100));
+		progressBar->setValue(currentLevelSP() / destinationLevelSP() * 1000);
 
 		*todoTimeStringList = endTime->fromTime_t(endTime->currentDateTime().secsTo(*endTime)).toUTC().toString("h:m:s").split(":");
 		// only time
