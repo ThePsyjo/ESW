@@ -63,7 +63,7 @@ void ServerStatWidget::onWebDoc(bool ok)
 
 			content->setText(tr("Tranquility: %1\nPlayers: %2", "serverMessage, playerCount")
 						.arg(serverStat)
-						.arg(serverStatDoc->document()->documentElement().firstChildElement("result").firstChildElement("onlinePlayers").text()));
+						.arg(e.firstChildElement("onlinePlayers").text()));
 		}
 
 		if(lastStat != serverStat && ! lastStat.isEmpty())

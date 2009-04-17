@@ -41,7 +41,7 @@ void SyncWidget::onSTimer()
 {
 	syncLabel->setText(syncTime->fromTime_t(syncTime->currentDateTime().secsTo(*syncTime)).toString(*timeFormat));
 }
-#include <QDebug>
+
 void SyncWidget::set(int i)
 {
 	*syncTime = syncTime->currentDateTime().addSecs(i);
