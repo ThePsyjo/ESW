@@ -214,3 +214,14 @@ bool ConfigHandler::loadCloseToTrayTip()
 	return loadBool( "Options", "close2trayTip", "1");
 }
 
+//FullQueueView////////////////////////////////////////////////////////////////////
+void ConfigHandler::saveShowFullQueueView(bool b)
+{
+	saveBool( "Options", "showFullQueueView", b);
+}
+
+bool ConfigHandler::loadShowFullQueueView()
+{
+	return loadBool( "Options", "showFullQueueView", "1");
+}
+

@@ -16,8 +16,12 @@
  * You should have received a copy of the GNU General Public License	*
  * along with this program; if not, see <http://www.gnu.org/licenses/>. *
  ************************************************************************/
+#ifndef SKILLQUEUE_H
+#define SKILLQUEUE_H
 
 #include "queue.h"
+#define LESS "<<<"
+#define MORE ">>>"
 
 SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc *q, QString name, QWidget* parent)
         : QDockWidget(name, parent)
@@ -39,12 +43,30 @@ SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc
 	startTime->setTimeSpec(Qt::UTC);
 	endTime->setTimeSpec(Qt::UTC);
 
-	contentLabel = new QLabel(this);
+	contentWidget = new QWidget(this);
+	layout = new QVBoxLayout(contentWidget);
+//	contentWidget->setMargin(3)
+
+	fullViewButton = new QPushButton(contentWidget);
+	fullViewButton->setMaximumWidth(fullViewButton->height()); // only a sqare, not over full line
+	QFont font;			//
+	font.setBold(1);		// trashtype for bold font
+	fullViewButton->setFont(font);	//
+	connect(fullViewButton, SIGNAL(clicked()), this, SLOT(onFullViewButtonClick()));
+	conf->loadShowFullQueueView() ? fullViewButton->setText(LESS) : fullViewButton->setText(MORE);
+	conf->loadShowFullQueueView() ? fullViewButton->setToolTip(tr("collapse")) : fullViewButton->setToolTip(tr("expand"));
+	fullView = conf->loadShowFullQueueView();
+
+	contentLabel = new QLabel(contentWidget);
 	contentLabel->setTextFormat(Qt::RichText);
-	contentLabel->setMargin(3);
 	contentLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
-	setWidget(contentLabel);
+	layout->addWidget(fullViewButton);
+	layout->addWidget(contentLabel);
+
+	setWidget(contentWidget);
+
+//	contentWidget->setStyleSheet("* {background-color:red}");
 
 //	preDayTimer = new QTimer(this);
 //	connect(preDayTimer, SIGNAL(timeout()), this, SLOT(onPreDayTimer()));
@@ -87,22 +109,46 @@ void SkillQueue::onQueueDone(bool ok)
 //				if(l.size() == 1 && ! preDayTimer->isActive() && endTimer->curentDateTime().secsTo(endTime) < 86400)
 //					preDayTimer->start();
 
-				// #1	
-				content.append("#" + l.at(cnt).toElement().attribute("queuePosition") + " <i>");
-				// #1	2009-01-01 (someday) 00:00:00
-				content.append(startTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
-				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00
-				content.append(" - " + endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"));
+				if(cnt != 0)
+					content.append("<br>");
+				// #1
+				content.append(QString("#%1 ").arg(l.at(cnt).toElement().attribute("queuePosition")));
+				if(fullView) // if fullViewButton is clicked
+					// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00
+					content.append(QString(" <i>%1 - %2</i> ")
+									.arg(startTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"))
+									.arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss")));
 				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill
-				content.append("</i> <b>" + skillName(l.at(cnt).toElement().attribute("typeID").toInt()));
+				content.append(QString("<b>%1</b> ").arg(skillName(l.at(cnt).toElement().attribute("typeID").toInt())));
 				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill (0 -> 1)
-				content.append("</b> (" + QString::number(l.at(cnt).toElement().attribute("level").toInt()-1) + " -> " + l.at(cnt).toElement().attribute("level") + ")<br>");
+				content.append( QString("(%1 -> %2)")
+							.arg(QString::number(l.at(cnt).toElement().attribute("level").toInt()-1))
+							.arg(l.at(cnt).toElement().attribute("level")));
 			}
 			contentLabel->setText(content);
 		}
 		else
 			contentLabel->clear();
 	}
+}
+
+void SkillQueue::onFullViewButtonClick()
+{
+	if(fullView)
+	{
+		fullView = false;
+		conf->saveShowFullQueueView(false);
+		fullViewButton->setText(MORE);
+		fullViewButton->setToolTip(tr("expand"));
+	}
+	else
+	{
+		fullView = true;
+		conf->saveShowFullQueueView(true);
+		fullViewButton->setText(LESS);
+		fullViewButton->setToolTip(tr("collapse"));
+	}
+	reload();
 }
 
 void SkillQueue::onSkillTreeDone(bool ok)
@@ -128,3 +174,5 @@ QString SkillQueue::skillName(int id)
 				return l.item(i).toElement().attribute("typeName", "<this schould not happend>");
 	return "Unknown";
 }
+
+#endif

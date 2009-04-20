@@ -23,7 +23,9 @@
 #include <QLabel>
 #include <QSystemTrayIcon>
 #include <QDockWidget>
-//#include <QVBoxLayout>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QFont>
 
 #include "webDoc.h"
 #include "configuration.h"
@@ -41,14 +43,18 @@ private:
 	QLabel *contentLabel;
 //	QTimer *preDayTimer;
 	QDateTime *startTime, *endTime;
-	bool skillTreeAvailable;
+	bool skillTreeAvailable, fullView;
 	QString skillName(int);
 	QString content;
+	QWidget *contentWidget;
+	QVBoxLayout *layout;
+	QPushButton *fullViewButton;
 	int cnt;
 private slots:
 //	void onPreDayTimer();
 	void onSkillTreeDone(bool);
 	void onQueueDone(bool);
+	void onFullViewButtonClick();
 public slots:
 	void reload();
 };

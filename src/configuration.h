@@ -80,6 +80,9 @@ public:
 
 	bool loadCloseToTrayTip();
 	void saveCloseToTrayTip(bool);
+
+	bool loadShowFullQueueView();
+	void saveShowFullQueueView(bool);
 public slots:
 	void saveFile();
 };
