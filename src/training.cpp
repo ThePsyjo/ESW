@@ -175,8 +175,8 @@ double SkillTraining::destinationLevelSP()
 
 void SkillTraining::onSTimer()
 {
-	if(*endTime >= endTime->currentDateTime())
-	{
+//	if(*endTime >= endTime->currentDateTime())
+//	{
 		sp = QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)
 					.arg(destinationSP(), 3, 'f', 1)
@@ -196,7 +196,7 @@ void SkillTraining::onSTimer()
 		tray->setToolTip(skill + "\n" + skillLevel + "\n" + sp + "\n" + eta);
 
 		genContent();
-	}
+//	}
 }
 
 QString SkillTraining::iToRoman(int i)
