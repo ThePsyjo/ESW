@@ -25,7 +25,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	dummy = new QWidget(this);
 	setCentralWidget(dummy); // to be able to group the dockwidgets around nothing ...
 
-	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw.xml"), "esw_configuration");
+	config = new ConfigHandler(QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/esw.xml"), "esw_configuration");
 	config->loadIsVisible() ? show() : hide();
 	// set win title "ESW 1.2.3"
 	setWindowTitle(QApplication::applicationName() +" "+ QApplication::applicationVersion());
@@ -100,7 +100,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
-        skillTree = new WebDoc("http://api.eve-online.com//eve/SkillTree.xml.aspx");
+        skillTree = new WebDoc("http://api.eve-online.com/eve/SkillTree.xml.aspx");
 	skillQueue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true);
 
 	trainingWidget = new SkillTraining(config, trayIcon, skillTree, skillQueue, tr("skilltraining"), this);

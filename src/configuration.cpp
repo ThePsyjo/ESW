@@ -21,6 +21,13 @@
 
 ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 {
+	QFileInfo i(fileLocation);
+	if(! i.dir().exists())
+	{
+		QDir d;		// only create if not existing
+		d.mkpath(i.path());
+	}
+
 	doc = new QDomDocument ( fileName );
 	f = new QFile (fileLocation);
 	timer = new QTimer(this);
