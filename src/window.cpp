@@ -100,8 +100,8 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
-        skillTree = new WebDoc("http://api.eve-online.com/eve/SkillTree.xml.aspx");
-	skillQueue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true);
+        skillTree = new WebDoc("http://api.eve-online.com/eve/SkillTree.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/SkillTree.xml.aspx"));
+	skillQueue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx"));
 
 	trainingWidget = new SkillTraining(config, trayIcon, skillTree, skillQueue, tr("skilltraining"), this);
 	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);

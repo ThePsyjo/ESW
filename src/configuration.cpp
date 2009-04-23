@@ -18,6 +18,7 @@
  ************************************************************************/
 
 #include "configuration.h"
+#include <QDebug>
 
 ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 {

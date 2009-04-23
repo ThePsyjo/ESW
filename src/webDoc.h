@@ -44,6 +44,7 @@ private:
 	void _get(QString);
 	bool errorCodeHandle, busy, ok;
 	bool setCacheFile();
+	void saveCacheFile();
 private slots:
 	void httpGetDone(bool);
 signals:

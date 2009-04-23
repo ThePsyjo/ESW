@@ -54,14 +54,24 @@ void WebDoc::get()
 
 bool WebDoc::setCacheFile()
 {
-	if(f->exists())
+	if( f->exists() )
 	{
 		f->open( QIODevice::ReadOnly );
-		buf->setData(f->readLine());
+		buf->close();
+		buf->setData(f->readAll());
+		buf->open(QBuffer::ReadWrite);
 		f->close();
 		return true;
 	}
 	else	return false;
+}
+
+void WebDoc::saveCacheFile()
+{
+	f->open( QIODevice::WriteOnly );
+	QTextStream stream( f );
+	doc->save(stream,3);
+	f->close();
 }
 
 void WebDoc::httpGetDone(bool error)
@@ -108,7 +118,8 @@ void WebDoc::httpGetDone(bool error)
 					.arg(doc->documentElement().firstChildElement("error").text()));
 		}
 	}
-	
+
+	if(ok && ! cacheFile.isEmpty()) saveCacheFile();
 	busy=false;
 	emit done(ok);
 }
