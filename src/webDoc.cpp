@@ -19,7 +19,7 @@
 
 #include "webDoc.h"
 
-WebDoc::WebDoc(QString u, bool _errorCodeHandle )
+WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF )
 {
 	buf  = new QBuffer(this);
 	buf->open(QBuffer::ReadWrite);
@@ -29,6 +29,9 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle )
 	doc = new QDomDocument;
 	errorCodeHandle = _errorCodeHandle;
 	busy=false;
+
+	cacheFile = cacheF;
+	f = new QFile(cacheFile);
 }
 
 WebDoc::~WebDoc(){};
@@ -49,12 +52,24 @@ void WebDoc::get(QString urlargs)
 void WebDoc::get()
 {	_get("");	}
 
+bool WebDoc::setCacheFile()
+{
+	if(f->exists())
+	{
+		f->open( QIODevice::ReadOnly );
+		buf->setData(f->readLine());
+		f->close();
+		return true;
+	}
+	else	return false;
+}
 
 void WebDoc::httpGetDone(bool error)
 {
 	ok = true;
-	if(error)
-	{
+	if(error)		// if no dl
+	if(! setCacheFile())	// load cache
+	{			// on error, handle it
 		QMessageBox::warning(0, tr("download error"),tr("error while downloading %3.\npage: \"%1\"\n\"%2\"")
 								.arg(url->host() + url->path())
 								.arg(http->errorString())

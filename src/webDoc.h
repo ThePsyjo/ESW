@@ -29,7 +29,7 @@ class WebDoc : public QObject
 {
 Q_OBJECT
 public:
-	WebDoc(QString, bool = false);
+	WebDoc(QString, bool = false, QString = "");
 	virtual ~WebDoc();
 	void get(QString);
 	void get();
@@ -39,8 +39,11 @@ private:
 	QUrl *url;
 	QBuffer *buf;
 	QDomDocument *doc;
+	QFile *f;
+	QString cacheFile;
 	void _get(QString);
 	bool errorCodeHandle, busy, ok;
+	bool setCacheFile();
 private slots:
 	void httpGetDone(bool);
 signals:
