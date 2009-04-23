@@ -86,12 +86,12 @@ Titel %3&lt;br&gt;
 <context>
     <name>ConfigHandler</name>
     <message>
-        <location filename="configuration.cpp" line="37"/>
+        <location filename="configuration.cpp" line="44"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="39"/>
+        <location filename="configuration.cpp" line="46"/>
         <source>Parse error in file %4:
 at line %1, column %2:
 &quot;%3&quot;
@@ -104,7 +104,7 @@ auf Zeile %1, Spalte %2:
 Konfiguration wird nicht geschrieben</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="51"/>
+        <location filename="configuration.cpp" line="58"/>
         <source>%1 created in %2.</source>
         <translation>%1 erstellt in %2.</translation>
     </message>
@@ -307,6 +307,11 @@ Spieler: %2</translation>
         <translation>Fehlercode %1
 &quot;%2&quot;</translation>
     </message>
+    <message>
+        <location filename="serverStatWidget.cpp" line="72"/>
+        <source>no live information available</source>
+        <translation>Keine aktuellen\nInformationen verfügbar</translation>
+    </message>
 </context>
 <context>
     <name>SkillQueue</name>
@@ -406,12 +411,12 @@ Spieler: %2</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="58"/>
+        <location filename="webDoc.cpp" line="83"/>
         <source>download error</source>
         <translation>Download Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="59"/>
+        <location filename="webDoc.cpp" line="84"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -420,12 +425,12 @@ Seite: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="76"/>
+        <location filename="webDoc.cpp" line="101"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="77"/>
+        <location filename="webDoc.cpp" line="102"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
@@ -434,12 +439,12 @@ auf Zeile %1, Spalte %2:
 &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="91"/>
+        <location filename="webDoc.cpp" line="116"/>
         <source>Server Error</source>
         <translation>Server Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="92"/>
+        <location filename="webDoc.cpp" line="117"/>
         <source>Server has reported an error
 
 Code:<byte value="x9"/>%1
