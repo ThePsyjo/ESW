@@ -29,6 +29,8 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, 
 	skillTree = t;
 	characterTraining = q;
 
+	clipboard = QApplication::clipboard();
+
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(characterTraining, SIGNAL(done(bool)), this, SLOT(onCharacterTrainingDone(bool)));
 
@@ -44,20 +46,32 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, 
 
 	el = new QDomElement;
 
-	contentLabel = new QLabel(this);
-	contentLabel->setTextFormat(Qt::RichText);
-
 	contentWidget = new QWidget(this);
+
+	skillLabel	= new QLabel(contentWidget);
+	spLabel		= new QLabel(contentWidget);
+	etaLabel	= new QLabel(contentWidget);
+	endTimeStrLabel	= new QLabel(contentWidget);
+	rateLabel	= new QLabel(contentWidget);
+
+	clipBoardButton = new QPushButton(":::", contentWidget);
+	clipBoardButton->setToolTip(tr("copy to clipboard"));
+	clipBoardButton->setMaximumWidth(clipBoardButton->height()); // only a sqare, not over full cell
 	
-	progressBar = new QProgressBar(this);
+	connect(clipBoardButton, SIGNAL(clicked()), this, SLOT(onClipBoardButtonClicked()));
+
+	progressBar = new QProgressBar(contentWidget);
 	progressBar->setRange(0, 1000);
 
-	contentWidgetLayout = new QVBoxLayout;
+	contentWidgetLayout = new QGridLayout(contentWidget);
 
-	contentWidget->setLayout(contentWidgetLayout);
-
-	contentWidgetLayout->addWidget(contentLabel);
-	contentWidgetLayout->addWidget(progressBar);
+	contentWidgetLayout->addWidget(skillLabel,	0, 0, 1, 2);
+	contentWidgetLayout->addWidget(spLabel,		1, 0, 1, 2);
+	contentWidgetLayout->addWidget(etaLabel,	2, 0, 1, 2);
+	contentWidgetLayout->addWidget(endTimeStrLabel,	3, 0, 1, 2);
+	contentWidgetLayout->addWidget(rateLabel,	4, 0);
+	contentWidgetLayout->addWidget(clipBoardButton,	4, 1);
+	contentWidgetLayout->addWidget(progressBar,	5, 0, 1, 2);
 
 	setWidget(contentWidget);
 
@@ -75,6 +89,16 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, 
 }
 
 SkillTraining::~SkillTraining(){};
+
+void SkillTraining::onClipBoardButtonClicked()
+{
+clipboard->setText(QString("%1\n%2\n%3\n%4\n%5")
+		.arg(skillLabel->text())
+		.arg(spLabel->text())
+		.arg(etaLabel->text())
+		.arg(endTimeStrLabel->text())
+		.arg(rateLabel->text()));
+}
 
 void SkillTraining::reload()
 {
@@ -101,12 +125,9 @@ void SkillTraining::genEndTime()
 	// -> downtime
 	if (*endTime > QDateTime(endTime->date(), QTime(11, 0, 0), Qt::UTC) &&
 	   (*endTime < QDateTime(endTime->date(), QTime(12, 0, 0), Qt::UTC)))
-		endTimeStr = QString(tr("%1", "endTimeStr in downtime")  ).arg(endTime->toLocalTime().toString(endTimeStrFmt));
-	else	endTimeStr = QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString(endTimeStrFmt));
+		endTimeStrLabel->setText(QString(tr("%1", "endTimeStr in downtime")  ).arg(endTime->toLocalTime().toString(endTimeStrFmt)));
+	else	endTimeStrLabel->setText(QString(tr("%1", "endTimeStr ! in downtime")).arg(endTime->toLocalTime().toString(endTimeStrFmt)));
 }
-
-void SkillTraining::genContent()
-{	contentLabel->setText(skill + "     " + skillLevel + "<br>" + sp + "<br>" + eta + "<br>" + endTimeStr + "<br>" + rate);	}
 
 QString SkillTraining::skillName(int id)
 {
@@ -177,10 +198,10 @@ void SkillTraining::onSTimer()
 {
 //	if(*endTime >= endTime->currentDateTime())
 //	{
-		sp = QString("%L1  / %L2 (%3%)")
+		spLabel->setText(QString("%L1  / %L2 (%3%)")
 					.arg(currentSP(), 3, 'f', 1)
 					.arg(destinationSP(), 3, 'f', 1)
-					.arg(currentLevelSP() / destinationLevelSP() * 100, 0, 'f', 1)
+					.arg(currentLevelSP() / destinationLevelSP() * 100, 0, 'f', 1))
 		;
 		progressBar->setValue(currentLevelSP() / destinationLevelSP() * 1000);
 
@@ -192,10 +213,9 @@ void SkillTraining::onSTimer()
 		if(cnt >= 3600)	eta += tr("%n h(s), ", "", todoTimeStringList->at(0).toInt());
 		if(cnt >= 60)	eta += tr("%n m(s), ", "", todoTimeStringList->at(1).toInt());
 		if(cnt >= 0)	eta += tr("%n s(s)",   "", todoTimeStringList->at(2).toInt());
+		etaLabel->setText(eta);
 
-		tray->setToolTip(skill + "\n" + skillLevel + "\n" + sp + "\n" + eta);
-
-		genContent();
+		tray->setToolTip(skillLabel->text() + "\n" + spLabel->text() + "\n" + eta);
 //	}
 }
 
@@ -230,15 +250,15 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			genEndTime(); // generate endTimeStr // red if in downtime
 			skillEndTimer->start((endTime->currentDateTime().secsTo(*endTime) + 2) * 1000); // set event when skilltraining is finished
 			preNotifyTimer->start((endTime->currentDateTime().secsTo(*endTime) - 300) * 1000); // set event 5 minutes before training ends
-			skill = skillName(el->attribute("typeID").toInt());
 			skillRank = getSkillRank(el->attribute("typeID").toInt());
-			skillLevel = QString("%1 >>> %2")
+			skillLabel->setText(QString("%1   %2 >>> %3")
+							.arg(skillName(el->attribute("typeID").toInt()))
 							.arg(iToRoman(el->attribute("level").toInt() - 1))
-							.arg(iToRoman(el->attribute("level").toInt()))
+							.arg(iToRoman(el->attribute("level").toInt())))
 							;
 			trainFactor = (el->attribute("endSP").toDouble() - el->attribute("startSP").toDouble())
 					/ beginTime->secsTo(*endTime);
-			rate = QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0);
+			rateLabel->setText(QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0));
 
 			tray->setIcon(QIcon(":/appicon"));
 			sTimer->start();
@@ -246,7 +266,6 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		else
 		{
 			el->clear();
-			contentLabel->clear();
 			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
@@ -266,13 +285,13 @@ void SkillTraining::onSkillTreeDone(bool ok)
 
 void SkillTraining::onSkillEndTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
 	skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
 }
 
 void SkillTraining::onPreNotifyTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) finished soon.").arg(skill).arg(skillLevel), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) finished soon.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
 }
 
 void SkillTraining::showProgressBar(bool b)

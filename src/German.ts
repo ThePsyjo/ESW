@@ -339,22 +339,22 @@ Spieler: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="269"/>
+        <location filename="training.cpp" line="288"/>
         <source>Skilltraining &quot;%1&quot; (%2) completed.</source>
         <translation>Skill Training &quot;%1&quot; (%2) abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="251"/>
+        <location filename="training.cpp" line="270"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="252"/>
+        <location filename="training.cpp" line="271"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="191"/>
+        <location filename="training.cpp" line="212"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -362,7 +362,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="192"/>
+        <location filename="training.cpp" line="213"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -370,7 +370,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="193"/>
+        <location filename="training.cpp" line="214"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -378,34 +378,39 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="275"/>
+        <location filename="training.cpp" line="294"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="104"/>
+        <location filename="training.cpp" line="128"/>
         <source>%1</source>
         <comment>endTimeStr in downtime</comment>
         <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="105"/>
+        <location filename="training.cpp" line="129"/>
         <source>%1</source>
         <comment>endTimeStr ! in downtime</comment>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="275"/>
+        <location filename="training.cpp" line="294"/>
         <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
         <translation>Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="194"/>
+        <location filename="training.cpp" line="215"/>
         <source>%n s(s)</source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
             <numerusform>%n Sekunden</numerusform>
         </translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="58"/>
+        <source>copy to clipboard</source>
+        <translation>in Zwischenablage kopieren</translation>
     </message>
 </context>
 <context>

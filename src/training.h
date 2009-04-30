@@ -24,7 +24,10 @@
 #include <QSystemTrayIcon>
 #include <QDockWidget>
 #include <QProgressBar>
-#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QPushButton>
+#include <QApplication>
+#include <QClipboard>
 
 #include "webDoc.h"
 #include "configuration.h"
@@ -38,8 +41,8 @@ public:
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
-	QLabel *contentLabel;
-	QString skill, skillLevel, sp, eta, sync, rate, endTimeStr, endTimeStrFmt;
+	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *endTimeStrLabel, *rateLabel;
+	QString eta, sync, endTimeStrFmt;
 	QTimer *sTimer, *skillEndTimer, *preNotifyTimer;
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;
@@ -52,12 +55,14 @@ private:
 	double currentSP(), currentLevelSP(), lastSP(), destinationSP(), destinationLevelSP();
 	QSystemTrayIcon *tray;
 	QStringList *todoTimeStringList;
-	void genContent();
 	void genEndTime();
 	QWidget *contentWidget;
-	QVBoxLayout *contentWidgetLayout;
+	QGridLayout *contentWidgetLayout;
 	QProgressBar *progressBar;
+	QPushButton *clipBoardButton;
+	QClipboard *clipboard;
 private slots:
+	void onClipBoardButtonClicked();
 	void onSTimer();
 	void onSkillEndTimer();
 	void onPreNotifyTimer();
