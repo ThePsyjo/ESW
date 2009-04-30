@@ -92,7 +92,8 @@ SkillTraining::~SkillTraining(){};
 
 void SkillTraining::onClipBoardButtonClicked()
 {
-clipboard->setText(QString("%1\n%2\n%3\n%4\n%5")
+	tray->showMessage ( tr("Info"), tr("copyed to clipboard"), QSystemTrayIcon::NoIcon, 5000 );
+	clipboard->setText(QString("%1\n%2\n%3\n%4\n%5")
 		.arg(skillLabel->text())
 		.arg(spLabel->text())
 		.arg(etaLabel->text())
