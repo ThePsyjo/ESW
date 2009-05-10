@@ -30,6 +30,9 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	// set win title "ESW 1.2.3"
 	setWindowTitle(QApplication::applicationName() +" "+ QApplication::applicationVersion());
 
+	setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::AllowNestedDocks | QMainWindow::AllowTabbedDocks | QMainWindow::VerticalTabs);
+	// DockWidgets should be placeable in any constellation
+
 	setStyle(QStyleFactory::create(config->loadStyle()));
 	if(! config->loadStyleSheet().isEmpty())
 		setStyleSheet(config->loadStyleSheet());
