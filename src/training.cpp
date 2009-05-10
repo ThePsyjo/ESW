@@ -286,13 +286,13 @@ void SkillTraining::onSkillTreeDone(bool ok)
 
 void SkillTraining::onSkillEndTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) completed.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" completed.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
 	skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
 }
 
 void SkillTraining::onPreNotifyTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" (%2) finished soon.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" finished soon.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
 }
 
 void SkillTraining::showProgressBar(bool b)
