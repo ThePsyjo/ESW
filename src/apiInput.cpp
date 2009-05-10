@@ -40,7 +40,6 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	eUserID = new QLineEdit(QString("%1").arg(conf->loadApiInfo().userID), this);
 	eApiKey = new QLineEdit(conf->loadApiInfo().apiKey, this);
 	eUserID->setInputMask("00000000000000000000");
-	eApiKey->setInputMask(">HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 	eApiKey->setMinimumWidth(400);
 
 	lUserID = new QLabel(tr("UserID"));
