@@ -83,6 +83,9 @@ public:
 
 	bool loadShowFullQueueView();
 	void saveShowFullQueueView(bool);
+
+	QStringList loadAccounts();
+	void saveAccounts(QStringList);
 public slots:
 	void saveFile();
 };

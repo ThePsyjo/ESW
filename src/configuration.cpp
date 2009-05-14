@@ -105,6 +105,26 @@ void ConfigHandler::saveStyle(QString s)
 	genTag(doc->documentElement(), "WindowStyle").setAttribute("value", s);
 }
 
+//Accounts/////////////////////////////////////////////////////////////////////////
+
+QStringList ConfigHandler::loadAccounts()
+{
+	QStringList ret;
+	QDomElement e = genTag (doc->documentElement(), "accounts");
+	for (int i = 0; i < e.attributes().count(); i++ )
+		ret << e.attribute("value" + QString::number(i));
+	return ret;
+}
+
+void ConfigHandler::saveAccounts(QStringList v)
+{
+	QDomElement e = genTag (doc->documentElement(), "accounts");
+	for (int i = e.attributes().count(); i >= 0; i-- )
+		e.removeAttribute("value" + QString::number(i));
+	for (int i = 0; i < v.count(); i++ )
+		e.setAttribute("value" + QString::number(i), v.at(i));
+}
+
 //ApiInfo//////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveApiInfo(apiInfo v)
 {
