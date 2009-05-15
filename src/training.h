@@ -36,13 +36,13 @@ class SkillTraining : public QDockWidget
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QSystemTrayIcon*, WebDoc*, WebDoc*, QString name, QWidget* parent =0);
+	SkillTraining(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillTraining();
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;
 	QLabel *skillLabel, *skillLevelLabel, *spLabel, *etaLabel, *endTimeStrLabel, *rateLabel;
-	QString eta, sync, endTimeStrFmt;
+	QString eta, sync, endTimeStrFmt, account;
 	QTimer *sTimer, *skillEndTimer, *preNotifyTimer;
 	QDateTime *beginTime, *endTime;
 	bool skillTreeAvailable;

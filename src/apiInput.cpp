@@ -19,6 +19,62 @@
 
 #include "apiInput.h"
 
+///////////////////////////////////////////////////
+//StringInput//////////////////////////////////////
+///////////////////////////////////////////////////
+
+StringInput::StringInput(QStringList l, QWidget* parent)
+{
+	setParent(parent);
+	setWindowFlags(Qt::Dialog);
+	setWindowTitle(tr("new account"));
+	setModal(1);
+	list = l;
+
+	QRegExp rx("^[a-zA-Z][a-zA-Z0-9-_]*");
+	validator = new QRegExpValidator(rx, this);
+	e = new QLineEdit(this);
+	e->show();
+	e->setValidator(validator);
+
+	okButton = new QPushButton("&OK", this);
+	cancelButton = new QPushButton(tr("&cancel"), this);
+	connect(okButton,	SIGNAL(clicked()), this, SLOT(onOkClick()));
+	connect(cancelButton,	SIGNAL(clicked()), this, SLOT(reject()));  
+	layout = new QGridLayout(this);
+
+	layout->addWidget(e, 0,0,1,2);
+	layout->addWidget(okButton, 1,0);
+	layout->addWidget(cancelButton, 1,1);
+}
+
+void StringInput::onOkClick()
+{
+	if(e->text().isEmpty())
+	{
+		e->setText(tr("insert_accountname_here"));
+		e->selectAll();
+	}
+	else
+	{
+		foreach(QString s, list)
+			if(s == e->text()) return;
+			
+		val = e->text();
+		accept();
+	}
+}
+
+QString StringInput::getVal()
+{
+	return val;
+}
+
+StringInput::~StringInput(){};
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
 ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 {
 	setParent(parent);
@@ -33,50 +89,70 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 
         okButton	= new QPushButton (tr("&Save"), this);
         cancelButton	= new QPushButton (tr("&Cancel"), this);
+        newButton	= new QPushButton (tr("&New"), this);
+        deleteButton	= new QPushButton (tr("&Delete"), this);
         connectButton	= new QPushButton (tr("c&onnect"), this);
 
+	accs = new QStringList();
+        accountSelect	= new QComboBox (this);
+	*accs = conf->loadAccounts();
+	accountSelect->addItems(*accs);
+	connect(accountSelect, SIGNAL(currentIndexChanged(QString)), this, SLOT(handleAccountSelect(QString)));
         characterSelect	= new QComboBox (this);
 
-	eUserID = new QLineEdit(QString("%1").arg(conf->loadApiInfo().userID), this);
-	eApiKey = new QLineEdit(conf->loadApiInfo().apiKey, this);
+	eUserID = new QLineEdit(QString("%1").arg(conf->loadApiInfo(accountSelect->currentText()).userID), this);
+	eApiKey = new QLineEdit(conf->loadApiInfo(accountSelect->currentText()).apiKey, this);
 	eUserID->setInputMask("00000000000000000000");
 	eApiKey->setMinimumWidth(400);
 
-	lUserID = new QLabel(tr("UserID"));
-	lApiKey = new QLabel(tr("ApiKey"));
-	lCharacterID = new QLabel(tr("CharacterID"));
-	lText = new QLabel(tr("Insert your UserID and your API-Key in the specified Fields.\nClick on connect to select your character.\nYou can get your own API-Information here : http://myeve.eve-online.com/api/default.asp ."));
+	lAccount = new QLabel(tr("Account"), this);
+	lUserID = new QLabel(tr("UserID"), this);
+	lApiKey = new QLabel(tr("ApiKey"), this);
+	lCharacterID = new QLabel(tr("CharacterID"), this);
+	lText = new QLabel(tr("Insert your UserID and your API-Key in the specified Fields.\nClick on connect to select your character.\nYou can get your own API-Information here : http://myeve.eve-online.com/api/default.asp ."), this);
 	lText->setOpenExternalLinks(true);
 
 	layout = new QGridLayout(this);
 
 	layout->addWidget(lText, 1, 1, 1, 2);
-	
-	layout->addWidget(lUserID, 2, 1);
-	layout->addWidget(eUserID, 2, 2);
-	
-	layout->addWidget(lApiKey, 3, 1);
-	layout->addWidget(eApiKey, 3, 2);
 
-	layout->addWidget(connectButton, 4, 2);
-
-	layout->addWidget(lCharacterID, 5, 1);
-	layout->addWidget(characterSelect, 5, 2);
+	layout->addWidget(lAccount, 2, 1);
+	layout->addWidget(accountSelect, 2, 2);
 	
+	layout->addWidget(lUserID, 3, 1);
+	layout->addWidget(eUserID, 3, 2);
+	
+	layout->addWidget(lApiKey, 4, 1);
+	layout->addWidget(eApiKey, 4, 2);
 
+	layout->addWidget(connectButton, 5, 2);
+
+	layout->addWidget(lCharacterID, 6, 1);
+	layout->addWidget(characterSelect, 6, 2);
+	
 	layout->addWidget(okButton, 1, 3);
-	layout->addWidget(cancelButton, 2, 3);
-
+	layout->addWidget(newButton, 2, 3);
+	layout->addWidget(deleteButton, 3, 3);
+	layout->addWidget(cancelButton, 4, 3);
 
 	connect(okButton	, SIGNAL(clicked()), this, SLOT(onOkClick()));
 	connect(cancelButton	, SIGNAL(clicked()), this, SLOT(reject()));
 	connect(connectButton	, SIGNAL(clicked()), this, SLOT(onConnectClick()));
+	connect(newButton	, SIGNAL(clicked()), this, SLOT(onNewClick()));
+	connect(deleteButton	, SIGNAL(clicked()), this, SLOT(onDeleteClick()));
 
 	adjustSize();
+	show();
 }
 
 ApiInput::~ApiInput()
 {}
+
+void ApiInput::handleAccountSelect(QString s)
+{
+	eUserID->setText(QString::number(conf->loadApiInfo(s).userID));
+	eApiKey->setText(conf->loadApiInfo(s).apiKey);
+}
 
 void ApiInput::redel(QWidget* w)
 {w->setStyleSheet("color:red;");}
@@ -122,6 +198,7 @@ void ApiInput::onOkClick()
 	if( ! gotData) return;
 	
 	apiInfo v;
+	v.name = accountSelect->currentText();
 	v.userID = eUserID->text().toInt();
 	v.apiKey = eApiKey->text();
 
@@ -171,4 +248,25 @@ void ApiInput::onCharactersDocDone(bool ok)
 	gotData=true;
 
 	setCursor(Qt::ArrowCursor);
+}
+
+void ApiInput::onNewClick()
+{
+	StringInput in(conf->loadAccounts(), this);
+	if(in.exec())
+	{
+		accs->append(in.getVal());
+		conf->saveAccounts(*accs);
+		accountSelect->clear();
+		accountSelect->addItems(*accs);
+		accountSelect->setCurrentIndex(accountSelect->findText(in.getVal()));
+	}
+}
+
+void ApiInput::onDeleteClick()
+{
+	accs->removeAt(accountSelect->findText(accountSelect->currentText()));
+	conf->saveAccounts(*accs);
+	accountSelect->clear();
+	accountSelect->addItems(*accs);
 }

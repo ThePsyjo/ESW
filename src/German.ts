@@ -17,37 +17,37 @@
 <context>
     <name>ApiInput</name>
     <message>
-        <location filename="apiInput.cpp" line="34"/>
+        <location filename="apiInput.cpp" line="90"/>
         <source>&amp;Save</source>
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="35"/>
+        <location filename="apiInput.cpp" line="91"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Abbrechen</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="36"/>
+        <location filename="apiInput.cpp" line="94"/>
         <source>c&amp;onnect</source>
         <translation>&amp;verbinden</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="45"/>
+        <location filename="apiInput.cpp" line="109"/>
         <source>UserID</source>
         <translation>UserID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="46"/>
+        <location filename="apiInput.cpp" line="110"/>
         <source>ApiKey</source>
         <translation>ApiKey</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="47"/>
+        <location filename="apiInput.cpp" line="111"/>
         <source>CharacterID</source>
         <translation>CharacterID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="160"/>
+        <location filename="apiInput.cpp" line="237"/>
         <source>errorcode %1
 
 %2</source>
@@ -56,22 +56,37 @@
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="48"/>
+        <location filename="apiInput.cpp" line="112"/>
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
         <translation>Trage deine UserID und deinen API-Key in die dafür vorgesehenen Felder ein.&lt;br&gt;Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.&lt;br&gt;Du bekommst deine API-Informationen &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="158"/>
+        <location filename="apiInput.cpp" line="235"/>
         <source>API error</source>
         <translation>API Fehler</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="92"/>
+        <source>&amp;New</source>
+        <translation>&amp;Neu</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="93"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="108"/>
+        <source>Account</source>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>CharacterWidget</name>
     <message>
-        <location filename="characterWidget.cpp" line="53"/>
+        <location filename="characterWidget.cpp" line="54"/>
         <source>%1
 Member of %2
 Title %3
@@ -127,7 +142,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="156"/>
+        <location filename="window.cpp" line="167"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
@@ -142,7 +157,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="221"/>
+        <location filename="window.cpp" line="237"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -157,22 +172,22 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Aktualisieren</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="118"/>
+        <location filename="window.cpp" line="132"/>
         <source>next sync in</source>
         <translation>nächster Sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="123"/>
+        <location filename="window.cpp" line="137"/>
         <source>server status</source>
         <translation>Server Status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="127"/>
+        <location filename="window.cpp" line="261"/>
         <source>Character</source>
         <translation>Charakter</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="109"/>
+        <location filename="window.cpp" line="265"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -192,7 +207,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="234"/>
+        <location filename="window.cpp" line="294"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
@@ -217,7 +232,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Style</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="151"/>
+        <location filename="window.cpp" line="162"/>
         <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
@@ -227,7 +242,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>in System&amp;tray schließen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="261"/>
+        <location filename="window.cpp" line="321"/>
         <source>%1 minimized.</source>
         <translation>%1 ist jetzt im Systemtray minimiert.</translation>
     </message>
@@ -237,7 +252,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="276"/>
+        <location filename="window.cpp" line="336"/>
         <source>show this tip further ?</source>
         <translation>Diesen Tipp weiterhin anzeigen ?</translation>
     </message>
@@ -247,12 +262,12 @@ Konfiguration wird nicht geschrieben</translation>
         <translation type="obsolete">STRG+Q</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="275"/>
+        <location filename="window.cpp" line="335"/>
         <source>tip</source>
         <translation>Tipp</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="114"/>
+        <location filename="window.cpp" line="270"/>
         <source>skilltqueue</source>
         <translation>SkillQueue</translation>
     </message>
@@ -326,12 +341,12 @@ Spieler: %2</translation>
         <translation type="obsolete">Letzter Eintrag in der SkillQueue wird in weniger als einem Tag enden.</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="149"/>
+        <location filename="queue.cpp" line="150"/>
         <source>collapse</source>
         <translation>kürzen</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="142"/>
+        <location filename="queue.cpp" line="143"/>
         <source>expand</source>
         <translation>erweitern</translation>
     </message>
@@ -341,20 +356,20 @@ Spieler: %2</translation>
     <message>
         <location filename="training.cpp" line="289"/>
         <source>Skilltraining &quot;%1&quot; completed.</source>
-        <translation>Skill Training &quot;%1&quot; abgeschlossen.</translation>
+        <translation type="obsolete">Skill Training &quot;%1&quot; abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="271"/>
+        <location filename="training.cpp" line="272"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="272"/>
+        <location filename="training.cpp" line="273"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="213"/>
+        <location filename="training.cpp" line="214"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n Tag, </numerusform>
@@ -362,7 +377,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="214"/>
+        <location filename="training.cpp" line="215"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n Stunde, </numerusform>
@@ -370,7 +385,7 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="215"/>
+        <location filename="training.cpp" line="216"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n Minute, </numerusform>
@@ -378,18 +393,18 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="295"/>
+        <location filename="training.cpp" line="296"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="129"/>
+        <location filename="training.cpp" line="130"/>
         <source>%1</source>
         <comment>endTimeStr in downtime</comment>
         <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="130"/>
+        <location filename="training.cpp" line="131"/>
         <source>%1</source>
         <comment>endTimeStr ! in downtime</comment>
         <translation>%1</translation>
@@ -400,7 +415,7 @@ Spieler: %2</translation>
         <translation type="obsolete">Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="216"/>
+        <location filename="training.cpp" line="217"/>
         <source>%n s(s)</source>
         <translation>
             <numerusform>%n Sekunde</numerusform>
@@ -408,19 +423,52 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="58"/>
+        <location filename="training.cpp" line="59"/>
         <source>copy to clipboard</source>
         <translation>in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="95"/>
+        <location filename="training.cpp" line="96"/>
         <source>Info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="training.cpp" line="95"/>
+        <location filename="training.cpp" line="96"/>
         <source>copyed to clipboard</source>
         <translation>in die Zwischenablage kopiert</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="290"/>
+        <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot;.</source>
+        <translation>&quot;%1&quot; hat das Training &quot;%2&quot; abgeschlossen.</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="296"/>
+        <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot; soon.</source>
+        <translation>&quot;%1&quot; hat das Training &quot;%2&quot; bald abgeschlossen.</translation>
+    </message>
+    <message>
+        <location filename="training.cpp" line="272"/>
+        <source>There is currently no skill in Training for &quot;%1&quot;!</source>
+        <translation>Es befindet sich momentan kein Skill im Training für &quot;%1&quot;!</translation>
+    </message>
+</context>
+<context>
+    <name>StringInput</name>
+    <message>
+        <location filename="apiInput.cpp" line="30"/>
+        <source>new account</source>
+        <translation>neuer Account</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="41"/>
+        <source>&amp;cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="apiInput.cpp" line="55"/>
+        <source>insert_accountname_here</source>
+        <translation>Account_Name_hier_eingeben</translation>
     </message>
 </context>
 <context>

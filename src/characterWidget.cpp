@@ -19,15 +19,16 @@
 
 #include "characterWidget.h"
 
-CharacterWidget::CharacterWidget(QString name, ConfigHandler *c, QWidget * parent)
-        : QDockWidget(name, parent)
+CharacterWidget::CharacterWidget(QString name, QString acc, ConfigHandler *c, QWidget * parent)
+        : QDockWidget(name + " - " + acc, parent)
 {
 	conf = c;
+	account = acc;
 	content  = new QLabel(this);
 	content->setMargin(3);
 	content->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 	setWidget(content);
-	characterInfo = new WebDoc("http://api.eve-online.com/char/CharacterSheet.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/CharacterSheet.xml.aspx"));
+	characterInfo = new WebDoc("http://api.eve-online.com/char/CharacterSheet.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/CharacterSheet.xml.aspx." + account + ".cache"));
 	connect(characterInfo, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 }
 
@@ -62,8 +63,8 @@ void CharacterWidget::onWebDoc(bool ok)
 void CharacterWidget::reload()
 {
 	characterInfo->get(QString("?userID=%1&apiKey=%2&characterID=%3")
-					.arg(conf->loadApiInfo().userID)
-					.arg(conf->loadApiInfo().apiKey)
-					.arg(conf->loadApiInfo().characterID)
+					.arg(conf->loadApiInfo(account).userID)
+					.arg(conf->loadApiInfo(account).apiKey)
+					.arg(conf->loadApiInfo(account).characterID)
 	);
 }

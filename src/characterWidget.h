@@ -29,12 +29,13 @@ class CharacterWidget : public QDockWidget
 {
 Q_OBJECT
 public:
-	CharacterWidget(QString, ConfigHandler*, QWidget * parent =0);
+	CharacterWidget(QString, QString, ConfigHandler*, QWidget * parent =0);
 	virtual ~CharacterWidget();
 private:
 	ConfigHandler *conf;
 	QLabel *content;
 	WebDoc *characterInfo;
+	QString account;
 	QString getTitle();
 private slots:
 	void onWebDoc(bool);

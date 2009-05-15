@@ -23,13 +23,14 @@
 #define LESS "<<<"
 #define MORE ">>>"
 
-SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc *q, QString name, QWidget* parent)
-        : QDockWidget(name, parent)
+SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, QString name, QString acc, QWidget* parent)
+        : QDockWidget(name + " - " + acc, parent)
 {
 	conf = c;
 	tray = ico;
-	queue = q;
 	skillTree = t;
+	account = acc;
+	queue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
 	
 	skillTreeAvailable = false;
 	skillTree->get();
@@ -79,9 +80,9 @@ void SkillQueue::reload()
 	if(skillTreeAvailable)
 	{
 		queue->get(QString("?userID=%1&apiKey=%2&characterID=%3")
-						.arg(conf->loadApiInfo().userID)
-						.arg(conf->loadApiInfo().apiKey)
-						.arg(conf->loadApiInfo().characterID)
+						.arg(conf->loadApiInfo(account).userID)
+						.arg(conf->loadApiInfo(account).apiKey)
+						.arg(conf->loadApiInfo(account).characterID)
 						);
 	}
 	else

@@ -19,15 +19,16 @@
 
 #include "training.h"
 
-SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, WebDoc *q, QString name, QWidget* parent)
-        : QDockWidget(name, parent)
+SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, QString name, QString acc, QWidget* parent)
+        : QDockWidget(name + " - " + acc, parent)
 {
 	conf = c;
 	tray = ico;
+	account = acc;
 
 	todoTimeStringList = new QStringList();
 	skillTree = t;
-	characterTraining = q;
+	characterTraining = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
 
 	clipboard = QApplication::clipboard();
 
@@ -107,9 +108,9 @@ void SkillTraining::reload()
 	{
 		sTimer->stop();
 		characterTraining->get(QString("?userID=%1&apiKey=%2&characterID=%3")
-						.arg(conf->loadApiInfo().userID)
-						.arg(conf->loadApiInfo().apiKey)
-						.arg(conf->loadApiInfo().characterID)
+						.arg(conf->loadApiInfo(account).userID)
+						.arg(conf->loadApiInfo(account).apiKey)
+						.arg(conf->loadApiInfo(account).characterID)
 						);
 	}
 	else
@@ -268,7 +269,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		{
 			el->clear();
 			progressBar->reset();
-			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training!"), QSystemTrayIcon::NoIcon, 60000 );
+			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training for \"%1\"!").arg(account), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
 			tray->setIcon(QIcon(":/appicon_warn"));
 		}
@@ -286,13 +287,13 @@ void SkillTraining::onSkillTreeDone(bool ok)
 
 void SkillTraining::onSkillEndTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" completed.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("\"%1\" has completed Skilltraining \"%2\".").arg(account).arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
 	skillEndTimer->singleShot(60000, this, SLOT(reload())); // reload after 1 minute
 }
 
 void SkillTraining::onPreNotifyTimer()
 {
-	tray->showMessage ( tr("Skilltraining"), tr("Skilltraining \"%1\" finished soon.").arg(skillLabel->text()), QSystemTrayIcon::NoIcon, 60000 );
+	tray->showMessage ( tr("Skilltraining"), tr("\"%1\" has completed Skilltraining \"%2\" soon.").arg(account).arg(skillLabel->text()).arg(account), QSystemTrayIcon::NoIcon, 60000 );
 }
 
 void SkillTraining::showProgressBar(bool b)

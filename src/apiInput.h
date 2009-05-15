@@ -26,9 +26,30 @@
 #include <QLabel>
 #include <QString>
 #include <QGridLayout>
+#include <QValidator>
+#include <QRegExp>
 
 #include "configuration.h"
 #include "webDoc.h"
+
+class StringInput : public QDialog
+{
+Q_OBJECT
+public:
+	StringInput(QStringList, QWidget* = 0);
+	virtual ~StringInput();
+	QString getVal();
+private:
+	QValidator *validator;
+	QStringList list;
+	QString val;
+	QLabel *text;
+	QLineEdit *e;
+	QPushButton *okButton, *cancelButton;
+	QGridLayout *layout;
+private slots:
+	void onOkClick();
+};
 
 class ApiInput : public QDialog
 {
@@ -37,13 +58,14 @@ public:
 	ApiInput(QString, ConfigHandler*, QWidget* = 0);
 	virtual ~ApiInput();
 private:
+	QStringList *accs;
 	ConfigHandler *conf;
 	WebDoc *characters;
 	QDomDocument *doc;
-	QPushButton *okButton, *cancelButton, *connectButton;
-	QLabel *lUserID, *lApiKey, *lCharacterID, *lText;
+	QPushButton *okButton, *cancelButton, *connectButton, *newButton, *deleteButton;
+	QLabel *lUserID, *lApiKey, *lCharacterID, *lText, *lAccount;
 	QLineEdit *eUserID, *eApiKey;
-	QComboBox *characterSelect;
+	QComboBox *characterSelect, *accountSelect;
 	QGridLayout *layout;
 	bool gotData;
 	void redel(QWidget*);
@@ -53,6 +75,9 @@ private slots:
 	void onOkClick();
 	void onConnectClick();
 	void onCharactersDocDone(bool);
+	void handleAccountSelect(QString);
+	void onNewClick();
+	void onDeleteClick();
 };
 
 

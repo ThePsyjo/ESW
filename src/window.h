@@ -29,6 +29,7 @@
 #include <QStyleFactory>
 #include <QApplication>
 #include <QCloseEvent>
+#include <QList>
 
 #include "configuration.h"
 #include "apiInput.h"
@@ -53,15 +54,16 @@ private:
 	QSystemTrayIcon *trayIcon;
 	QMenu *trayIconMenu;
 	ConfigHandler *config;
-	SkillTraining *trainingWidget;
-	SkillQueue *queueWidget;
+	QList<SkillTraining*> *trainingWidget;
+	QList<SkillQueue*> *queueWidget;
+	QList<CharacterWidget*> *characterWidget;
 	SyncWidget *syncWidget;
 	ServerStatWidget *serverStat;
-	CharacterWidget *characterWidget;
 	QTimer *hTimer;
 	QStatusBar *statusBar;
-	WebDoc *skillTree, *skillQueue;
+	WebDoc *skillTree;
 	QWidget *dummy;
+	int accs;
 private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();

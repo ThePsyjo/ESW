@@ -104,16 +104,30 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIcon->setContextMenu(trayIconMenu);
 
         skillTree = new WebDoc("http://api.eve-online.com/eve/SkillTree.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/SkillTree.xml.aspx"));
-	skillQueue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx"));
 
-	trainingWidget = new SkillTraining(config, trayIcon, skillTree, skillQueue, tr("skilltraining"), this);
-	addDockWidget(Qt::TopDockWidgetArea, trainingWidget);
-	trainingWidget->showProgressBar(config->loadProgressBar());
-	trainingWidget->setObjectName("toolbar_training");
+//CharacterWidget, SkillTraining, SkillQueue for each char ////////////////////////////////////////////
+	characterWidget = new QList<CharacterWidget*>;
+	trainingWidget = new QList<SkillTraining*>;
+	queueWidget = new QList<SkillQueue*>;
 
-	queueWidget = new SkillQueue(config, trayIcon, skillTree, skillQueue, tr("skilltqueue"), this);
-	addDockWidget(Qt::TopDockWidgetArea, queueWidget);
-	queueWidget->setObjectName("toolbar_skillqueue");
+	accs = config->loadAccounts().count();
+
+	for(int i = 0; i < accs; i++)
+	{
+		characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
+		addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
+		characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
+
+		trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+		addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
+		trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
+		trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
+
+		queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+		addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
+		queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
+	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
 	addDockWidget(Qt::TopDockWidgetArea, syncWidget);
@@ -124,10 +138,6 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	serverStat->setObjectName("toolbar_serverstats");
 	addDockWidget(Qt::TopDockWidgetArea, serverStat);
 
-	characterWidget = new CharacterWidget(tr("Character"), config, this);
-	addDockWidget(Qt::TopDockWidgetArea, characterWidget);
-	characterWidget->setObjectName("toolbar_character");
-
 	restoreState(config->loadState());
 	setVisible(config->loadIsVisible());
 	if(config->loadOntop())setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
@@ -135,7 +145,8 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	if(config->loadAutoSync())
 	{
 		serverStat->reload();
-		characterWidget->reload();
+		for(int i = 0; i < accs; i++)
+			characterWidget->at(i)->reload();
 		hTimer->start();
 	}
 	adjustSize();
@@ -178,7 +189,11 @@ void MainWindow::onAutoSyncAction(bool b)
 
 void MainWindow::onShowProgressBarAction(bool b)
 {
-	trainingWidget->showProgressBar(b);
+	for(int i = 0; i < accs; i++)
+	{
+		trainingWidget->at(i)->reload();
+		trainingWidget->at(i)->showProgressBar(b);
+	}
 	config->saveProgressBar(b);
 }
 
@@ -218,17 +233,62 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::handleInputApiAction()
 {
+	QStringList l = config->loadAccounts();
 	ApiInput input(tr("API"), config, this);
-	input.show();
 	if(input.exec())
+	{
+		/*
+		qDebug() << "len " << characterWidget->count();
+		qDebug() << "len " << trainingWidget->count();
+		qDebug() << "len " << queueWidget->count();
+		*/
+		for(int i = accs-1; i >= 0; i--)
+		{
+		//	qDebug() << "del " << i;
+			characterWidget->at(i)->deleteLater();
+			characterWidget->removeAt(i);
+			trainingWidget->at(i)->deleteLater();
+			trainingWidget->removeAt(i);
+			queueWidget->at(i)->deleteLater();
+			queueWidget->removeAt(i);
+		}
+
+		accs = config->loadAccounts().count();
+		
+		for(int i = 0; i < accs; i++)
+		{
+		//	qDebug() << "create " << i;
+			characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
+			addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
+			characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
+
+			trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+			addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
+			trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
+			trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
+
+			queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+			addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
+			queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
+		}
+		/*
+		qDebug() << "len " << characterWidget->count();
+		qDebug() << "len " << trainingWidget->count();
+		qDebug() << "len " << queueWidget->count();
+		qDebug() << "----------------";
+		*/
 		onHTimer();
+	}
 }
 
 void MainWindow::onHTimer()
 {
-	trainingWidget->reload();
 	serverStat->reload();
-	characterWidget->reload();
+	for(int i = 0; i < accs; i++)
+	{
+		characterWidget->at(i)->reload();
+		trainingWidget->at(i)->reload();
+	}
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();
 	statusBar->showMessage(tr("last update @ %1.").arg(QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")), 0);

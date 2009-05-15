@@ -57,7 +57,34 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 		doc->appendChild(root);
 		QMessageBox::information(NULL, "info", tr("%1 created in %2.").arg(fileName).arg(f->fileName()));
 	}
+	cleanup();
 };
+
+void ConfigHandler::cleanup()
+{
+	bool found;
+	QStringList nodes;
+	nodes << "userID" << "characterID" << "apiKey";
+	foreach(QString n, nodes)
+	{
+		QDomNodeList l = doc->documentElement().firstChildElement(n).childNodes();
+		for (int i = 0; i < l.size(); i++)
+		{
+			found = false;
+			foreach(QString s, loadAccounts())
+				if(l.at(i).nodeName() == s )
+				{
+					found = true;
+					break;
+				}
+			if(!found) 
+			{
+				qDebug() << "clear " << l.at(i).nodeName();
+				doc->documentElement().firstChildElement(n).removeChild(l.at(i));
+			}
+		}
+	}
+}
 
 void ConfigHandler::saveFile()
 {
@@ -128,18 +155,19 @@ void ConfigHandler::saveAccounts(QStringList v)
 //ApiInfo//////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveApiInfo(apiInfo v)
 {
-	genTag ( doc->documentElement(), "userID" ).setAttribute("value", v.userID);
-	genTag ( doc->documentElement(), "apiKey" ).setAttribute("value", v.apiKey);
-	genTag ( doc->documentElement(), "characterID" ).setAttribute("value", v.characterID);
+	genTag ( genTag ( doc->documentElement(), "userID" ), v.name).setAttribute("value", v.userID);
+	genTag ( genTag ( doc->documentElement(), "apiKey" ), v.name).setAttribute("value", v.apiKey);
+	genTag ( genTag ( doc->documentElement(), "characterID" ), v.name).setAttribute("value", v.characterID);
 	saveFile();
 }
 
-apiInfo ConfigHandler::loadApiInfo()
+apiInfo ConfigHandler::loadApiInfo(QString s)
 {
 	apiInfo v;
-	v.userID = genTag ( doc->documentElement(), "userID" ).attribute("value").toInt();
-	v.apiKey = genTag ( doc->documentElement(), "apiKey" ).attribute("value");
-	v.characterID = genTag ( doc->documentElement(), "characterID" ).attribute("value").toInt();
+	v.name = s;
+	v.userID	= genTag ( genTag ( doc->documentElement(), "userID" ), v.name).attribute("value").toInt();
+	v.apiKey 	= genTag ( genTag ( doc->documentElement(), "apiKey" ), v.name).attribute("value");
+	v. characterID	= genTag ( genTag ( doc->documentElement(), "characterID" ), v.name).attribute("value").toInt();
 	return v;
 }
 

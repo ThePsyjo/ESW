@@ -29,6 +29,7 @@
 class apiInfo
 {
 public:
+	QString name;
 	int userID;
 	QString apiKey;
 	int characterID;
@@ -45,6 +46,7 @@ private:
 	QTimer *timer;
 	void saveBool(QString, QString, bool);
 	bool loadBool(QString, QString, QString);
+	void cleanup();
 public:
 	ConfigHandler(QString, QString);
 	virtual ~ConfigHandler();
@@ -54,7 +56,7 @@ public:
 	QString loadStyle();
 	void saveStyle(QString);
 	
-	apiInfo loadApiInfo();
+	apiInfo loadApiInfo(QString);
 	void saveApiInfo(apiInfo);
 
 	bool loadIsVisible();

@@ -34,7 +34,7 @@ class SkillQueue : public QDockWidget
 {
 Q_OBJECT
 public:
-	SkillQueue(ConfigHandler*, QSystemTrayIcon*, WebDoc*, WebDoc*, QString name, QWidget* parent =0);
+	SkillQueue(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillQueue();
 private:
 	ConfigHandler *conf;
@@ -45,7 +45,7 @@ private:
 	QDateTime *startTime, *endTime;
 	bool skillTreeAvailable, fullView;
 	QString skillName(int);
-	QString content;
+	QString content, account;
 	QWidget *contentWidget;
 	QVBoxLayout *layout;
 	QPushButton *fullViewButton;
