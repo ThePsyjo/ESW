@@ -78,10 +78,7 @@ void ConfigHandler::cleanup()
 					break;
 				}
 			if(!found) 
-			{
-				qDebug() << "clear " << l.at(i).nodeName();
 				doc->documentElement().firstChildElement(n).removeChild(l.at(i));
-			}
 		}
 	}
 }
