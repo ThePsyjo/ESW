@@ -245,10 +245,13 @@ void MainWindow::handleInputApiAction()
 		for(int i = accs-1; i >= 0; i--)
 		{
 		//	qDebug() << "del " << i;
+			removeDockWidget(characterWidget->at(i));
 			characterWidget->at(i)->deleteLater();
 			characterWidget->removeAt(i);
+			removeDockWidget(trainingWidget->at(i));
 			trainingWidget->at(i)->deleteLater();
 			trainingWidget->removeAt(i);
+			removeDockWidget(queueWidget->at(i));
 			queueWidget->at(i)->deleteLater();
 			queueWidget->removeAt(i);
 		}
