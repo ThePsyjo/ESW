@@ -110,9 +110,9 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trainingWidget = new QList<SkillTraining*>;
 	queueWidget = new QList<SkillQueue*>;
 
-	accs = config->loadAccounts().count();
+	accs = config->loadAccounts();
 
-	for(int i = 0; i < accs; i++)
+	for(int i = 0; i < accs.count(); i++)
 	{
 		characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
 		addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
@@ -145,7 +145,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	if(config->loadAutoSync())
 	{
 		serverStat->reload();
-		for(int i = 0; i < accs; i++)
+		for(int i = 0; i < accs.count(); i++)
 			characterWidget->at(i)->reload();
 		hTimer->start();
 	}
@@ -189,7 +189,7 @@ void MainWindow::onAutoSyncAction(bool b)
 
 void MainWindow::onShowProgressBarAction(bool b)
 {
-	for(int i = 0; i < accs; i++)
+	for(int i = 0; i < accs.count(); i++)
 	{
 		trainingWidget->at(i)->reload();
 		trainingWidget->at(i)->showProgressBar(b);
@@ -231,6 +231,19 @@ void MainWindow::handleTrayIcon(QSystemTrayIcon::ActivationReason reason)
 
 }
 
+template <typename T> void MainWindow::delDockWidget(QList<T*>* w, int i)
+{
+	removeDockWidget(w->at(i));
+	w->at(i)->deleteLater();
+	w->removeAt(i);
+}
+
+template <typename T> void MainWindow::setupDockWidget(QList<T*>* w, int i)
+{
+	addDockWidget(Qt::TopDockWidgetArea, w->at(i));
+	w->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
+}
+
 void MainWindow::handleInputApiAction()
 {
 	QStringList l = config->loadAccounts();
@@ -242,43 +255,35 @@ void MainWindow::handleInputApiAction()
 		qDebug() << "len " << trainingWidget->count();
 		qDebug() << "len " << queueWidget->count();
 		*/
-		if( accs > config->loadAccounts().count() )
+		if( accs.count() > config->loadAccounts().count() )
 		{
-			for(int i = accs-1; i >= config->loadAccounts().count(); i--)
+			for(int i = accs.count()-1; i >= config->loadAccounts().count(); i--)
 			{
 			//	qDebug() << "del " << i;
-				removeDockWidget(characterWidget->at(i));
-				characterWidget->at(i)->deleteLater();
-				characterWidget->removeAt(i);
-				removeDockWidget(trainingWidget->at(i));
-				trainingWidget->at(i)->deleteLater();
-				trainingWidget->removeAt(i);
-				removeDockWidget(queueWidget->at(i));
-				queueWidget->at(i)->deleteLater();
-				queueWidget->removeAt(i);
+				delDockWidget<CharacterWidget>(characterWidget, i);
+				delDockWidget<SkillTraining>(trainingWidget, i);
+				delDockWidget<SkillQueue>(queueWidget, i);
 			}
 		}
 		else
 		{		
-			for(int i = accs; i < config->loadAccounts().count(); i++)
+			for(int i = accs.count(); i < config->loadAccounts().count(); i++)
 			{
 			//	qDebug() << "create " << i;
 				characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
-				addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
-				characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
+				setupDockWidget<CharacterWidget>(characterWidget, i);
 
 				trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
-				addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
-				trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
+				setupDockWidget<SkillTraining>(trainingWidget, i);
 				trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
 
 				queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
-				addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
-				queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
+				setupDockWidget<SkillQueue>(queueWidget, i);
 			}
 		}
+
 		// add AND deleting account needs an reboot ...
-		accs = config->loadAccounts().count();
+		accs = config->loadAccounts();
 		/*
 		qDebug() << "len " << characterWidget->count();
 		qDebug() << "len " << trainingWidget->count();
@@ -292,7 +297,7 @@ void MainWindow::handleInputApiAction()
 void MainWindow::onHTimer()
 {
 	serverStat->reload();
-	for(int i = 0; i < accs; i++)
+	for(int i = 0; i < accs.count(); i++)
 	{
 		characterWidget->at(i)->reload();
 		trainingWidget->at(i)->reload();
