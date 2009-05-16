@@ -242,38 +242,43 @@ void MainWindow::handleInputApiAction()
 		qDebug() << "len " << trainingWidget->count();
 		qDebug() << "len " << queueWidget->count();
 		*/
-		for(int i = accs-1; i >= 0; i--)
+		if( accs > config->loadAccounts().count() )
 		{
-		//	qDebug() << "del " << i;
-			removeDockWidget(characterWidget->at(i));
-			characterWidget->at(i)->deleteLater();
-			characterWidget->removeAt(i);
-			removeDockWidget(trainingWidget->at(i));
-			trainingWidget->at(i)->deleteLater();
-			trainingWidget->removeAt(i);
-			removeDockWidget(queueWidget->at(i));
-			queueWidget->at(i)->deleteLater();
-			queueWidget->removeAt(i);
+			for(int i = accs-1; i >= config->loadAccounts().count(); i--)
+			{
+			//	qDebug() << "del " << i;
+				removeDockWidget(characterWidget->at(i));
+				characterWidget->at(i)->deleteLater();
+				characterWidget->removeAt(i);
+				removeDockWidget(trainingWidget->at(i));
+				trainingWidget->at(i)->deleteLater();
+				trainingWidget->removeAt(i);
+				removeDockWidget(queueWidget->at(i));
+				queueWidget->at(i)->deleteLater();
+				queueWidget->removeAt(i);
+			}
 		}
+		else
+		{		
+			for(int i = accs; i < config->loadAccounts().count(); i++)
+			{
+			//	qDebug() << "create " << i;
+				characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
+				addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
+				characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
 
+				trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+				addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
+				trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
+				trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
+
+				queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+				addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
+				queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
+			}
+		}
+		// add AND deleting account needs an reboot ...
 		accs = config->loadAccounts().count();
-		
-		for(int i = 0; i < accs; i++)
-		{
-		//	qDebug() << "create " << i;
-			characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
-			addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
-			characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
-
-			trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
-			addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
-			trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
-			trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
-
-			queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
-			addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
-			queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
-		}
 		/*
 		qDebug() << "len " << characterWidget->count();
 		qDebug() << "len " << trainingWidget->count();
@@ -291,6 +296,7 @@ void MainWindow::onHTimer()
 	{
 		characterWidget->at(i)->reload();
 		trainingWidget->at(i)->reload();
+		queueWidget->at(i)->reload();
 	}
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();

@@ -268,6 +268,11 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 		else
 		{
 			el->clear();
+			skillLabel->clear();
+			spLabel	->clear();
+			etaLabel->clear();
+			endTimeStrLabel->clear();
+			rateLabel->clear();
 			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training for \"%1\"!").arg(account), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(tr("There is currently no skill in Training!"));
