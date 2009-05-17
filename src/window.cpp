@@ -113,20 +113,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	accs = config->loadAccounts();
 
 	for(int i = 0; i < accs.count(); i++)
-	{
-		characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
-		addDockWidget(Qt::TopDockWidgetArea, characterWidget->at(i));
-		characterWidget->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
-
-		trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
-		addDockWidget(Qt::TopDockWidgetArea, trainingWidget->at(i));
-		trainingWidget->at(i)->showProgressBar(config->loadProgressBar());
-		trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
-
-		queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
-		addDockWidget(Qt::TopDockWidgetArea, queueWidget->at(i));
-		queueWidget->at(i)->setObjectName("toolbar_skillqueue"+config->loadAccounts().at(i));
-	}
+		setupDockWidgets(i);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	syncWidget = new SyncWidget(tr("next sync in"), "mm:ss", this);
@@ -255,14 +242,14 @@ void MainWindow::setupDockWidgets(int i)
 {
 //	qDebug() << "create " << i;
 	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
-	setupDockWidget<CharacterWidget>(characterWidget, i);
+	setupDockWidget(characterWidget, i);
 
 	trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
-	setupDockWidget<SkillTraining>(trainingWidget, i);
+	setupDockWidget(trainingWidget, i);
 	trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
 
 	queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
-	setupDockWidget<SkillQueue>(queueWidget, i);
+	setupDockWidget(queueWidget, i);
 }
 
 void MainWindow::handleInputApiAction()
