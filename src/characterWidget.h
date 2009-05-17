@@ -31,6 +31,7 @@ Q_OBJECT
 public:
 	CharacterWidget(QString, QString, ConfigHandler*, QWidget * parent =0);
 	virtual ~CharacterWidget();
+	QString getAccount();
 private:
 	ConfigHandler *conf;
 	QLabel *content;

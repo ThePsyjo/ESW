@@ -75,6 +75,12 @@ SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, QStrin
 
 SkillQueue::~SkillQueue(){};
 
+QString SkillQueue::getAccount()
+{
+        return account;
+}
+
+
 void SkillQueue::reload()
 {
 	if(skillTreeAvailable)

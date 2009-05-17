@@ -91,6 +91,12 @@ SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, 
 
 SkillTraining::~SkillTraining(){};
 
+QString SkillTraining::getAccount()
+{
+        return account;
+}
+
+
 void SkillTraining::onClipBoardButtonClicked()
 {
 	tray->showMessage ( tr("Info"), tr("copyed to clipboard"), QSystemTrayIcon::NoIcon, 5000 );

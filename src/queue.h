@@ -36,6 +36,7 @@ Q_OBJECT
 public:
 	SkillQueue(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillQueue();
+	QString getAccount();
 private:
 	ConfigHandler *conf;
 	QSystemTrayIcon *tray;

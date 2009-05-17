@@ -38,6 +38,7 @@ Q_OBJECT
 public:
 	SkillTraining(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillTraining();
+	QString getAccount();
 private:
 	ConfigHandler *conf;
 	WebDoc *skillTree, *characterTraining;

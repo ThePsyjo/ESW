@@ -244,52 +244,66 @@ template <typename T> void MainWindow::setupDockWidget(QList<T*>* w, int i)
 	w->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
 }
 
+void MainWindow::delDockWidgets(int i)
+{
+//	qDebug() << "del " << i;
+	delDockWidget(characterWidget, i);
+	delDockWidget(trainingWidget, i);
+	delDockWidget(queueWidget, i);
+}
+void MainWindow::setupDockWidgets(int i)
+{
+//	qDebug() << "create " << i;
+	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
+	setupDockWidget<CharacterWidget>(characterWidget, i);
+
+	trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+	setupDockWidget<SkillTraining>(trainingWidget, i);
+	trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
+
+	queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+	setupDockWidget<SkillQueue>(queueWidget, i);
+}
+
 void MainWindow::handleInputApiAction()
 {
 	QStringList l = config->loadAccounts();
 	ApiInput input(tr("API"), config, this);
 	if(input.exec())
 	{
-		/*
-		qDebug() << "len " << characterWidget->count();
-		qDebug() << "len " << trainingWidget->count();
-		qDebug() << "len " << queueWidget->count();
-		*/
+		bool found;
 		if( accs.count() > config->loadAccounts().count() )
 		{
 			for(int i = accs.count()-1; i >= config->loadAccounts().count(); i--)
-			{
-			//	qDebug() << "del " << i;
-				delDockWidget<CharacterWidget>(characterWidget, i);
-				delDockWidget<SkillTraining>(trainingWidget, i);
-				delDockWidget<SkillQueue>(queueWidget, i);
-			}
+				delDockWidgets(i);
 		}
 		else
 		{		
 			for(int i = accs.count(); i < config->loadAccounts().count(); i++)
-			{
-			//	qDebug() << "create " << i;
-				characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
-				setupDockWidget<CharacterWidget>(characterWidget, i);
+				setupDockWidgets(i);
+		}
+		
+		accs = config->loadAccounts();
 
-				trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
-				setupDockWidget<SkillTraining>(trainingWidget, i);
-				trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
-
-				queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
-				setupDockWidget<SkillQueue>(queueWidget, i);
+		// search for accs[i] matches all of the widgets accounts
+		// if applicable recreate them
+		for(int i = 0; i < accs.count(); i++)
+		{
+			found = false;
+			foreach(QString s, accs)
+				if(characterWidget->at(i)->getAccount() == s &&
+				    trainingWidget->at(i)->getAccount() == s && 
+				       queueWidget->at(i)->getAccount() == s )
+				{
+					found = true;
+					break;
+				}
+			if(!found)
+			{	
+				delDockWidgets(i);
+				setupDockWidgets(accs.count()-1);
 			}
 		}
-
-		// add AND deleting account needs an reboot ...
-		accs = config->loadAccounts();
-		/*
-		qDebug() << "len " << characterWidget->count();
-		qDebug() << "len " << trainingWidget->count();
-		qDebug() << "len " << queueWidget->count();
-		qDebug() << "----------------";
-		*/
 		onHTimer();
 	}
 }

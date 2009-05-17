@@ -34,6 +34,11 @@ CharacterWidget::CharacterWidget(QString name, QString acc, ConfigHandler *c, QW
 
 CharacterWidget::~CharacterWidget(){}
 
+QString CharacterWidget::getAccount()
+{
+	return account;
+}
+
 QString CharacterWidget::getTitle()
 {
 	QDomNodeList l =  characterInfo->document()->documentElement().elementsByTagName("row");

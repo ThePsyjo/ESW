@@ -63,9 +63,11 @@ private:
 	QStatusBar *statusBar;
 	WebDoc *skillTree;
 	QWidget *dummy;
-	QStringList accs;
+	QStringList accs, accs_before;
 	template <typename T> void delDockWidget(QList<T*>*, int);
 	template <typename T> void setupDockWidget(QList<T*>*, int);
+	void delDockWidgets(int);
+	void setupDockWidgets(int);
 private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();
