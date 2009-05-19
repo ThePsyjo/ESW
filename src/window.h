@@ -39,6 +39,7 @@
 #include "serverStatWidget.h"
 #include "characterWidget.h"
 #include "webDoc.h"
+#include "trayManager.h"
 
 class MainWindow : public QMainWindow
 {
@@ -68,6 +69,7 @@ private:
 	template <typename T> void setupDockWidget(QList<T*>*, int);
 	void delDockWidgets(int);
 	void setupDockWidgets(int);
+	TrayManager *trayMgr;
 private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();

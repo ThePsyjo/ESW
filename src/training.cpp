@@ -19,11 +19,11 @@
 
 #include "training.h"
 
-SkillTraining::SkillTraining(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, QString name, QString acc, QWidget* parent)
+SkillTraining::SkillTraining(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QString name, QString acc, QWidget* parent)
         : QDockWidget(name + " - " + acc, parent)
 {
 	conf = c;
-	tray = ico;
+	tray = traymgr;
 	account = acc;
 
 	todoTimeStringList = new QStringList();
@@ -223,7 +223,7 @@ void SkillTraining::onSTimer()
 		if(cnt >= 0)	eta += tr("%n s(s)",   "", todoTimeStringList->at(2).toInt());
 		etaLabel->setText(eta);
 
-		tray->setToolTip(skillLabel->text() + "\n" + spLabel->text() + "\n" + eta);
+		tray->setToolTip(account, skillLabel->text() + "\n" + spLabel->text() + "\n" + eta);
 //	}
 }
 

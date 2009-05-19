@@ -40,7 +40,8 @@ HEADERS += src/window.h \
 	   src/syncWidget.h \
 	   src/serverStatWidget.h \
 	   src/characterWidget.h \
-	   src/queue.h
+	   src/queue.h \
+	   src/trayManager.h
 SOURCES += src/main.cpp \
            src/window.cpp \
 	   src/configuration.cpp \
@@ -50,7 +51,8 @@ SOURCES += src/main.cpp \
 	   src/syncWidget.cpp \
 	   src/serverStatWidget.cpp \
 	   src/characterWidget.cpp \
-	   src/queue.cpp
+	   src/queue.cpp \
+	   src/trayManager.cpp
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc

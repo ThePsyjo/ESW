@@ -21,7 +21,6 @@
 #define TRAINING_H
 
 #include <QLabel>
-#include <QSystemTrayIcon>
 #include <QDockWidget>
 #include <QProgressBar>
 #include <QGridLayout>
@@ -31,12 +30,13 @@
 
 #include "webDoc.h"
 #include "configuration.h"
+#include "trayManager.h"
 
 class SkillTraining : public QDockWidget
 {
 Q_OBJECT
 public:
-	SkillTraining(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
+	SkillTraining(ConfigHandler*, TrayManager*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillTraining();
 	QString getAccount();
 private:
@@ -54,7 +54,7 @@ private:
 	QString iToRoman(int);
 	double trainFactor;
 	double currentSP(), currentLevelSP(), lastSP(), destinationSP(), destinationLevelSP();
-	QSystemTrayIcon *tray;
+	TrayManager *tray;
 	QStringList *todoTimeStringList;
 	void genEndTime();
 	QWidget *contentWidget;

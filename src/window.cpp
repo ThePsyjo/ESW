@@ -94,6 +94,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	about->addAction("Qt", this,  SLOT(handleAboutQtAction()));
 
 	trayIcon = new QSystemTrayIcon(QIcon(":/appicon"), this);
+	trayMgr = new TrayManager (config, trayIcon);
 
 	connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(handleTrayIcon(QSystemTrayIcon::ActivationReason)));
 	if(config->loadShowTray()) trayIcon->show(); // only show when configured to show
@@ -244,7 +245,7 @@ void MainWindow::setupDockWidgets(int i)
 	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
 	setupDockWidget(characterWidget, i);
 
-	trainingWidget->insert(i, new SkillTraining(config, trayIcon, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+	trainingWidget->insert(i, new SkillTraining(config, trayMgr, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
 	setupDockWidget(trainingWidget, i);
 	trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
 
