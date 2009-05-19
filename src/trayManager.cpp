@@ -21,7 +21,7 @@
 
 TrayManager::TrayManager(ConfigHandler* c, QSystemTrayIcon* ico)
 {
-	icon = ico;
+	trayIcon = ico;
 	config = c;
 	array = new QMap<QString, QString>;
 
@@ -32,18 +32,21 @@ TrayManager::TrayManager(ConfigHandler* c, QSystemTrayIcon* ico)
 
 TrayManager::~TrayManager(){}
 
-//passthrough
-void TrayManager::showMessage(QString message, QString title, QSystemTrayIcon::MessageIcon icon , int time )
-{
-	icon->showMessage(title, message, icon, time);
-}
-
 void TrayManager::setToolTip(QString account, QString text )
 {
 	array->insert(account, text);
 	tipText.clear();
 	foreach(QString k, array->keys())
-		tipText.append("\n%1").arg(array->take(k));
+		tipText.append(QString("%1:\n%2\n\n").arg(k).arg(array->value(k)));
+	trayIcon->setToolTip(tipText);
+}
 
-	icon->setToolTip(tipText);
+//passthrough
+void TrayManager::showMessage(QString message, QString title, QSystemTrayIcon::MessageIcon icon , int time )
+{
+	trayIcon->showMessage(title, message, icon, time);
+}
+void TrayManager::setIcon(QIcon ico)
+{
+	trayIcon->setIcon(ico);
 }

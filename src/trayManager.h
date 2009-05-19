@@ -31,12 +31,13 @@ public:
 	TrayManager(ConfigHandler*, QSystemTrayIcon*);
 	virtual ~TrayManager();
 private:
-	QSystemTrayIcon *icon;
+	QSystemTrayIcon *trayIcon;
 	ConfigHandler *config;
 	QMap<QString, QString> *array;
 	QString tipText;
 public slots:
 	void setToolTip(QString, QString);
+	void setIcon(QIcon);
 	void showMessage(QString, QString, QSystemTrayIcon::MessageIcon, int );
 };
 

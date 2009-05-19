@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
 <context>
     <name>ApiInput</name>
     <message>
@@ -73,7 +72,7 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
 <context>
     <name>CharacterWidget</name>
     <message>
-        <location filename="characterWidget.cpp" line="54"/>
+        <location filename="characterWidget.cpp" line="59"/>
         <source>%1
 Member of %2
 Title %3
@@ -119,7 +118,7 @@ config will not be written</translation>
         <translation>&amp;File</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="103"/>
+        <location filename="window.cpp" line="104"/>
         <source>exit</source>
         <translation>exit</translation>
     </message>
@@ -129,7 +128,7 @@ config will not be written</translation>
         <translation>&amp;About</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="167"/>
+        <location filename="window.cpp" line="155"/>
         <source>about</source>
         <translation>about</translation>
     </message>
@@ -144,7 +143,7 @@ config will not be written</translation>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="237"/>
+        <location filename="window.cpp" line="259"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -154,27 +153,27 @@ config will not be written</translation>
         <translation>A&amp;ction</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="102"/>
+        <location filename="window.cpp" line="103"/>
         <source>update</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="132"/>
+        <location filename="window.cpp" line="120"/>
         <source>next sync in</source>
         <translation>next sync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="137"/>
+        <location filename="window.cpp" line="125"/>
         <source>server status</source>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="261"/>
+        <location filename="window.cpp" line="245"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="265"/>
+        <location filename="window.cpp" line="248"/>
         <source>skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -194,7 +193,7 @@ config will not be written</translation>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="294"/>
+        <location filename="window.cpp" line="310"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
@@ -219,7 +218,7 @@ config will not be written</translation>
         <translation>&amp;Style</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="162"/>
+        <location filename="window.cpp" line="150"/>
         <source>&lt;html&gt;%1 %2&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation>&lt;html&gt;%1 %2&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
@@ -229,7 +228,7 @@ config will not be written</translation>
         <translation>close to system&amp;tray</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="321"/>
+        <location filename="window.cpp" line="337"/>
         <source>%1 minimized.</source>
         <translation>%1 is now minimized to the systemtray.</translation>
     </message>
@@ -239,17 +238,17 @@ config will not be written</translation>
         <translation type="obsolete">Hide this tip in the future ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="336"/>
+        <location filename="window.cpp" line="352"/>
         <source>show this tip further ?</source>
         <translation>Show this tip further ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="335"/>
+        <location filename="window.cpp" line="351"/>
         <source>tip</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="270"/>
+        <location filename="window.cpp" line="252"/>
         <source>skilltqueue</source>
         <translation>SkillQueue</translation>
     </message>
@@ -323,12 +322,12 @@ Players: %2</translation>
         <translation type="obsolete">Last entry in skillqueue will end in less than a day.</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="150"/>
+        <location filename="queue.cpp" line="156"/>
         <source>collapse</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="143"/>
+        <location filename="queue.cpp" line="149"/>
         <source>expand</source>
         <translation></translation>
     </message>
@@ -341,17 +340,17 @@ Players: %2</translation>
         <translation type="obsolete">Skilltraining &quot;%1&quot; completed.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="272"/>
+        <location filename="training.cpp" line="283"/>
         <source>Warning</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="273"/>
+        <location filename="training.cpp" line="284"/>
         <source>There is currently no skill in Training!</source>
         <translation>There is currently no skill in Training!</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="214"/>
+        <location filename="training.cpp" line="220"/>
         <source>%n d(s), </source>
         <translation>
             <numerusform>%n day, </numerusform>
@@ -359,7 +358,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="215"/>
+        <location filename="training.cpp" line="221"/>
         <source>%n h(s), </source>
         <translation>
             <numerusform>%n hour, </numerusform>
@@ -367,7 +366,7 @@ Players: %2</translation>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="216"/>
+        <location filename="training.cpp" line="222"/>
         <source>%n m(s), </source>
         <translation>
             <numerusform>%n minute, </numerusform>
@@ -375,18 +374,18 @@ Players: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="296"/>
+        <location filename="training.cpp" line="307"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="130"/>
+        <location filename="training.cpp" line="136"/>
         <source>%1</source>
         <comment>endTimeStr in downtime</comment>
         <translation>&lt;font color=&quot;red&quot;&gt;%1 &lt;b&gt;DOWNTIME !&lt;/b&gt;&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="131"/>
+        <location filename="training.cpp" line="137"/>
         <source>%1</source>
         <comment>endTimeStr ! in downtime</comment>
         <translation>%1</translation>
@@ -397,7 +396,7 @@ Players: %2</translation>
         <translation type="obsolete">Skilltraining &quot;%1&quot; (%2) finished soon.</translation>
     </message>
     <message numerus="yes">
-        <location filename="training.cpp" line="217"/>
+        <location filename="training.cpp" line="223"/>
         <source>%n s(s)</source>
         <translation>
             <numerusform>%n second</numerusform>
@@ -410,27 +409,27 @@ Players: %2</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="training.cpp" line="96"/>
+        <location filename="training.cpp" line="102"/>
         <source>Info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="training.cpp" line="96"/>
+        <location filename="training.cpp" line="102"/>
         <source>copyed to clipboard</source>
         <translation>copied to clipboard</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="290"/>
+        <location filename="training.cpp" line="301"/>
         <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot;.</source>
         <translation>&quot;%1&quot; has completed Skilltraining &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="296"/>
+        <location filename="training.cpp" line="307"/>
         <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot; soon.</source>
         <translation>&quot;%1&quot; has completed Skilltraining &quot;%2&quot; soon.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="272"/>
+        <location filename="training.cpp" line="283"/>
         <source>There is currently no skill in Training for &quot;%1&quot;!</source>
         <translation>There is currently no skill in Training for &quot;%1&quot;!</translation>
     </message>
