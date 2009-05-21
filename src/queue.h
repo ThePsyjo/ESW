@@ -21,7 +21,6 @@
 #define QUEUE_H
 
 #include <QLabel>
-#include <QSystemTrayIcon>
 #include <QDockWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -29,17 +28,18 @@
 
 #include "webDoc.h"
 #include "configuration.h"
+#include "trayManager.h"
 
 class SkillQueue : public QDockWidget
 {
 Q_OBJECT
 public:
-	SkillQueue(ConfigHandler*, QSystemTrayIcon*, WebDoc*, QString name, QString, QWidget* parent =0);
+	SkillQueue(ConfigHandler*, TrayManager*, WebDoc*, QString name, QString, QWidget* parent =0);
 	virtual ~SkillQueue();
 	QString getAccount();
 private:
 	ConfigHandler *conf;
-	QSystemTrayIcon *tray;
+	TrayManager* tray;
 	WebDoc *skillTree, *queue;
 	QLabel *contentLabel;
 //	QTimer *preDayTimer;

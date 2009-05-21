@@ -38,7 +38,7 @@ private:
 public slots:
 	void setToolTip(QString, QString);
 	void setIcon(QIcon);
-	void showMessage(QString, QString, QSystemTrayIcon::MessageIcon, int );
+	void showMessage(QString, QString, QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::Information, int time = 10000 );
 };
 
 #endif

@@ -23,11 +23,11 @@
 #define LESS "<<<"
 #define MORE ">>>"
 
-SkillQueue::SkillQueue(ConfigHandler* c, QSystemTrayIcon* ico, WebDoc *t, QString name, QString acc, QWidget* parent)
+SkillQueue::SkillQueue(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QString name, QString acc, QWidget* parent)
         : QDockWidget(name + " - " + acc, parent)
 {
 	conf = c;
-	tray = ico;
+	tray = traymgr;
 	skillTree = t;
 	account = acc;
 	queue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));

@@ -249,7 +249,7 @@ void MainWindow::setupDockWidgets(int i)
 	setupDockWidget(trainingWidget, i);
 	trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
 
-	queueWidget->insert(i, new SkillQueue(config, trayIcon, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+	queueWidget->insert(i, new SkillQueue(config, trayMgr, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
 	setupDockWidget(queueWidget, i);
 }
 
@@ -334,7 +334,7 @@ void MainWindow::closeEvent ( QCloseEvent *event )
 			// watch for click on message
 			QTimer::singleShot(10000, this, SLOT(disconnectMinimizedTip()));
 			// disconnect watch after 10 secs
-			trayIcon->showMessage("", tr("%1 minimized.").arg(QApplication::applicationName()));
+			trayMgr->showMessage("", tr("%1 minimized.").arg(QApplication::applicationName()));
 		}
 	}
 }
