@@ -54,9 +54,9 @@ SkillQueue::SkillQueue(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QStrin
 	font.setBold(1);		// trashtype for bold font
 	fullViewButton->setFont(font);	//
 	connect(fullViewButton, SIGNAL(clicked()), this, SLOT(onFullViewButtonClick()));
-	conf->loadShowFullQueueView() ? fullViewButton->setText(LESS) : fullViewButton->setText(MORE);
-	conf->loadShowFullQueueView() ? fullViewButton->setToolTip(tr("collapse")) : fullViewButton->setToolTip(tr("expand"));
-	fullView = conf->loadShowFullQueueView();
+	conf->loadShowFullQueueView(account) ? fullViewButton->setText(LESS) : fullViewButton->setText(MORE);
+	conf->loadShowFullQueueView(account) ? fullViewButton->setToolTip(tr("collapse")) : fullViewButton->setToolTip(tr("expand"));
+	fullView = conf->loadShowFullQueueView(account);
 
 	contentLabel = new QLabel(contentWidget);
 	contentLabel->setTextFormat(Qt::RichText);
@@ -144,14 +144,14 @@ void SkillQueue::onFullViewButtonClick()
 	if(fullView)
 	{
 		fullView = false;
-		conf->saveShowFullQueueView(false);
+		conf->saveShowFullQueueView(account, false);
 		fullViewButton->setText(MORE);
 		fullViewButton->setToolTip(tr("expand"));
 	}
 	else
 	{
 		fullView = true;
-		conf->saveShowFullQueueView(true);
+		conf->saveShowFullQueueView(account, true);
 		fullViewButton->setText(LESS);
 		fullViewButton->setToolTip(tr("collapse"));
 	}

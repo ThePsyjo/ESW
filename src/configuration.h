@@ -44,8 +44,12 @@ private:
 	QDomElement genTag(QDomElement, QString);
 	bool tagCreated, doSave, change;
 	QTimer *timer;
+	//without account
 	void saveBool(QString, QString, bool);
 	bool loadBool(QString, QString, QString);
+	// with account
+	void saveBool(QString, QString, QString, bool);
+	bool loadBool(QString, QString, QString, QString);
 	void cleanup();
 public:
 	ConfigHandler(QString, QString);
@@ -83,8 +87,8 @@ public:
 	bool loadCloseToTrayTip();
 	void saveCloseToTrayTip(bool);
 
-	bool loadShowFullQueueView();
-	void saveShowFullQueueView(bool);
+	bool loadShowFullQueueView(QString);
+	void saveShowFullQueueView(QString, bool);
 
 	QStringList loadAccounts();
 	void saveAccounts(QStringList);

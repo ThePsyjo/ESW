@@ -64,7 +64,7 @@ void ConfigHandler::cleanup()
 {
 	bool found;
 	QStringList nodes;
-	nodes << "userID" << "characterID" << "apiKey";
+	nodes << "userID" << "characterID" << "apiKey" << "Options";
 	foreach(QString n, nodes)
 	{
 		QDomNodeList l = doc->documentElement().firstChildElement(n).childNodes();
@@ -168,6 +168,7 @@ apiInfo ConfigHandler::loadApiInfo(QString s)
 	return v;
 }
 
+//Bool-Operations//////////////////////////////////////////////////////////////////
 void ConfigHandler::saveBool(QString tag, QString attribute, bool b)
 {
 	b ? genTag ( doc->documentElement(), tag ).setAttribute(attribute, 1) : genTag ( doc->documentElement(), tag ).setAttribute(attribute, 0);
@@ -176,6 +177,16 @@ void ConfigHandler::saveBool(QString tag, QString attribute, bool b)
 bool ConfigHandler::loadBool(QString tag, QString attribute, QString defaultValue)
 {
 	return genTag ( doc->documentElement(), tag ).attribute(attribute, defaultValue).toInt();
+}
+
+void ConfigHandler::saveBool(QString acc, QString tag, QString attribute, bool b)
+{
+	b ? genTag( genTag ( doc->documentElement(), tag ), acc ).setAttribute(attribute, 1) : genTag( genTag ( doc->documentElement(), tag ), acc ).setAttribute(attribute, 0);
+}
+
+bool ConfigHandler::loadBool(QString acc, QString tag, QString attribute, QString defaultValue)
+{
+	return genTag ( genTag ( doc->documentElement(), tag ), acc ).attribute(attribute, defaultValue).toInt();
 }
 
 //Visibility///////////////////////////////////////////////////////////////////////
@@ -267,13 +278,13 @@ bool ConfigHandler::loadCloseToTrayTip()
 }
 
 //FullQueueView////////////////////////////////////////////////////////////////////
-void ConfigHandler::saveShowFullQueueView(bool b)
+void ConfigHandler::saveShowFullQueueView(QString acc, bool b)
 {
-	saveBool( "Options", "showFullQueueView", b);
+	saveBool( acc, "Options", "showFullQueueView", b);
 }
 
-bool ConfigHandler::loadShowFullQueueView()
+bool ConfigHandler::loadShowFullQueueView(QString acc)
 {
-	return loadBool( "Options", "showFullQueueView", "1");
+	return loadBool( acc, "Options", "showFullQueueView", "1");
 }
 
