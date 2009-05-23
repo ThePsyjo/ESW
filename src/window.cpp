@@ -294,6 +294,7 @@ void MainWindow::handleInputApiAction()
 		}
 		onHTimer();
 	}
+	trayMgr->flush();
 }
 
 void MainWindow::onHTimer()

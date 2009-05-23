@@ -54,6 +54,7 @@ public slots:
 	void setToolTip(QString, QString);
 	void setIcon(QString, bool);
 	void showMessage(QString, QString, QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::Information, int time = 10000 );
+	void flush();
 };
 
 #endif

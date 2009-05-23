@@ -27,11 +27,7 @@ TrayManager::TrayManager(ConfigHandler* c, QSystemTrayIcon* ico)
 	toolTipArray = new QMap<QString, QString>;
 	iconArray = new QMap<QString, bool>;
 
-	for(int i = 0; i < config->loadAccounts().count(); i++)
-	{
-		toolTipArray->insert(config->loadAccounts().at(i), "");
-		iconArray->insert(config->loadAccounts().at(i), 0);
-	}
+	flush();
 	messageStack = new QStack<MessageData>;
 	connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(freeStack()));
 }
@@ -88,4 +84,16 @@ void TrayManager::freeStack()
 {
 	busy = false;
 	checkMessageStack();
+}
+
+void TrayManager::flush()
+{
+
+	toolTipArray->clear();
+	iconArray->clear();
+	for(int i = 0; i < config->loadAccounts().count(); i++)
+	{
+		toolTipArray->insert(config->loadAccounts().at(i), "");
+		iconArray->insert(config->loadAccounts().at(i), 0);
+	}
 }
