@@ -19,10 +19,10 @@
 
 #include "serverStatWidget.h"
 
-ServerStatWidget::ServerStatWidget(QString name, QSystemTrayIcon* ico, QWidget * parent)
+ServerStatWidget::ServerStatWidget(QString name, TrayManager* traymgr, QWidget * parent)
         : QDockWidget(name, parent)
 {
-	icon = ico;
+	icon = traymgr;
 	content  = new QLabel(this);
 	content->setMargin(3);
 	content->setAlignment(Qt::AlignCenter);

@@ -43,7 +43,6 @@ void TrayManager::setToolTip(QString account, QString text )
 	trayIcon->setToolTip(tipText);
 }
 
-//passthrough
 void TrayManager::showMessage(QString title, QString message, QSystemTrayIcon::MessageIcon icon , int time )
 {
 	MessageData d;

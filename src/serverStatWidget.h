@@ -22,20 +22,20 @@
 
 #include <QLabel>
 #include <QDockWidget>
-#include <QSystemTrayIcon>
 #include "webDoc.h"
+#include "trayManager.h"
 
 class ServerStatWidget : public QDockWidget
 {
 Q_OBJECT
 public:
-	ServerStatWidget(QString, QSystemTrayIcon*, QWidget * parent =0);
+	ServerStatWidget(QString, TrayManager*, QWidget * parent =0);
 	virtual ~ServerStatWidget();
 private:
 	QLabel *content;
 	WebDoc *serverStatDoc;
 	QString serverStat, lastStat;
-	QSystemTrayIcon *icon;
+	TrayManager *icon;
 	void setServerStartupSingleShot();
 private slots:
 	void onWebDoc(bool);

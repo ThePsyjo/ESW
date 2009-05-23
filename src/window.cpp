@@ -122,7 +122,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	config->loadAutoSync() ? syncWidget->set(hTimer->interval()/1000) : syncWidget->disable();
 	syncWidget->setObjectName("toolbar_sync");
 
-	serverStat = new ServerStatWidget(tr("server status"), trayIcon, this);
+	serverStat = new ServerStatWidget(tr("server status"), trayMgr, this);
 	serverStat->setObjectName("toolbar_serverstats");
 	addDockWidget(Qt::TopDockWidgetArea, serverStat);
 
