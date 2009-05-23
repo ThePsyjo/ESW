@@ -268,7 +268,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 					/ beginTime->secsTo(*endTime);
 			rateLabel->setText(QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0));
 
-			tray->setIcon(QIcon(":/appicon"));
+			tray->setIcon(account, 0);
 			sTimer->start();
 		}
 		else
@@ -282,7 +282,7 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			progressBar->reset();
 			tray->showMessage ( tr("Warning"), tr("There is currently no skill in Training for \"%1\"!").arg(account), QSystemTrayIcon::NoIcon, 60000 );
 			tray->setToolTip(account, tr("There is currently no skill in Training!"));
-			tray->setIcon(QIcon(":/appicon_warn"));
+			tray->setIcon(account, 1);
 		}
 	}
 }

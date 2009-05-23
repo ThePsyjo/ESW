@@ -341,7 +341,8 @@ void MainWindow::closeEvent ( QCloseEvent *event )
 
 void MainWindow::disconnectMinimizedTip() // is needed as slot, see top function
 {
-	disconnect(trayIcon, SIGNAL(messageClicked()), 0, 0);
+//	disconnect(trayIcon, SIGNAL(messageClicked()), 0, 0);
+	disconnect(trayIcon, 0, this, 0);
 }
 
 void MainWindow::handleMinimizedTip()

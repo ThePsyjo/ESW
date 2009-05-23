@@ -23,30 +23,69 @@ TrayManager::TrayManager(ConfigHandler* c, QSystemTrayIcon* ico)
 {
 	trayIcon = ico;
 	config = c;
-	array = new QMap<QString, QString>;
+	busy = false;
+	toolTipArray = new QMap<QString, QString>;
+	iconArray = new QMap<QString, bool>;
 
 	for(int i = 0; i < config->loadAccounts().count(); i++)
-		array->insert(config->loadAccounts().at(i), "");
-
+	{
+		toolTipArray->insert(config->loadAccounts().at(i), "");
+		iconArray->insert(config->loadAccounts().at(i), 0);
+	}
+	messageStack = new QStack<MessageData>;
+	connect(trayIcon, SIGNAL(messageClicked()), this, SLOT(freeStack()));
 }
 
 TrayManager::~TrayManager(){}
 
 void TrayManager::setToolTip(QString account, QString text )
 {
-	array->insert(account, text);
+	toolTipArray->insert(account, text);
 	tipText.clear();
-	foreach(QString k, array->keys())
-		tipText.append(QString("%1:\n%2\n\n").arg(k).arg(array->value(k)));
+	foreach(QString k, toolTipArray->keys())
+		tipText.append(QString("%1:\n%2\n\n").arg(k).arg(toolTipArray->value(k)));
 	trayIcon->setToolTip(tipText);
 }
 
 //passthrough
 void TrayManager::showMessage(QString title, QString message, QSystemTrayIcon::MessageIcon icon , int time )
 {
-	trayIcon->showMessage(title, message, icon, time);
+	MessageData d;
+	d.title = title;
+	d.message = message;
+	d.icon = icon;
+	d.time = time;
+
+	messageStack->push(d);
+	checkMessageStack();
 }
-void TrayManager::setIcon(QIcon ico)
+void TrayManager::setIcon(QString account, bool warn)
 {
-	trayIcon->setIcon(ico);
+	iconArray->insert(account, warn);
+	warn = false;
+	foreach(bool b, iconArray->values())
+		if(b) warn = true;
+	
+	warn ? trayIcon->setIcon(QIcon(":/appicon_warn")) : trayIcon->setIcon(QIcon(":/appicon"));
+}
+
+void TrayManager::checkMessageStack()
+{
+	if(!busy)
+	{
+		if(! messageStack->isEmpty())
+		{
+			busy = true;
+			MessageData d;
+			d = messageStack->pop();
+			trayIcon->showMessage(d.title, d.message, d.icon, d.time);
+			QTimer::singleShot(d.time, this, SLOT(freeStack()));
+		}
+	}
+}
+
+void TrayManager::freeStack()
+{
+	busy = false;
+	checkMessageStack();
 }

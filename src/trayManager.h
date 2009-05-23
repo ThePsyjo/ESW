@@ -22,7 +22,16 @@
 
 #include <QSystemTrayIcon>
 #include <QMap>
+#include <QStack>
 #include "configuration.h"
+
+class MessageData
+{
+public:
+	QString title, message;
+	QSystemTrayIcon::MessageIcon icon;
+	int time;
+};
 
 class TrayManager : public QObject
 {
@@ -33,11 +42,17 @@ public:
 private:
 	QSystemTrayIcon *trayIcon;
 	ConfigHandler *config;
-	QMap<QString, QString> *array;
+	QMap<QString, QString> *toolTipArray;
+	QMap<QString, bool> *iconArray;
 	QString tipText;
+	QStack<MessageData> *messageStack;
+	void checkMessageStack();
+	bool busy;
+private slots:
+	void freeStack();
 public slots:
 	void setToolTip(QString, QString);
-	void setIcon(QIcon);
+	void setIcon(QString, bool);
 	void showMessage(QString, QString, QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::Information, int time = 10000 );
 };
 
