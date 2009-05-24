@@ -202,13 +202,15 @@ bool ConfigHandler::loadIsVisible()
 
 //widgetState//////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveState(QByteArray d)
-{
-	genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("state", d.toHex().data());
+{	
+	//compression stats
+	//qDebug() << d.toHex().size() << " +z " << qCompress(d).toHex().size();
+	genTag ( doc->documentElement(), "WindowSettings" ).setAttribute("state", qCompress(d).toHex().data());
 }
 
 QByteArray ConfigHandler::loadState()
 {
-	return QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii()));
+	return qUncompress(QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii())));
 }
 
 //ontop////////////////////////////////////////////////////////////////////////////
