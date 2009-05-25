@@ -210,7 +210,11 @@ void ConfigHandler::saveState(QByteArray d)
 
 QByteArray ConfigHandler::loadState()
 {
-	return qUncompress(QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii())));
+	QByteArray ba;
+	ba = qUncompress(QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii())));
+	if(ba.isEmpty())
+		ba = QByteArray::fromHex(QByteArray( genTag ( doc->documentElement(), "WindowSettings" ).attribute("state").toAscii()));
+	return ba;
 }
 
 //ontop////////////////////////////////////////////////////////////////////////////
