@@ -30,6 +30,8 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF )
 	errorCodeHandle = _errorCodeHandle;
 	busy=false;
 
+	cacheTime = new QDateTime;
+
 	cacheFile = cacheF;
 	f = new QFile(cacheFile);
 }
@@ -41,10 +43,31 @@ void WebDoc::_get(QString urlargs)
 	if(! busy)
 	{
 		busy=true;
-		buf->reset();
-		buf->buffer().clear();
-		http->setHost(url->host());
-		http->get(url->path() + urlargs, buf);
+
+		if(! doc->isNull())
+		{
+			if(! doc->documentElement().firstChildElement("cachedUntil").isNull())
+			{
+				*cacheTime = cacheTime->fromString(doc->documentElement().firstChildElement("cachedUntil").text(), "yyyy-MM-dd HH:mm:ss");
+				cacheTime->setTimeSpec(Qt::UTC);
+			}
+			else
+			{
+				cacheTime->setDate(cacheTime->currentDateTime().date());
+				cacheTime->setTime(cacheTime->currentDateTime().time());
+				cacheTime->addSecs(-10);
+			}
+		}
+		
+		// only fetch if cachetime is reached or document is empty
+		if(cacheTime->toLocalTime() < cacheTime->currentDateTime() || doc->isNull())
+		{
+			buf->reset();
+			buf->buffer().clear();
+			http->setHost(url->host());
+			http->get(url->path() + urlargs, buf);
+		}
+		else 	busy = false;
 	}
 }
 void WebDoc::get(QString urlargs)

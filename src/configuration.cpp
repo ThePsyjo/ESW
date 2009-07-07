@@ -39,7 +39,8 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 	int errorLine;
 	int errorColumn;
 
-	if (f->exists() && !doc->setContent(f, true, &errorStr, &errorLine, &errorColumn))
+	// load if (file exist AND file is not empty)
+	if (f->exists() && f->size() > 0 && !doc->setContent(f, true, &errorStr, &errorLine, &errorColumn))
 	{
 		QMessageBox::warning(NULL, tr("parse error"),
 						tr("Parse error in file %4:\nat line %1, column %2:\n\"%3\"\n\nconfig will not be written")
@@ -56,6 +57,11 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 		QDomElement root = doc->createElement(fileName);
 		doc->appendChild(root);
 		QMessageBox::information(NULL, "info", tr("%1 created in %2.").arg(fileName).arg(f->fileName()));
+	}
+	if(doSave)
+	{
+		f->remove(fileLocation + ".bak");
+		f->copy(fileLocation + ".bak");
 	}
 	cleanup();
 };

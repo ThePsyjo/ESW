@@ -24,6 +24,7 @@
 #include <QMessageBox>
 #include <QBuffer>
 #include <QtNetwork/QHttp>
+#include <QDateTime>
 
 class WebDoc : public QObject
 {
@@ -41,6 +42,7 @@ private:
 	QDomDocument *doc;
 	QFile *f;
 	QString cacheFile;
+	QDateTime *cacheTime;
 	void _get(QString);
 	bool errorCodeHandle, busy, ok;
 	bool setCacheFile();

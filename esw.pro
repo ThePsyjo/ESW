@@ -12,7 +12,7 @@ win32 {
 
 DEPENDPATH += . src
 INCLUDEPATH += . src
-QT += xml network svg 
+QT += xml network 
 #QTPLUGIN += qsvg
 OBJECTS_DIR += tmp
 MOC_DIR += tmp
