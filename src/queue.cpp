@@ -48,6 +48,8 @@ SkillQueue::SkillQueue(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QStrin
 	layout = new QVBoxLayout(contentWidget);
 //	contentWidget->setMargin(3)
 
+	rowList = new QDomNodeList;
+
 	fullViewButton = new QPushButton(contentWidget);
 	fullViewButton->setMaximumWidth(fullViewButton->height()); // only a sqare, not over full line
 	QFont font;			//
@@ -95,44 +97,48 @@ void SkillQueue::reload()
 		skillTree->get();
 }
 
+void SkillQueue::genContent()
+{
+	content.clear();
+	for (cnt = 0; cnt < rowList->size(); cnt++)
+	{
+		*startTime = startTime->fromString(rowList->at(cnt).toElement().attribute("startTime"), "yyyy-MM-dd hh:mm:ss");
+		*endTime = endTime->fromString(rowList->at(cnt).toElement().attribute("endTime"), "yyyy-MM-dd hh:mm:ss");
+		startTime->setTimeSpec(Qt::UTC);        // apparently it isn't enough
+		endTime->setTimeSpec(Qt::UTC);          // to set it in Ctor
+                                
+		// 1 in queue    && time ! active             && less than 1 day remain
+//		if(rowList->size() == 1 && ! preDayTimer->isActive() && endTimer->curentDateTime().secsTo(endTime) < 86400)
+//		preDayTimer->start();
+
+		if(cnt != 0)
+		content.append("<br>");
+		// #1
+		content.append(QString("#%1 ").arg(rowList->at(cnt).toElement().attribute("queuePosition")));
+		if(fullView) // if fullViewButton is clicked
+		// #1   2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00
+			content.append(QString(" <i>%1 - %2</i> ")
+						.arg(startTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"))
+						.arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss")));
+		// #1   2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00      someskill
+		content.append(QString("<b>%1</b> ").arg(skillName(rowList->at(cnt).toElement().attribute("typeID").toInt())));
+		// #1   2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00      someskill (0 -> 1)
+		content.append( QString("(%1 -> %2)")
+					.arg(QString::number(rowList->at(cnt).toElement().attribute("level").toInt()-1))
+					.arg(rowList->at(cnt).toElement().attribute("level")));
+	}
+	contentLabel->setText(content);
+}
+
 void SkillQueue::onQueueDone(bool ok)
 {
 	if(ok)
 	{
-		QDomNodeList l = queue->document()->documentElement().elementsByTagName("row");
+		*rowList = queue->document()->documentElement().elementsByTagName("row");
 
-		content.clear();
-
-		if(l.size() > 0)
+		if(rowList->size() > 0)
 		{
-			for (cnt = 0; cnt < l.size(); cnt++)
-			{
-				*startTime = startTime->fromString(l.at(cnt).toElement().attribute("startTime"), "yyyy-MM-dd hh:mm:ss");
-				*endTime = endTime->fromString(l.at(cnt).toElement().attribute("endTime"), "yyyy-MM-dd hh:mm:ss");
-				startTime->setTimeSpec(Qt::UTC);	// apparently it isn't enough
-				endTime->setTimeSpec(Qt::UTC);		// to set it in Ctor
-				
-				// 1 in queue	 && time ! active	      && less than 1 day remain
-//				if(l.size() == 1 && ! preDayTimer->isActive() && endTimer->curentDateTime().secsTo(endTime) < 86400)
-//					preDayTimer->start();
-
-				if(cnt != 0)
-					content.append("<br>");
-				// #1
-				content.append(QString("#%1 ").arg(l.at(cnt).toElement().attribute("queuePosition")));
-				if(fullView) // if fullViewButton is clicked
-					// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00
-					content.append(QString(" <i>%1 - %2</i> ")
-									.arg(startTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss"))
-									.arg(endTime->toLocalTime().toString("yyyy-MM-dd (dddd) hh:mm:ss")));
-				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill
-				content.append(QString("<b>%1</b> ").arg(skillName(l.at(cnt).toElement().attribute("typeID").toInt())));
-				// #1	2009-01-01 (someday) 00:00:00 - 2009-02-02 (someotherday) 00:00:00	someskill (0 -> 1)
-				content.append( QString("(%1 -> %2)")
-							.arg(QString::number(l.at(cnt).toElement().attribute("level").toInt()-1))
-							.arg(l.at(cnt).toElement().attribute("level")));
-			}
-			contentLabel->setText(content);
+			genContent();
 		}
 		else
 			contentLabel->clear();
@@ -155,7 +161,7 @@ void SkillQueue::onFullViewButtonClick()
 		fullViewButton->setText(LESS);
 		fullViewButton->setToolTip(tr("collapse"));
 	}
-	reload();
+	genContent();
 }
 
 void SkillQueue::onSkillTreeDone(bool ok)

@@ -51,6 +51,8 @@ private:
 	QVBoxLayout *layout;
 	QPushButton *fullViewButton;
 	int cnt;
+	void genContent();
+	QDomNodeList *rowList;
 private slots:
 //	void onPreDayTimer();
 	void onSkillTreeDone(bool);
