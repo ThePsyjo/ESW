@@ -56,4 +56,4 @@ SOURCES += src/main.cpp \
 
 TRANSLATIONS += src/German.ts src/en.ts
 RESOURCES += res/res.qrc
-
+RC_FILE = res/rc.rc
