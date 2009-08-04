@@ -50,8 +50,6 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 						.arg(fileLocation));
 		doSave = false;
 	}
-	f->close();
-
 	if ( ! (doc->documentElement().tagName() == fileName) )
 	{
 		QDomElement root = doc->createElement(fileName);
@@ -64,6 +62,7 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 		f->copy(fileLocation + ".bak");
 	}
 	cleanup();
+	f->close();
 };
 
 void ConfigHandler::cleanup()
