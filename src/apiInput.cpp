@@ -141,6 +141,8 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	connect(newButton	, SIGNAL(clicked()), this, SLOT(onNewClick()));
 	connect(deleteButton	, SIGNAL(clicked()), this, SLOT(onDeleteClick()));
 
+	onConnectClick();
+	
 	adjustSize();
 	show();
 }
