@@ -19,7 +19,7 @@
 
 #include "webDoc.h"
 
-WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF )
+WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF)
 {
 	buf  = new QBuffer(this);
 	buf->open(QBuffer::ReadWrite);
@@ -33,7 +33,8 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF )
 	cacheTime = new QDateTime;
 
 	cacheFile = cacheF;
-	f = new QFile(cacheFile);
+	if(! cacheFile.isEmpty())
+		f = new QFile(cacheFile);
 }
 
 WebDoc::~WebDoc(){};
@@ -99,20 +100,11 @@ void WebDoc::saveCacheFile()
 
 void WebDoc::httpGetDone(bool error)
 {
-	ok = true;
-	if(error)		// if no dl
-	if(! setCacheFile())	// load cache
-	{			// on error, handle it
-		QMessageBox::warning(0, tr("download error"),tr("error while downloading %3.\npage: \"%1\"\n\"%2\"")
-								.arg(url->host() + url->path())
-								.arg(http->errorString())
-								.arg(url->toString()));
-		ok = false;
-	}
-
 //puts("----------");
 //qDebug() << buf->data();
 //puts("----------");
+	ok = !error;
+	cached = false;
 
 	if(ok)
 	{
@@ -142,10 +134,31 @@ void WebDoc::httpGetDone(bool error)
 		}
 	}
 
+	if(!ok && !cacheFile.isEmpty())	// if something went wrong ...
+	{				// but only if cachefile is present ...
+		if(! setCacheFile())	// try to load cache
+		{			// on error, handle it
+			QMessageBox::warning(0, tr("download error"),tr("error while downloading %3.\npage: \"%1\"\n\"%2\"")
+									.arg(url->host() + url->path())
+									.arg(http->errorString())
+									.arg(url->toString()));
+			ok = false;
+		}
+		else
+		{
+			doc->setContent(buf->data());
+			cached = true;	// cache should always be ok
+		}
+
+	}
+
 	if(ok && ! cacheFile.isEmpty()) saveCacheFile();
 	busy=false;
-	emit done(ok);
+	emit done(ok || cached);
 }
+
+bool WebDoc::isCached()
+{return cached;}
 
 QDomDocument* WebDoc::document()
 {	return doc;	}

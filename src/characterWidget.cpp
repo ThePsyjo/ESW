@@ -61,6 +61,7 @@ void CharacterWidget::onWebDoc(bool ok)
 					.arg(getTitle())
 					.arg(e.firstChildElement("balance").text().toDouble(), 3, 'f', 2)
 		);
+		if(characterInfo->isCached()) content->setText("<i>---cached---</i><br><br>" + content->text()); // translate ?
 		
 	}
 }

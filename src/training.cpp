@@ -267,6 +267,8 @@ void SkillTraining::onCharacterTrainingDone(bool ok)
 			trainFactor = (el->attribute("endSP").toDouble() - el->attribute("startSP").toDouble())
 					/ beginTime->secsTo(*endTime);
 			rateLabel->setText(QString("%1 SP/h").arg(trainFactor * 3600 , 0, 'f', 0));
+			
+			if(characterTraining->isCached()) rateLabel->setText(rateLabel->text().append("<br><br><i>---cached---</i>")); // translate ?
 
 			tray->setIcon(account, 0);
 			sTimer->start();

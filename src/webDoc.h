@@ -34,6 +34,7 @@ public:
 	virtual ~WebDoc();
 	void get(QString);
 	void get();
+	bool isCached();
 	QDomDocument* document();
 private:
 	QHttp *http;
@@ -44,7 +45,7 @@ private:
 	QString cacheFile;
 	QDateTime *cacheTime;
 	void _get(QString);
-	bool errorCodeHandle, busy, ok;
+	bool errorCodeHandle, busy, ok, cached;
 	bool setCacheFile();
 	void saveCacheFile();
 private slots:

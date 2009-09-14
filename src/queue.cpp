@@ -32,11 +32,11 @@ SkillQueue::SkillQueue(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QStrin
 	account = acc;
 	queue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
 	
-	skillTreeAvailable = false;
-	skillTree->get();
-
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(queue, SIGNAL(done(bool)), this, SLOT(onQueueDone(bool)));
+
+	skillTreeAvailable = false;
+	skillTree->get();
 
 	startTime = new QDateTime;
 	endTime   = new QDateTime;
@@ -110,6 +110,8 @@ void SkillQueue::genContent()
 		// 1 in queue    && time ! active             && less than 1 day remain
 //		if(rowList->size() == 1 && ! preDayTimer->isActive() && endTimer->curentDateTime().secsTo(endTime) < 86400)
 //		preDayTimer->start();
+
+		if(queue->isCached()) content.append("<i>---cached---</i><br><br>"); // translate ?
 
 		if(cnt != 0)
 		content.append("<br>");
