@@ -30,6 +30,7 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 
 	doc = new QDomDocument ( fileName );
 	f = new QFile (fileLocation);
+	tmpNode = new QDomNode;
 	timer = new QTimer(this);
 	doSave = true;
 
@@ -63,9 +64,70 @@ ConfigHandler::ConfigHandler(QString fileLocation, QString fileName)
 	}
 	cleanup();
 	f->close();
+	fix_from_0_1_18();
 };
 
-void ConfigHandler::cleanup()
+void ConfigHandler::fix_from_0_1_18()
+{
+	QDomNodeList l;
+	int i;
+	bool hit = true;
+	
+	while(hit)
+	{
+		hit = false;
+		l = doc->documentElement().firstChildElement("userID").childNodes();
+		for(i = 0; i < l.count(); i++)
+		{
+			hit=true;
+			if(!findChar(l.at(i).nodeName())) createChar(l.at(i).nodeName());
+			tmpNode->toElement().setAttribute("userID",		doc->documentElement().firstChildElement("userID")	.firstChildElement(l.at(i).nodeName()).attribute("value"));
+			tmpNode->toElement().setAttribute("characterID",	doc->documentElement().firstChildElement("characterID")	.firstChildElement(l.at(i).nodeName()).attribute("value"));
+			tmpNode->toElement().setAttribute("apiKey", 		doc->documentElement().firstChildElement("apiKey")	.firstChildElement(l.at(i).nodeName()).attribute("value"));
+			tmpNode->toElement().setAttribute("fullQueueView",	genTag ( doc->documentElement(), "Options" )		.firstChildElement(l.at(i).nodeName()).attribute("showFullQueueView"));
+
+			// remove doc.userID.<character_name> ...
+			doc->documentElement().firstChildElement("userID").removeChild(l.at(i));
+			genTag ( doc->documentElement(), "Options" ).removeChild(genTag ( doc->documentElement(), "Options" ).firstChildElement(l.at(i).nodeName()));
+		}
+	}
+	// remove remaining old nodes
+	doc->documentElement().removeChild(doc->documentElement().firstChildElement("accounts"));
+	doc->documentElement().removeChild(doc->documentElement().firstChildElement("userID"));
+	doc->documentElement().removeChild(doc->documentElement().firstChildElement("characterID"));
+	doc->documentElement().removeChild(doc->documentElement().firstChildElement("apiKey"));
+}
+
+bool ConfigHandler::findChar(QString name)
+{
+	QDomNodeList l = genTag ( doc->documentElement(), "Characters" ).childNodes();
+	bool found = false;
+
+	for (cnt = 0; cnt < l.size() ; cnt++)
+	{	
+		if(l.at(cnt).toElement().attribute("name", "") == name)
+		{
+			*tmpNode = l.at(cnt).toElement();
+			found = true;
+		}
+	}
+	if(found) return true;
+	else return false;
+}
+
+QDomNode* ConfigHandler::findCharNode(QString name)
+{
+	findChar(name);
+	return tmpNode;
+}
+void ConfigHandler::createChar(QString name)
+{
+	QDomNode n = genTag(doc->documentElement(), "Characters").appendChild(doc->createElement("char"));
+	n.toElement().setAttribute("name", name);
+	findChar(name);
+}
+
+void ConfigHandler::cleanup() // deprecated
 {
 	bool found;
 	QStringList nodes;
@@ -76,7 +138,7 @@ void ConfigHandler::cleanup()
 		for (int i = 0; i < l.size(); i++)
 		{
 			found = false;
-			foreach(QString s, loadAccounts())
+			foreach(QString s, __loadAccounts())
 				if(l.at(i).nodeName() == s )
 				{
 					found = true;
@@ -86,6 +148,15 @@ void ConfigHandler::cleanup()
 				doc->documentElement().firstChildElement(n).removeChild(l.at(i));
 		}
 	}
+}
+
+QStringList ConfigHandler::__loadAccounts()
+{
+	QStringList ret;
+	QDomElement e = genTag (doc->documentElement(), "accounts");
+	for (int i = 0; i < e.attributes().count(); i++ )
+	ret << e.attribute("value" + QString::number(i));
+	return ret;
 }
 
 void ConfigHandler::saveFile()
@@ -139,27 +210,31 @@ void ConfigHandler::saveStyle(QString s)
 QStringList ConfigHandler::loadAccounts()
 {
 	QStringList ret;
-	QDomElement e = genTag (doc->documentElement(), "accounts");
-	for (int i = 0; i < e.attributes().count(); i++ )
-		ret << e.attribute("value" + QString::number(i));
+	QDomNodeList l = genTag ( doc->documentElement(), "Characters" ).childNodes();
+
+	for (int i = 0; i < l.size(); i++ )
+		ret << l.at(i).toElement().attribute("name");
 	return ret;
 }
 
 void ConfigHandler::saveAccounts(QStringList v)
 {
-	QDomElement e = genTag (doc->documentElement(), "accounts");
-	for (int i = e.attributes().count(); i >= 0; i-- )
-		e.removeAttribute("value" + QString::number(i));
-	for (int i = 0; i < v.count(); i++ )
-		e.setAttribute("value" + QString::number(i), v.at(i));
+	// remove deleted chars
+	foreach(QString s, loadAccounts())
+		if(! v.contains(s)) genTag ( doc->documentElement(), "Characters" ).removeChild(*findCharNode(s));
+
+	// add new ones
+	foreach(QString s, v)
+		if(! findChar(s)) createChar(s);
 }
 
 //ApiInfo//////////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveApiInfo(apiInfo v)
 {
-	genTag ( genTag ( doc->documentElement(), "userID" ), v.name).setAttribute("value", v.userID);
-	genTag ( genTag ( doc->documentElement(), "apiKey" ), v.name).setAttribute("value", v.apiKey);
-	genTag ( genTag ( doc->documentElement(), "characterID" ), v.name).setAttribute("value", v.characterID);
+	if(! findChar(v.name)) createChar(v.name);
+	tmpNode->toElement().setAttribute("userID", v.userID);
+	tmpNode->toElement().setAttribute("characterID", v.characterID);
+	tmpNode->toElement().setAttribute("apiKey", v.apiKey);
 	saveFile();
 }
 
@@ -167,9 +242,10 @@ apiInfo ConfigHandler::loadApiInfo(QString s)
 {
 	apiInfo v;
 	v.name = s;
-	v.userID	= genTag ( genTag ( doc->documentElement(), "userID" ), v.name).attribute("value").toInt();
-	v.apiKey 	= genTag ( genTag ( doc->documentElement(), "apiKey" ), v.name).attribute("value");
-	v. characterID	= genTag ( genTag ( doc->documentElement(), "characterID" ), v.name).attribute("value").toInt();
+	findChar(s);
+	v.userID	= tmpNode->toElement().attribute("userID").toInt();
+	v.apiKey 	= tmpNode->toElement().attribute("apiKey");
+	v. characterID	= tmpNode->toElement().attribute("characterID").toInt();
 	return v;
 }
 
@@ -184,14 +260,15 @@ bool ConfigHandler::loadBool(QString tag, QString attribute, QString defaultValu
 	return genTag ( doc->documentElement(), tag ).attribute(attribute, defaultValue).toInt();
 }
 
-void ConfigHandler::saveBool(QString acc, QString tag, QString attribute, bool b)
+void ConfigHandler::saveBoolChar(QString attribute, bool b, QString acc)
 {
-	b ? genTag( genTag ( doc->documentElement(), tag ), acc ).setAttribute(attribute, 1) : genTag( genTag ( doc->documentElement(), tag ), acc ).setAttribute(attribute, 0);
+	if(findChar(acc))
+		b ? tmpNode->toElement().setAttribute(attribute, 1) : tmpNode->toElement().setAttribute(attribute, 0);
 }
 
-bool ConfigHandler::loadBool(QString acc, QString tag, QString attribute, QString defaultValue)
+bool ConfigHandler::loadBoolChar(QString attribute, QString defaultValue, QString acc)
 {
-	return genTag ( genTag ( doc->documentElement(), tag ), acc ).attribute(attribute, defaultValue).toInt();
+	return findCharNode( acc )->toElement().attribute(attribute, defaultValue).toInt();
 }
 
 //Visibility///////////////////////////////////////////////////////////////////////
@@ -291,11 +368,11 @@ bool ConfigHandler::loadCloseToTrayTip()
 //FullQueueView////////////////////////////////////////////////////////////////////
 void ConfigHandler::saveShowFullQueueView(QString acc, bool b)
 {
-	saveBool( acc, "Options", "showFullQueueView", b);
+	saveBoolChar( "fullQueueView", b, acc);
 }
 
 bool ConfigHandler::loadShowFullQueueView(QString acc)
 {
-	return loadBool( acc, "Options", "showFullQueueView", "1");
+	return loadBoolChar( "fullQueueView", "1", acc);
 }
 

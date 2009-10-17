@@ -42,15 +42,22 @@ private:
 	QDomDocument *doc;
 	QFile *f;
 	QDomElement genTag(QDomElement, QString);
+	QDomNode *tmpNode;
 	bool tagCreated, doSave, change;
 	QTimer *timer;
 	//without account
 	void saveBool(QString, QString, bool);
 	bool loadBool(QString, QString, QString);
 	// with account
-	void saveBool(QString, QString, QString, bool);
-	bool loadBool(QString, QString, QString, QString);
-	void cleanup();
+	void saveBoolChar(QString, bool, QString);
+	bool loadBoolChar(QString, QString, QString);
+	void cleanup();			// deprecated
+	QStringList __loadAccounts();	// deprecated
+	void fix_from_0_1_18();
+	bool findChar(QString);
+	QDomNode* findCharNode(QString);
+	void createChar(QString);
+	int cnt;
 public:
 	ConfigHandler(QString, QString);
 	virtual ~ConfigHandler();
