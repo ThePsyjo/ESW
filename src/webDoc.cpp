@@ -47,17 +47,17 @@ void WebDoc::_get(QString urlargs)
 
 		if(! doc->isNull())
 		{
-			if(doc->documentElement().firstChildElement("cachedUntil").isNull() && cacheFile.isEmpty())
-			{
-				// has no cachetag and cachefile is empty
-				cacheTime->setDate(cacheTime->currentDateTime().date());
-				cacheTime->setTime(cacheTime->currentDateTime().time());
-				*cacheTime = cacheTime->addSecs(-10);
+                        if( ! doc->documentElement().firstChildElement("cachedUntil").isNull() && ! cacheFile.isEmpty())
+                        {
+                                *cacheTime = cacheTime->fromString(doc->documentElement().firstChildElement("cachedUntil").text(), "yyyy-MM-dd HH:mm:ss");
+                                cacheTime->setTimeSpec(Qt::UTC);
 			}
 			else
 			{
-				*cacheTime = cacheTime->fromString(doc->documentElement().firstChildElement("cachedUntil").text(), "yyyy-MM-dd HH:mm:ss");
-				cacheTime->setTimeSpec(Qt::UTC);
+                                // has no cachetag and cachefile is empty
+                                cacheTime->setDate(cacheTime->currentDateTime().date());
+                                cacheTime->setTime(cacheTime->currentDateTime().time());
+                                *cacheTime = cacheTime->addSecs(-10);
 			}
 		}
 		
