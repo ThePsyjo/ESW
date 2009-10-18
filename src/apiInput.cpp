@@ -219,13 +219,11 @@ void ApiInput::onOkClick()
 	accept();
 }
 
-#include <QDebug>
 void ApiInput::onConnectClick()
 {
 	if( ! validID(0)) return;
 	setCursor(Qt::WaitCursor);
 	characters->get("?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text());
-	qDebug() << "?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text();
 }
 
 void ApiInput::onCharactersDocDone(bool ok)
