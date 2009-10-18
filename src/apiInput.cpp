@@ -31,7 +31,7 @@ StringInput::StringInput(QStringList l, QWidget* parent)
 	setModal(1);
 	list = l;
 
-	QRegExp rx("^[a-zA-Z][a-zA-Z0-9-_]*");
+	QRegExp rx(".*");
 	validator = new QRegExpValidator(rx, this);
 	e = new QLineEdit(this);
 	e->show();
@@ -219,11 +219,13 @@ void ApiInput::onOkClick()
 	accept();
 }
 
+#include <QDebug>
 void ApiInput::onConnectClick()
 {
 	if( ! validID(0)) return;
 	setCursor(Qt::WaitCursor);
 	characters->get("?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text());
+	qDebug() << "?userID=" + eUserID->text() + "&apiKey=" + eApiKey->text();
 }
 
 void ApiInput::onCharactersDocDone(bool ok)

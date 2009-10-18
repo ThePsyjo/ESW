@@ -7,7 +7,7 @@
 .ssh
 win
 Makefile
-WebViewer
+esw
 tmp
-object_script.WebViewer
+object_script.esw
 *.qm
