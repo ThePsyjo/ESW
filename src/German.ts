@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name></name>
     <message>
-        <location filename="queue.cpp" line="26"/>
         <source>collapse</source>
         <translation type="obsolete">kürzen</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="28"/>
         <source>expand</source>
         <translation type="obsolete">erweitern</translation>
     </message>
@@ -23,8 +21,9 @@
     </message>
     <message>
         <location filename="apiInput.cpp" line="91"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Abbrechen</translation>
+        <source>&amp;Close</source>
+        <oldsource>&amp;Cancel</oldsource>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
         <location filename="apiInput.cpp" line="94"/>
@@ -32,22 +31,22 @@
         <translation>&amp;verbinden</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="109"/>
+        <location filename="apiInput.cpp" line="114"/>
         <source>UserID</source>
         <translation>UserID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="110"/>
+        <location filename="apiInput.cpp" line="115"/>
         <source>ApiKey</source>
         <translation>ApiKey</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="111"/>
+        <location filename="apiInput.cpp" line="116"/>
         <source>CharacterID</source>
         <translation>CharacterID</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="237"/>
+        <location filename="apiInput.cpp" line="249"/>
         <source>errorcode %1
 
 %2</source>
@@ -56,14 +55,14 @@
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="112"/>
+        <location filename="apiInput.cpp" line="117"/>
         <source>Insert your UserID and your API-Key in the specified Fields.
 Click on connect to select your character.
 You can get your own API-Information here : http://myeve.eve-online.com/api/default.asp .</source>
         <translation>Trage deine UserID und deinen API-Key in die dafür vorgesehenen Felder ein.&lt;br&gt;Klicke auf &quot;verbinden&quot; um deinen Charakter auszuwählen.&lt;br&gt;Du bekommst deine API-Informationen &lt;a href=&quot;http://myeve.eve-online.com/api/default.asp&quot;&gt;hier&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="235"/>
+        <location filename="apiInput.cpp" line="248"/>
         <source>API error</source>
         <translation>API Fehler</translation>
     </message>
@@ -78,7 +77,7 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
         <translation>&amp;Löschen</translation>
     </message>
     <message>
-        <location filename="apiInput.cpp" line="108"/>
+        <location filename="apiInput.cpp" line="113"/>
         <source>Account</source>
         <translation></translation>
     </message>
@@ -86,7 +85,7 @@ You can get your own API-Information here : http://myeve.eve-online.com/api/defa
 <context>
     <name>CharacterWidget</name>
     <message>
-        <location filename="characterWidget.cpp" line="59"/>
+        <location filename="characterWidget.cpp" line="58"/>
         <source>%1
 Member of %2
 Title %3
@@ -101,12 +100,12 @@ Titel %3&lt;br&gt;
 <context>
     <name>ConfigHandler</name>
     <message>
-        <location filename="configuration.cpp" line="44"/>
+        <location filename="configuration.cpp" line="46"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="46"/>
+        <location filename="configuration.cpp" line="47"/>
         <source>Parse error in file %4:
 at line %1, column %2:
 &quot;%3&quot;
@@ -132,6 +131,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>&amp;Datei</translation>
     </message>
     <message>
+        <location filename="window.cpp" line="49"/>
         <location filename="window.cpp" line="104"/>
         <source>exit</source>
         <translation>Beenden</translation>
@@ -142,12 +142,12 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Üb&amp;er</translation>
     </message>
     <message>
+        <location filename="window.cpp" line="150"/>
         <location filename="window.cpp" line="155"/>
         <source>about</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="127"/>
         <source>appName</source>
         <translation type="obsolete">EveSkillWatcher 0.1.9</translation>
     </message>
@@ -157,7 +157,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>API Informationen ändern</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="259"/>
+        <location filename="window.cpp" line="304"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -167,6 +167,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>A&amp;ktionen</translation>
     </message>
     <message>
+        <location filename="window.cpp" line="53"/>
         <location filename="window.cpp" line="103"/>
         <source>update</source>
         <translation>Aktualisieren</translation>
@@ -207,7 +208,7 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Zeige Tray &amp;Icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="310"/>
+        <location filename="window.cpp" line="355"/>
         <source>last update @ %1.</source>
         <translation>letztes Update @ %1.</translation>
     </message>
@@ -217,7 +218,6 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>Autosync</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="128"/>
         <source>&lt;html&gt;%1&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009 Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://www.code.google.com/p/eveskillwatcher/&quot;&gt;Project site&lt;/a&gt;&lt;br&gt;&lt;br&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&lt;br&gt;See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;You should have received a copy of the GNU General Public License along with this program; if not, see &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;this link&lt;/a&gt;.&lt;/html&gt;</source>
         <translation type="obsolete">&lt;html&gt;%1&lt;br&gt;&lt;br&gt;ESW&lt;br&gt;&lt;br&gt;Copyright (C) 2008,2009  Psyjo&lt;br&gt;&lt;br&gt;&lt;a href=&quot;http://code.google.com/p/eveskillwatcher/&quot;&gt;Projektseite&lt;/a&gt;&lt;br&gt;&lt;br&gt;Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 3 der Lizenz oder (nach Ihrer Option) jeder späteren Version.&lt;br&gt;&lt;br&gt;Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.&lt;br&gt;&lt;br&gt;Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, siehe &lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;diesen Link&lt;/a&gt;.&lt;/html&gt;</translation>
     </message>
@@ -242,32 +242,30 @@ Konfiguration wird nicht geschrieben</translation>
         <translation>in System&amp;tray schließen</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="337"/>
+        <location filename="window.cpp" line="382"/>
         <source>%1 minimized.</source>
         <translation>%1 ist jetzt im Systemtray minimiert.</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="255"/>
         <source>hide this tip ?</source>
         <translation type="obsolete">Diesen Tip zukünftig nicht mehr anzeigen ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="352"/>
+        <location filename="window.cpp" line="398"/>
         <source>show this tip further ?</source>
         <translation>Diesen Tipp weiterhin anzeigen ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="43"/>
         <source>CTRL+Q</source>
         <translation type="obsolete">STRG+Q</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="351"/>
+        <location filename="window.cpp" line="397"/>
         <source>tip</source>
         <translation>Tipp</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="252"/>
+        <location filename="window.cpp" line="253"/>
         <source>skilltqueue</source>
         <translation>SkillQueue</translation>
     </message>
@@ -275,24 +273,26 @@ Konfiguration wird nicht geschrieben</translation>
 <context>
     <name>ServerStatWidget</name>
     <message>
-        <location filename="serverStatWidget.cpp" line="61"/>
+        <location filename="serverStatWidget.cpp" line="56"/>
+        <location filename="serverStatWidget.cpp" line="62"/>
         <source>Online</source>
         <comment>server online message</comment>
         <translation>&lt;font color=green&gt;Online&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="61"/>
+        <location filename="serverStatWidget.cpp" line="58"/>
+        <location filename="serverStatWidget.cpp" line="62"/>
         <source>Offline</source>
         <comment>server offline message</comment>
         <translation>&lt;font color=red&gt;Offline&lt;/font&gt;&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="59"/>
+        <location filename="serverStatWidget.cpp" line="60"/>
         <source>Other &quot;%1&quot;</source>
         <translation>unbekannt: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="58"/>
+        <location filename="serverStatWidget.cpp" line="59"/>
         <source>Unknown</source>
         <comment>no server message</comment>
         <translation>Unbekannt</translation>
@@ -306,12 +306,12 @@ Players: %2</source>
 Spieler: %2</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="70"/>
+        <location filename="serverStatWidget.cpp" line="71"/>
         <source>Server status changed</source>
         <translation>Server Status geändert</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="70"/>
+        <location filename="serverStatWidget.cpp" line="71"/>
         <source>Tranquility is now %1</source>
         <translation>Tranquility ist jetz %1</translation>
     </message>
@@ -323,7 +323,7 @@ Spieler: %2</translation>
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="serverStatWidget.cpp" line="72"/>
+        <location filename="serverStatWidget.cpp" line="73"/>
         <source>no live information available</source>
         <translation>Keine aktuellen&lt;br&gt;Informationen verfügbar</translation>
     </message>
@@ -331,22 +331,22 @@ Spieler: %2</translation>
 <context>
     <name>SkillQueue</name>
     <message>
-        <location filename="queue.cpp" line="112"/>
         <source>Skillqueue</source>
         <translation type="obsolete">SkillQueue</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="112"/>
         <source>Last Entry in skillqueue will end in less than a day.</source>
         <translation type="obsolete">Letzter Eintrag in der SkillQueue wird in weniger als einem Tag enden.</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="156"/>
+        <location filename="queue.cpp" line="60"/>
+        <location filename="queue.cpp" line="164"/>
         <source>collapse</source>
         <translation>kürzen</translation>
     </message>
     <message>
-        <location filename="queue.cpp" line="149"/>
+        <location filename="queue.cpp" line="60"/>
+        <location filename="queue.cpp" line="157"/>
         <source>expand</source>
         <translation>erweitern</translation>
     </message>
@@ -354,17 +354,16 @@ Spieler: %2</translation>
 <context>
     <name>SkillTraining</name>
     <message>
-        <location filename="training.cpp" line="289"/>
         <source>Skilltraining &quot;%1&quot; completed.</source>
         <translation type="obsolete">Skill Training &quot;%1&quot; abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="283"/>
+        <location filename="training.cpp" line="285"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="284"/>
+        <location filename="training.cpp" line="286"/>
         <source>There is currently no skill in Training!</source>
         <translation>Es befindet sich momentan kein Skill im Training!</translation>
     </message>
@@ -393,7 +392,8 @@ Spieler: %2</translation>
         </translation>
     </message>
     <message>
-        <location filename="training.cpp" line="307"/>
+        <location filename="training.cpp" line="303"/>
+        <location filename="training.cpp" line="309"/>
         <source>Skilltraining</source>
         <translation>Skilltraining</translation>
     </message>
@@ -410,7 +410,6 @@ Spieler: %2</translation>
         <translation>%1</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="295"/>
         <source>Skilltraining &quot;%1&quot; (%2) finished soon.</source>
         <translation type="obsolete">Skilltraining &quot;%1&quot; (%2) bald abgeschlossen.</translation>
     </message>
@@ -438,17 +437,17 @@ Spieler: %2</translation>
         <translation>in die Zwischenablage kopiert</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="301"/>
+        <location filename="training.cpp" line="303"/>
         <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot;.</source>
         <translation>&quot;%1&quot; hat das Training &quot;%2&quot; abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="307"/>
+        <location filename="training.cpp" line="309"/>
         <source>&quot;%1&quot; has completed Skilltraining &quot;%2&quot; soon.</source>
         <translation>&quot;%1&quot; hat das Training &quot;%2&quot; bald abgeschlossen.</translation>
     </message>
     <message>
-        <location filename="training.cpp" line="283"/>
+        <location filename="training.cpp" line="285"/>
         <source>There is currently no skill in Training for &quot;%1&quot;!</source>
         <translation>Es befindet sich momentan kein Skill im Training für &quot;%1&quot;!</translation>
     </message>
@@ -474,12 +473,12 @@ Spieler: %2</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="83"/>
+        <location filename="webDoc.cpp" line="142"/>
         <source>download error</source>
         <translation>Download Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="84"/>
+        <location filename="webDoc.cpp" line="142"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -488,12 +487,12 @@ Seite: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="101"/>
+        <location filename="webDoc.cpp" line="117"/>
         <source>parse error</source>
         <translation>Parser Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="102"/>
+        <location filename="webDoc.cpp" line="117"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
@@ -502,20 +501,20 @@ auf Zeile %1, Spalte %2:
 &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="116"/>
+        <location filename="webDoc.cpp" line="132"/>
         <source>Server Error</source>
         <translation>Server Fehler</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="117"/>
+        <location filename="webDoc.cpp" line="132"/>
         <source>Server has reported an error
 
-Code:<byte value="x9"/>%1
-Message:<byte value="x9"/>%2</source>
+Code:	%1
+Message:	%2</source>
         <translation>Der Server hat einen Fehlergemeldet
 
-Fehlercode:<byte value="x9"/>%1
-Nachricht:<byte value="x9"/>%2</translation>
+Fehlercode:	%1
+Nachricht:	%2</translation>
     </message>
 </context>
 </TS>
