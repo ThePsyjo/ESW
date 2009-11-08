@@ -229,7 +229,7 @@ template <typename T> void MainWindow::delDockWidget(QList<T*>* w, int i)
 template <typename T> void MainWindow::setupDockWidget(QList<T*>* w, int i)
 {
 	addDockWidget(Qt::TopDockWidgetArea, w->at(i));
-	w->at(i)->setObjectName(config->loadAccounts().at(i));
+//	w->at(i)->setObjectName(config->loadAccounts().at(i));
 }
 
 void MainWindow::delDockWidgets(int i)
@@ -243,14 +243,15 @@ void MainWindow::setupDockWidgets(int i)
 {
 	//qDebug() << "create " << i;
 	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
+	characterWidget->at(i)->setObjectName("chw_" + config->loadAccounts().at(i));
 	setupDockWidget(characterWidget, i);
 
 	trainingWidget->insert(i, new SkillTraining(config, trayMgr, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
+	trainingWidget->at(i)->setObjectName("trw_" + config->loadAccounts().at(i));
 	setupDockWidget(trainingWidget, i);
-//	qDebug() << "";
-//	trainingWidget->at(i)->setObjectName(config->loadAccounts().at(i));
 
 	queueWidget->insert(i, new SkillQueue(config, trayMgr, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
+	queueWidget->at(i)->setObjectName("qw_" + config->loadAccounts().at(i));
 	setupDockWidget(queueWidget, i);
 }
 
@@ -313,7 +314,7 @@ void MainWindow::handleInputApiAction()
 				found = false;
 				for (int j = 0; j < l.count(); j++)
 				{
-					if( l.at(j) == characterWidget->at(i)->objectName() )
+					if( l.at(j) == "chw_" + characterWidget->at(i)->objectName() )
 					{
 						found = true;
 						break;
@@ -326,7 +327,7 @@ void MainWindow::handleInputApiAction()
 				found = false;
 				for (int j = 0; j < characterWidget->count(); j++)
 				{
-					if( l.at(i) == characterWidget->at(j)->objectName() )
+					if( l.at(i) == "chw_" + characterWidget->at(j)->objectName() )
 					{
 						found = true;
 						break;
