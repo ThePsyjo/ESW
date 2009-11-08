@@ -148,7 +148,7 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	connect(newButton	, SIGNAL(clicked()), this, SLOT(onNewClick()));
 	connect(deleteButton	, SIGNAL(clicked()), this, SLOT(onDeleteClick()));
 
-	onConnectClick();
+	//onConnectClick();
 	
 	adjustSize();
 	show();
@@ -172,7 +172,7 @@ void ApiInput::redel(QWidget* w)
 {w->setStyleSheet("color:red;");}
 
 void ApiInput::defel(QWidget* w)
-{w->setStyleSheet("color:black;");}
+{w->setStyleSheet("");}
 
 bool ApiInput::validID(bool b)
 {
