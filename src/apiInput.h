@@ -62,22 +62,24 @@ private:
 	ConfigHandler *conf;
 	WebDoc *characters;
 	QDomDocument *doc;
-	QPushButton *okButton, *cancelButton, *connectButton, *newButton, *deleteButton;
+	QPushButton *saveButton, *closeButton, *connectButton, *newButton, *deleteButton;
 	QLabel *lUserID, *lApiKey, *lCharacterID, *lText, *lAccount;
 	QLineEdit *eUserID, *eApiKey;
 	QComboBox *characterSelect, *accountSelect;
 	QGridLayout *layout;
+	QFont *defFont;
 	bool gotData;
 	void redel(QWidget*);
 	void defel(QWidget*);
 	bool validID(bool);
 private slots:
-	void onOkClick();
+	void onSaveClick();
 	void onConnectClick();
 	void onCharactersDocDone(bool);
 	void handleAccountSelect(QString);
 	void onNewClick();
 	void onDeleteClick();
+	void handleChange();
 };
 
 

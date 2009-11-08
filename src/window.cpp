@@ -229,30 +229,32 @@ template <typename T> void MainWindow::delDockWidget(QList<T*>* w, int i)
 template <typename T> void MainWindow::setupDockWidget(QList<T*>* w, int i)
 {
 	addDockWidget(Qt::TopDockWidgetArea, w->at(i));
-	w->at(i)->setObjectName("toolbar_character"+config->loadAccounts().at(i));
+	w->at(i)->setObjectName(config->loadAccounts().at(i));
 }
 
 void MainWindow::delDockWidgets(int i)
 {
-//	qDebug() << "del " << i;
+	//qDebug() << "del " << i;
 	delDockWidget(characterWidget, i);
 	delDockWidget(trainingWidget, i);
 	delDockWidget(queueWidget, i);
 }
 void MainWindow::setupDockWidgets(int i)
 {
-//	qDebug() << "create " << i;
+	//qDebug() << "create " << i;
 	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
 	setupDockWidget(characterWidget, i);
 
 	trainingWidget->insert(i, new SkillTraining(config, trayMgr, skillTree, tr("skilltraining"), config->loadAccounts().at(i), this));
 	setupDockWidget(trainingWidget, i);
-	trainingWidget->at(i)->setObjectName("toolbar_training"+config->loadAccounts().at(i));
+//	qDebug() << "";
+//	trainingWidget->at(i)->setObjectName(config->loadAccounts().at(i));
 
 	queueWidget->insert(i, new SkillQueue(config, trayMgr, skillTree, tr("skilltqueue"), config->loadAccounts().at(i), this));
 	setupDockWidget(queueWidget, i);
 }
 
+/*
 void MainWindow::handleInputApiAction()
 {
 	QStringList l = config->loadAccounts();
@@ -295,6 +297,48 @@ void MainWindow::handleInputApiAction()
 		onHTimer();
 	}
 	trayMgr->flush();
+}*/
+
+void MainWindow::handleInputApiAction()
+{
+	ApiInput input(tr("API"), config, this);
+	if(input.exec())
+	{	
+		QStringList l = config->loadAccounts();
+		bool found;
+		while (characterWidget->count() != l.count())
+		{
+			for (int i = 0; i < characterWidget->count(); i++)
+			{
+				found = false;
+				for (int j = 0; j < l.count(); j++)
+				{
+					if( l.at(j) == characterWidget->at(i)->objectName() )
+					{
+						found = true;
+						break;
+					}
+				}
+				if (!found) delDockWidgets(i);
+			}
+			for (int i = 0; i < l.count(); i++)
+			{
+				found = false;
+				for (int j = 0; j < characterWidget->count(); j++)
+				{
+					if( l.at(i) == characterWidget->at(j)->objectName() )
+					{
+						found = true;
+						break;
+					}
+				}	
+				if (!found) setupDockWidgets(i);
+			}
+		} // while
+		accs = config->loadAccounts();
+		onHTimer();
+		trayMgr->flush();
+	} // if
 }
 
 void MainWindow::onHTimer()

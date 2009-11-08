@@ -87,8 +87,8 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	connect(characters, SIGNAL(done(bool)), this, SLOT(onCharactersDocDone(bool)));
 	gotData=false;
 
-        okButton	= new QPushButton (tr("&Save"), this);
-        cancelButton	= new QPushButton (tr("&Cancel"), this);
+        saveButton	= new QPushButton (tr("&Save"), this);
+        closeButton	= new QPushButton (tr("&Close"), this);
         newButton	= new QPushButton (tr("&New"), this);
         deleteButton	= new QPushButton (tr("&Delete"), this);
         connectButton	= new QPushButton (tr("c&onnect"), this);
@@ -100,10 +100,15 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	connect(accountSelect, SIGNAL(currentIndexChanged(QString)), this, SLOT(handleAccountSelect(QString)));
         characterSelect	= new QComboBox (this);
 
+	connect(characterSelect, SIGNAL(currentIndexChanged(int)), this, SLOT(handleChange()));
+
 	eUserID = new QLineEdit(QString("%1").arg(conf->loadApiInfo(accountSelect->currentText()).userID), this);
 	eApiKey = new QLineEdit(conf->loadApiInfo(accountSelect->currentText()).apiKey, this);
 	eUserID->setInputMask("00000000000000000000");
 	eApiKey->setMinimumWidth(400);
+
+	connect(eUserID, SIGNAL(textChanged(QString)), this, SLOT(handleChange()));
+	connect(eApiKey, SIGNAL(textChanged(QString)), this, SLOT(handleChange()));
 
 	lAccount = new QLabel(tr("Account"), this);
 	lUserID = new QLabel(tr("UserID"), this);
@@ -111,6 +116,8 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	lCharacterID = new QLabel(tr("CharacterID"), this);
 	lText = new QLabel(tr("Insert your UserID and your API-Key in the specified Fields.\nClick on connect to select your character.\nYou can get your own API-Information here : http://myeve.eve-online.com/api/default.asp ."), this);
 	lText->setOpenExternalLinks(true);
+
+	defFont = new QFont;
 
 	layout = new QGridLayout(this);
 
@@ -130,13 +137,13 @@ ApiInput::ApiInput( QString name, ConfigHandler *c, QWidget* parent )
 	layout->addWidget(lCharacterID, 6, 1);
 	layout->addWidget(characterSelect, 6, 2);
 	
-	layout->addWidget(okButton, 1, 3);
-	layout->addWidget(newButton, 2, 3);
-	layout->addWidget(deleteButton, 3, 3);
-	layout->addWidget(cancelButton, 4, 3);
+	layout->addWidget(saveButton, 1, 3);
+	layout->addWidget(newButton, 3, 3);
+	layout->addWidget(deleteButton, 4, 3);
+	layout->addWidget(closeButton, 6, 3);
 
-	connect(okButton	, SIGNAL(clicked()), this, SLOT(onOkClick()));
-	connect(cancelButton	, SIGNAL(clicked()), this, SLOT(reject()));
+	connect(saveButton	, SIGNAL(clicked()), this, SLOT(onSaveClick()));
+	connect(closeButton	, SIGNAL(clicked()), this, SLOT(accept()));
 	connect(connectButton	, SIGNAL(clicked()), this, SLOT(onConnectClick()));
 	connect(newButton	, SIGNAL(clicked()), this, SLOT(onNewClick()));
 	connect(deleteButton	, SIGNAL(clicked()), this, SLOT(onDeleteClick()));
@@ -154,6 +161,11 @@ void ApiInput::handleAccountSelect(QString s)
 {
 	eUserID->setText(QString::number(conf->loadApiInfo(s).userID));
 	eApiKey->setText(conf->loadApiInfo(s).apiKey);
+}
+
+void ApiInput::handleChange()
+{
+	saveButton->setFont(QFont(defFont->defaultFamily(), -1, QFont::Bold));
 }
 
 void ApiInput::redel(QWidget* w)
@@ -194,7 +206,7 @@ bool ApiInput::validID(bool b)
 	return true;
 }
 
-void ApiInput::onOkClick()
+void ApiInput::onSaveClick()
 {
 	if( ! validID(1)) return;
 	if( ! gotData) return;
@@ -215,8 +227,7 @@ void ApiInput::onOkClick()
 	}
 
 	conf->saveApiInfo(v);
-
-	accept();
+	saveButton->setFont(QFont());
 }
 
 void ApiInput::onConnectClick()
@@ -262,6 +273,7 @@ void ApiInput::onNewClick()
 		accountSelect->clear();
 		accountSelect->addItems(*accs);
 		accountSelect->setCurrentIndex(accountSelect->findText(in.getVal()));
+		handleChange();
 	}
 }
 
