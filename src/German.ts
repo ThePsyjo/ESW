@@ -511,7 +511,7 @@ auf Zeile %1, Spalte %2:
 
 Code:	%1
 Message:	%2</source>
-        <translation>Der Server hat einen Fehlergemeldet
+        <translation>Der Server hat einen Fehler gemeldet
 
 Fehlercode:	%1
 Nachricht:	%2</translation>
