@@ -241,7 +241,6 @@ void MainWindow::delDockWidgets(int i)
 }
 void MainWindow::setupDockWidgets(int i)
 {
-	//qDebug() << "create " << i;
 	characterWidget->insert(i, new CharacterWidget(tr("Character"), config->loadAccounts().at(i), config, this));
 	characterWidget->at(i)->setObjectName("chw_" + config->loadAccounts().at(i));
 	setupDockWidget(characterWidget, i);
@@ -254,51 +253,6 @@ void MainWindow::setupDockWidgets(int i)
 	queueWidget->at(i)->setObjectName("qw_" + config->loadAccounts().at(i));
 	setupDockWidget(queueWidget, i);
 }
-
-/*
-void MainWindow::handleInputApiAction()
-{
-	QStringList l = config->loadAccounts();
-	ApiInput input(tr("API"), config, this);
-	if(input.exec())
-	{
-		bool found;
-		if( accs.count() > config->loadAccounts().count() )
-		{
-			for(int i = accs.count()-1; i >= config->loadAccounts().count(); i--)
-				delDockWidgets(i);
-		}
-		else
-		{		
-			for(int i = accs.count(); i < config->loadAccounts().count(); i++)
-				setupDockWidgets(i);
-		}
-		
-		accs = config->loadAccounts();
-
-		// search for accs[i] matches all of the widgets accounts
-		// if applicable recreate them
-		for(int i = 0; i < accs.count(); i++)
-		{
-			found = false;
-			foreach(QString s, accs)
-				if(characterWidget->at(i)->getAccount() == s &&
-				    trainingWidget->at(i)->getAccount() == s && 
-				       queueWidget->at(i)->getAccount() == s )
-				{
-					found = true;
-					break;
-				}
-			if(!found)
-			{	
-				delDockWidgets(i);
-				setupDockWidgets(accs.count()-1);
-			}
-		}
-		onHTimer();
-	}
-	trayMgr->flush();
-}*/
 
 void MainWindow::handleInputApiAction()
 {
@@ -314,7 +268,7 @@ void MainWindow::handleInputApiAction()
 				found = false;
 				for (int j = 0; j < l.count(); j++)
 				{
-					if( l.at(j) == "chw_" + characterWidget->at(i)->objectName() )
+					if( "chw_" + l.at(j) == characterWidget->at(i)->objectName() )
 					{
 						found = true;
 						break;
@@ -327,7 +281,7 @@ void MainWindow::handleInputApiAction()
 				found = false;
 				for (int j = 0; j < characterWidget->count(); j++)
 				{
-					if( l.at(i) == "chw_" + characterWidget->at(j)->objectName() )
+					if( "chw_" + l.at(i) == characterWidget->at(j)->objectName() )
 					{
 						found = true;
 						break;

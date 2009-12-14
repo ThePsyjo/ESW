@@ -42,7 +42,6 @@ private:
 	QDomDocument *doc;
 	QFile *f;
 	QDomElement genTag(QDomElement, QString);
-	QDomNode *tmpNode;
 	bool tagCreated, doSave, change;
 	QTimer *timer;
 	//without account
@@ -54,8 +53,9 @@ private:
 	void cleanup();			// deprecated
 	QStringList __loadAccounts();	// deprecated
 	void fix_from_0_1_18();
+	bool findChar(QString, QDomNode&);
 	bool findChar(QString);
-	QDomNode* findCharNode(QString);
+	QDomNode findCharNode(QString);
 	void createChar(QString);
 	int cnt;
 public:
