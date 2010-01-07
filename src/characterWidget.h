@@ -41,7 +41,7 @@ private:
 private slots:
 	void onWebDoc(bool);
 public slots:
-	void reload();
+	void reload(bool = 0);
 };
 
 #endif

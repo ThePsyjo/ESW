@@ -70,7 +70,7 @@ private slots:
 	void onSkillTreeDone(bool);
 	void onCharacterTrainingDone(bool);
 public slots:
-	void reload();
+	void reload(bool = 0);
 	void showProgressBar(bool);
 };
 

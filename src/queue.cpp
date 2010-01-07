@@ -83,15 +83,15 @@ QString SkillQueue::getAccount()
 }
 
 
-void SkillQueue::reload()
+void SkillQueue::reload(bool force)
 {
 	if(skillTreeAvailable)
 	{
-		queue->get(QString("?userID=%1&apiKey=%2&characterID=%3")
+		queue->get(	QString("?userID=%1&apiKey=%2&characterID=%3")
 						.arg(conf->loadApiInfo(account).userID)
 						.arg(conf->loadApiInfo(account).apiKey)
-						.arg(conf->loadApiInfo(account).characterID)
-						);
+						.arg(conf->loadApiInfo(account).characterID),
+				force );
 	}
 	else
 		skillTree->get();

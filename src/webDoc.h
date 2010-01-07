@@ -32,8 +32,8 @@ Q_OBJECT
 public:
 	WebDoc(QString, bool = false, QString = "");
 	virtual ~WebDoc();
-	void get(QString);
-	void get();
+	void get(QString, bool = 0);
+	void get(bool = 0);
 	bool isCached();
 	QDomDocument* document();
 private:
@@ -44,7 +44,7 @@ private:
 	QFile *f;
 	QString cacheFile;
 	QDateTime *cacheTime;
-	void _get(QString);
+	void _get(QString, bool);
 	bool errorCodeHandle, busy, ok, cached;
 	bool setCacheFile();
 	void saveCacheFile();

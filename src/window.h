@@ -74,7 +74,8 @@ private slots:
 	void handleAboutEswAction();
 	void handleAboutQtAction();
 	void handleTrayIcon(QSystemTrayIcon::ActivationReason);
-	void onHTimer();
+	void onF5();
+	void onHTimer(bool = 0);
 	void onOntopAction(bool);
 	void onShowTrayAction(bool);
 	void onAutoSyncAction(bool);

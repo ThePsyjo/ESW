@@ -50,7 +50,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 
 	mAction = menuBar()->addMenu(tr("A&ction"));
 	mAction->addAction(tr("input API"), this, SLOT(handleInputApiAction()), Qt::Key_F8);
-	mAction->addAction(tr("update"), this, SLOT(onHTimer()), Qt::Key_F5);
+	mAction->addAction(tr("update"), this, SLOT(onF5()), Qt::Key_F5);
 
 	mStyle = new QMenu(tr("&Style"), this);
 	foreach(QString s, QStyleFactory::keys())	// fill in all available Styles
@@ -100,7 +100,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	if(config->loadShowTray()) trayIcon->show(); // only show when configured to show
 
 	trayIconMenu = new QMenu;
-	trayIconMenu->addAction(tr("update"), this, SLOT(onHTimer()));
+	trayIconMenu->addAction(tr("update"), this, SLOT(onF5()));
 	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
@@ -291,19 +291,24 @@ void MainWindow::handleInputApiAction()
 			}
 		} // while
 		accs = config->loadAccounts();
-		onHTimer();
+		onHTimer(1);
 		trayMgr->flush();
 	} // if
 }
 
-void MainWindow::onHTimer()
+void MainWindow::onF5()
 {
-	serverStat->reload();
+	onHTimer(1);
+}
+
+void MainWindow::onHTimer(bool force)
+{
+	serverStat->reload(force);
 	for(int i = 0; i < accs.count(); i++)
 	{
-		characterWidget->at(i)->reload();
-		trainingWidget->at(i)->reload();
-		queueWidget->at(i)->reload();
+		characterWidget->at(i)->reload(force);
+		trainingWidget->at(i)->reload(force);
+		queueWidget->at(i)->reload(force);
 	}
 	syncWidget->set(hTimer->interval()/1000);
 	hTimer->start();

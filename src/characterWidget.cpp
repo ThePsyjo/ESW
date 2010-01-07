@@ -66,11 +66,11 @@ void CharacterWidget::onWebDoc(bool ok)
 	}
 }
 
-void CharacterWidget::reload()
+void CharacterWidget::reload(bool force)
 {
-	characterInfo->get(QString("?userID=%1&apiKey=%2&characterID=%3")
+	characterInfo->get(	QString("?userID=%1&apiKey=%2&characterID=%3")
 					.arg(conf->loadApiInfo(account).userID)
 					.arg(conf->loadApiInfo(account).apiKey)
-					.arg(conf->loadApiInfo(account).characterID)
-	);
+					.arg(conf->loadApiInfo(account).characterID), 
+				force );
 }

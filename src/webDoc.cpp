@@ -39,7 +39,8 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF)
 
 WebDoc::~WebDoc(){};
 
-void WebDoc::_get(QString urlargs)
+//#include <QDebug>
+void WebDoc::_get(QString urlargs, bool force)
 {
 	if(! busy)
 	{
@@ -62,8 +63,9 @@ void WebDoc::_get(QString urlargs)
 		}
 		
 		// only fetch if cachetime is reached or document is empty
-		if(cacheTime->toLocalTime() < cacheTime->currentDateTime() || doc->isNull())
+		if(cacheTime->toLocalTime() < cacheTime->currentDateTime() || doc->isNull() || force)
 		{
+			//qDebug() << "fetching (" << url->toString() << ") ...";
 			buf->reset();
 			buf->buffer().clear();
 			http->setHost(url->host());
@@ -72,10 +74,11 @@ void WebDoc::_get(QString urlargs)
 		else 	busy = false;
 	}
 }
-void WebDoc::get(QString urlargs)
-{	_get(urlargs);	}
-void WebDoc::get()
-{	_get("");	}
+
+void WebDoc::get(QString urlargs, bool force)
+{	_get(urlargs, force);	}
+void WebDoc::get(bool force)
+{	_get("", force);	}
 
 bool WebDoc::setCacheFile()
 {

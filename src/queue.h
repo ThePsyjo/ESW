@@ -59,7 +59,7 @@ private slots:
 	void onQueueDone(bool);
 	void onFullViewButtonClick();
 public slots:
-	void reload();
+	void reload(bool = 0);
 };
 
 #endif

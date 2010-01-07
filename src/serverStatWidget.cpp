@@ -74,9 +74,9 @@ void ServerStatWidget::onWebDoc(bool ok)
 		
 }
 
-void ServerStatWidget::reload()
+void ServerStatWidget::reload(bool force)
 {
-	serverStatDoc->get();
+	serverStatDoc->get(force);
 }
 
 void ServerStatWidget::setServerStartupSingleShot()
