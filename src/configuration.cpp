@@ -219,7 +219,8 @@ QStringList ConfigHandler::loadAccounts()
 	QDomNodeList l = genTag ( doc->documentElement(), "Characters" ).childNodes();
 
 	for (int i = 0; i < l.size(); i++ )
-		ret << l.at(i).toElement().attribute("name");
+		if (! l.at(i).isComment())
+			ret << l.at(i).toElement().attribute("name");
 	return ret;
 }
 
