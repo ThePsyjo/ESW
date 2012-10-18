@@ -28,7 +28,7 @@ CharacterWidget::CharacterWidget(QString name, QString acc, ConfigHandler *c, QW
 	content->setMargin(3);
 	content->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 	setWidget(content);
-	characterInfo = new WebDoc("http://api.eve-online.com/char/CharacterSheet.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/CharacterSheet.xml.aspx." + account + ".cache"));
+	characterInfo = new WebDoc("https://api.eve-online.com/char/CharacterSheet.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/CharacterSheet.xml.aspx." + account + ".cache"));
 	connect(characterInfo, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 }
 

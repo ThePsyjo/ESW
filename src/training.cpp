@@ -28,7 +28,7 @@ SkillTraining::SkillTraining(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, 
 
 	todoTimeStringList = new QStringList();
 	skillTree = t;
-	characterTraining = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
+	characterTraining = new WebDoc("https://api.eve-online.com/char/skillqueue.xml.aspx", true, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
 
 	clipboard = QApplication::clipboard();
 

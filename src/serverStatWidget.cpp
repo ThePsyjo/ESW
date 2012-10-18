@@ -27,8 +27,8 @@ ServerStatWidget::ServerStatWidget(QString name, TrayManager* traymgr, QWidget *
 	content->setMargin(3);
 	content->setAlignment(Qt::AlignCenter);
 	setWidget(content);
-	serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx");
-	//serverStatDoc = new WebDoc("http://api.eve-online.com/Server/ServerStatus.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/ServerStatus.xml.aspx"));
+	serverStatDoc = new WebDoc("https://api.eve-online.com/Server/ServerStatus.xml.aspx");
+	//serverStatDoc = new WebDoc("https://api.eve-online.com/Server/ServerStatus.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/ServerStatus.xml.aspx"));
 	connect(serverStatDoc, SIGNAL(done(bool)), this, SLOT(onWebDoc(bool)));
 	setServerStartupSingleShot();
 }

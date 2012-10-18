@@ -89,12 +89,12 @@ Title %3&lt;br&gt;
 <context>
     <name>ConfigHandler</name>
     <message>
-        <location filename="configuration.cpp" line="46"/>
+        <location filename="configuration.cpp" line="45"/>
         <source>parse error</source>
         <translation>parser error</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="47"/>
+        <location filename="configuration.cpp" line="46"/>
         <source>Parse error in file %4:
 at line %1, column %2:
 &quot;%3&quot;
@@ -107,7 +107,7 @@ at line %1, column %2:
 config will not be written</translation>
     </message>
     <message>
-        <location filename="configuration.cpp" line="58"/>
+        <location filename="configuration.cpp" line="57"/>
         <source>%1 created in %2.</source>
         <translation>%1 created in %2.</translation>
     </message>
@@ -146,7 +146,7 @@ config will not be written</translation>
         <translation>Set API information</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="304"/>
+        <location filename="window.cpp" line="259"/>
         <source>API</source>
         <translation>API</translation>
     </message>
@@ -172,7 +172,7 @@ config will not be written</translation>
         <translation>server status</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="245"/>
+        <location filename="window.cpp" line="244"/>
         <source>Character</source>
         <translation>Character</translation>
     </message>
@@ -197,7 +197,7 @@ config will not be written</translation>
         <translation>show tray &amp;icon</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="355"/>
+        <location filename="window.cpp" line="315"/>
         <source>last update @ %1.</source>
         <translation>last update @ %1.</translation>
     </message>
@@ -231,7 +231,7 @@ config will not be written</translation>
         <translation>close to system&amp;tray</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="382"/>
+        <location filename="window.cpp" line="354"/>
         <source>%1 minimized.</source>
         <translation>%1 is now minimized to the systemtray.</translation>
     </message>
@@ -240,17 +240,17 @@ config will not be written</translation>
         <translation type="obsolete">Hide this tip in the future ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="398"/>
+        <location filename="window.cpp" line="370"/>
         <source>show this tip further ?</source>
         <translation>Show this tip further ?</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="397"/>
+        <location filename="window.cpp" line="369"/>
         <source>tip</source>
         <translation>Tip</translation>
     </message>
     <message>
-        <location filename="window.cpp" line="253"/>
+        <location filename="window.cpp" line="252"/>
         <source>skilltqueue</source>
         <translation>SkillQueue</translation>
     </message>
@@ -458,12 +458,12 @@ Players: %2</translation>
 <context>
     <name>WebDoc</name>
     <message>
-        <location filename="webDoc.cpp" line="142"/>
+        <location filename="webDoc.cpp" line="145"/>
         <source>download error</source>
         <translation>download error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="142"/>
+        <location filename="webDoc.cpp" line="145"/>
         <source>error while downloading %3.
 page: &quot;%1&quot;
 &quot;%2&quot;</source>
@@ -472,12 +472,12 @@ page: &quot;%1&quot;
 &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="117"/>
+        <location filename="webDoc.cpp" line="120"/>
         <source>parse error</source>
         <translation>parse error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="117"/>
+        <location filename="webDoc.cpp" line="120"/>
         <source>Parse error in %4
 at line %1, column %2:
 &quot;%3&quot;</source>
@@ -486,12 +486,12 @@ at line %1, column %2:
 &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="132"/>
+        <location filename="webDoc.cpp" line="135"/>
         <source>Server Error</source>
         <translation>Server Error</translation>
     </message>
     <message>
-        <location filename="webDoc.cpp" line="132"/>
+        <location filename="webDoc.cpp" line="135"/>
         <source>Server has reported an error
 
 Code:	%1

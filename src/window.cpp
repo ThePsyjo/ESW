@@ -104,7 +104,7 @@ MainWindow::MainWindow( QWidget * parent, Qt::WFlags f)
 	trayIconMenu->addAction(tr("exit"), this, SLOT(handleExitAction()));
 	trayIcon->setContextMenu(trayIconMenu);
 
-        skillTree = new WebDoc("http://api.eve-online.com/eve/SkillTree.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/SkillTree.xml.aspx"));
+        skillTree = new WebDoc("https://api.eve-online.com/eve/SkillTree.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/SkillTree.xml.aspx"));
 
 //CharacterWidget, SkillTraining, SkillQueue for each char ////////////////////////////////////////////
 	characterWidget = new QList<CharacterWidget*>;

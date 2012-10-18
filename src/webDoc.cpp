@@ -24,6 +24,7 @@ WebDoc::WebDoc(QString u, bool _errorCodeHandle, QString cacheF)
 	buf  = new QBuffer(this);
 	buf->open(QBuffer::ReadWrite);
 	http = new QHttp(this);
+	connect(http, SIGNAL(sslErrors(QList<QSslError>)), http, SLOT(ignoreSslErrors()));
 	url = new QUrl(u);
 	connect(http, SIGNAL(done(bool)), this, SLOT(httpGetDone(bool)));
 	doc = new QDomDocument;
@@ -65,10 +66,10 @@ void WebDoc::_get(QString urlargs, bool force)
 		// only fetch if cachetime is reached or document is empty
 		if(cacheTime->toLocalTime() < cacheTime->currentDateTime() || doc->isNull() || force)
 		{
-			//qDebug() << "fetching (" << url->toString() << ") ...";
+			//qDebug() << "fetching (" << url->toString()+urlargs << ") ...";
 			buf->reset();
 			buf->buffer().clear();
-			http->setHost(url->host());
+			http->setHost(url->host(), QHttp::ConnectionModeHttps, 443);
 			http->get(url->path() + urlargs, buf);
 		}
 		else 	busy = false;
@@ -107,6 +108,7 @@ void WebDoc::httpGetDone(bool error)
 //puts("----------");
 //qDebug() << buf->data();
 //puts("----------");
+//qDebug() << ok;
 	ok = !error;
 	cached = false;
 

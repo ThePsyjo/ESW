@@ -30,7 +30,7 @@ SkillQueue::SkillQueue(ConfigHandler* c, TrayManager* traymgr, WebDoc *t, QStrin
 	tray = traymgr;
 	skillTree = t;
 	account = acc;
-	queue = new WebDoc("http://api.eve-online.com/char/skillqueue.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
+	queue = new WebDoc("https://api.eve-online.com/char/skillqueue.xml.aspx", false, QDir::toNativeSeparators(QDir::homePath ()  + "/.esw/skillqueue.xml.aspx." + account + ".cache"));
 	
 	connect(skillTree, SIGNAL(done(bool)), this, SLOT(onSkillTreeDone(bool)));
 	connect(queue, SIGNAL(done(bool)), this, SLOT(onQueueDone(bool)));
